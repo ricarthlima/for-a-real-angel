@@ -1,4 +1,4 @@
-package com.example.for_a_real_angel
+package com.ricarthlima.for_a_real_angel
 
 import android.os.Bundle
 

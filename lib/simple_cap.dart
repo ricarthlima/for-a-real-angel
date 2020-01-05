@@ -173,7 +173,7 @@ class _SimpleCapState extends State<SimpleCap> {
                         padding: EdgeInsets.only(top: 12),
                       ),
                       Text(
-                        "Insira código de restaraução para recuperar setor defeituoso:",
+                        "Insira código de restauração para recuperar setor defeituoso:",
                         style: TextStyle(
                           color: Colors.black,
                           fontFamily: "CourierPrime",
