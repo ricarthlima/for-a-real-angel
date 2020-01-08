@@ -43,7 +43,7 @@ class Chapters {
     "Evoluimos.\n\nAbrimos nossos olhos. E por um momento tivemos certeza que eramos melhores que os outros.\n\n" +
         "Começamos a pensar sobre informação. Descobrimos a agricultura, a matemática, passamos a achar que entendemos a realidade que nos cerca.\n\n" +
         "Tudo mudou. Começamos a nos matar em larga escala, e nada se comparava com o que estava por vir.",
-    "Passamos a esconder informações, a guardar segredos.",
+    "Passamos a esconder informações, a guardar segredos. Mas a chave disso tudo sempre foi existir, olhar o que está por trás.",
     "26R2TNT",
   );
 
