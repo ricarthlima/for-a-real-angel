@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:for_a_real_angel/simple_cap.dart';
+import 'package:for_a_real_angel/starter.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
           fontFamily: "JosefinSans"),
       home: Scaffold(
-        body: SimpleCap(),
+        body: Starter(),
       ),
     );
   }

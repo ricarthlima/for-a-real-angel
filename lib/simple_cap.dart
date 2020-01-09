@@ -49,164 +49,166 @@ class _SimpleCapState extends State<SimpleCap> {
   Widget build(BuildContext context) {
     Chapter cap = chapters[idChapter];
 
-    return SwipeDetector(
-      swipeConfiguration: SwipeConfiguration(
-        horizontalSwipeMinVelocity: 100.0,
-        horizontalSwipeMinDisplacement: 10.0,
-      ),
-      onSwipeLeft: () {
-        if (this.idChapter < this.idLastUnlockedChapter) {
-          _navigateFoward();
-        }
-      },
-      onSwipeRight: () {
-        if (this.idChapter > 1) {
-          _navigateBack();
-        }
-      },
-      child: GestureDetector(
-        child: Container(
-          color: Colors.black,
-          padding: EdgeInsets.fromLTRB(25, 50, 25, 25),
-          child: SingleChildScrollView(
-            controller: _controllerScroll,
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Icon(
-                        Icons.navigate_before,
-                        color: (this.idLastUnlockedChapter < 2 ||
-                                this.idChapter < 2)
-                            ? Colors.grey
-                            : Colors.white,
-                      ),
-                      onTap:
-                          (this.idLastUnlockedChapter < 2 || this.idChapter < 2)
-                              ? () {
-                                  _navigateError();
-                                }
-                              : () {
-                                  _navigateBack();
-                                },
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Icon(cap.icon),
-                        Text(cap.title),
-                      ],
-                    ),
-                    GestureDetector(
-                      child: Icon(
-                        Icons.navigate_next,
-                        color: (this.idChapter >= this.idLastUnlockedChapter)
-                            ? Colors.grey
-                            : Colors.white,
-                      ),
-                      onTap: (this.idChapter >= this.idLastUnlockedChapter)
-                          ? () {
-                              _navigateError();
-                            }
-                          : () {
-                              _navigateFoward();
-                            },
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                ),
-                Divider(
-                  color: Colors.white,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                ),
-                Text(
-                  cap.text,
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                  textAlign: TextAlign.justify,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                ),
-                Text(
-                  cap.tipQuote,
-                  style: TextStyle(color: Colors.orange, fontSize: 20),
-                  textAlign: TextAlign.justify,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 35),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.red, width: 3),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Scaffold(
+      body: SwipeDetector(
+        swipeConfiguration: SwipeConfiguration(
+          horizontalSwipeMinVelocity: 100.0,
+          horizontalSwipeMinDisplacement: 10.0,
+        ),
+        onSwipeLeft: () {
+          if (this.idChapter < this.idLastUnlockedChapter) {
+            _navigateFoward();
+          }
+        },
+        onSwipeRight: () {
+          if (this.idChapter > 1) {
+            _navigateBack();
+          }
+        },
+        child: GestureDetector(
+          child: Container(
+            color: Colors.black,
+            padding: EdgeInsets.fromLTRB(25, 50, 25, 25),
+            child: SingleChildScrollView(
+              controller: _controllerScroll,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        "PROJETO K22B",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          fontFamily: "CourierPrime",
+                      GestureDetector(
+                        child: Icon(
+                          Icons.navigate_before,
+                          color: (this.idLastUnlockedChapter < 2 ||
+                                  this.idChapter < 2)
+                              ? Colors.grey
+                              : Colors.white,
                         ),
+                        onTap: (this.idLastUnlockedChapter < 2 ||
+                                this.idChapter < 2)
+                            ? () {
+                                _navigateError();
+                              }
+                            : () {
+                                _navigateBack();
+                              },
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 5),
-                      ),
-                      Text(
-                        "ARMAZENAMENTO EXTREMAMENTE COMPROMETIDO",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "CourierPrime",
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 12),
-                      ),
-                      Text(
-                        "Insira código de restauração para recuperar setor defeituoso:",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "CourierPrime",
-                        ),
-                      ),
-                      TextField(
-                        controller: _controllerCode,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "CourierPrime",
-                        ),
+                      Column(
+                        children: <Widget>[
+                          Icon(cap.icon),
+                          Text(cap.title),
+                        ],
                       ),
                       GestureDetector(
-                        onTap: () {
-                          _testCode(_controllerCode.text, context);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          color: Colors.black,
-                          child: Text(
-                            "RESTAURAR",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "CourierPrime",
-                            ),
-                          ),
+                        child: Icon(
+                          Icons.navigate_next,
+                          color: (this.idChapter >= this.idLastUnlockedChapter)
+                              ? Colors.grey
+                              : Colors.white,
                         ),
+                        onTap: (this.idChapter >= this.idLastUnlockedChapter)
+                            ? () {
+                                _navigateError();
+                              }
+                            : () {
+                                _navigateFoward();
+                              },
                       ),
                     ],
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                  ),
+                  Divider(
+                    color: Colors.white,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                  ),
+                  Text(
+                    cap.text,
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    textAlign: TextAlign.justify,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                  ),
+                  Text(
+                    cap.tipQuote,
+                    style: TextStyle(color: Colors.orange, fontSize: 20),
+                    textAlign: TextAlign.justify,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 35),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.red, width: 3),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Text(
+                          "PROJETO K22B",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            fontFamily: "CourierPrime",
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 5),
+                        ),
+                        Text(
+                          "ARMAZENAMENTO EXTREMAMENTE COMPROMETIDO",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "CourierPrime",
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 12),
+                        ),
+                        Text(
+                          "Insira código de restauração para recuperar setor defeituoso:",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "CourierPrime",
+                          ),
+                        ),
+                        TextField(
+                          controller: _controllerCode,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "CourierPrime",
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _testCode(_controllerCode.text, context);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            color: Colors.black,
+                            child: Text(
+                              "RESTAURAR",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "CourierPrime",
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -265,6 +267,29 @@ class _SimpleCapState extends State<SimpleCap> {
         idLastUnlockedChapter = chapters[i].id;
       });
     } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text("ERRO!"),
+              titleTextStyle: TextStyle(
+                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
+              contentTextStyle: TextStyle(color: Colors.black),
+              content: Text("Código de Restauração Incorreto!"),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                )
+              ],
+            );
+          });
       await poolAlarm.play(this.soundIdError);
     }
   }
