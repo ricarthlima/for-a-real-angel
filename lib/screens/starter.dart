@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:for_a_real_angel/chapter_splash.dart';
-import 'package:for_a_real_angel/simple_cap.dart';
+import 'package:for_a_real_angel/desktop.dart';
+import 'package:for_a_real_angel/screens/chapter_splash.dart';
+import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
 
@@ -226,7 +226,7 @@ class _StarterState extends State<Starter> {
 
   Future _read() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = 'skip_basic_infos';
+    final key = PreferencesKey.skipBasicInfos;
     final value = prefs.getBool(key);
 
     if (value != null && value) {
@@ -237,7 +237,7 @@ class _StarterState extends State<Starter> {
 
   _saveSkip() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = 'skip_basic_infos';
+    final key = PreferencesKey.skipBasicInfos;
     final value = true;
     prefs.setBool(key, value);
   }

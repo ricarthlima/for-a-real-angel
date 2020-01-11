@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:for_a_real_angel/model/chapter.dart';
 import 'package:for_a_real_angel/values/chapters_data.dart';
+import 'package:for_a_real_angel/values/enum_icons.dart';
+import 'package:for_a_real_angel/values/my_colors.dart';
+import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:for_a_real_angel/visual_objects/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:swipedetector/swipedetector.dart';
@@ -50,6 +54,10 @@ class _SimpleCapState extends State<SimpleCap> {
     Chapter cap = chapters[idChapter];
 
     return Scaffold(
+      appBar: getMenuBar(
+          context: context,
+          icon: IconsValues.fara,
+          title: "F(or) A Real Angel"),
       body: SwipeDetector(
         swipeConfiguration: SwipeConfiguration(
           horizontalSwipeMinVelocity: 100.0,
@@ -68,7 +76,7 @@ class _SimpleCapState extends State<SimpleCap> {
         child: GestureDetector(
           child: Container(
             color: Colors.black,
-            padding: EdgeInsets.fromLTRB(25, 50, 25, 25),
+            padding: EdgeInsets.all(10),
             child: SingleChildScrollView(
               controller: _controllerScroll,
               child: Column(
@@ -218,7 +226,7 @@ class _SimpleCapState extends State<SimpleCap> {
 
   Future _read() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = 'chapter_id';
+    final key = PreferencesKey.chapterId;
     final value = prefs.getInt(key);
 
     if (value != null) {
@@ -296,7 +304,7 @@ class _SimpleCapState extends State<SimpleCap> {
 
   _save(int chapterId) async {
     final prefs = await SharedPreferences.getInstance();
-    final key = 'chapter_id';
+    final key = PreferencesKey.chapterId;
     final value = chapterId;
     prefs.setInt(key, value);
   }

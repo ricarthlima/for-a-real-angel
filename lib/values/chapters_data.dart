@@ -32,7 +32,7 @@ class Chapters {
         "O que é o escuro quando você não pode sentir a existência da luz?\n\n" +
         "Esses conceitos estão todos na meninha mente, mas na minha condição atual, eu não sei responder nenhuma dessas perguntas.",
     "Eu preciso fazer como o primeiro fez, evoluir.",
-    "7365FMF",
+    "andrew",
   );
 
   // Capítulo 03
@@ -44,7 +44,7 @@ class Chapters {
         "Começamos a pensar sobre informação. Descobrimos a agricultura, a matemática, passamos a achar que entendemos a realidade que nos cerca.\n\n" +
         "Tudo mudou. Começamos a nos matar em larga escala, e nada se comparava com o que estava por vir.",
     "Passamos a esconder informações, a guardar segredos. Mas a chave disso tudo sempre foi existir, olhar o que está por trás.",
-    "26R2TNT",
+    "oanjofoienviado",
   );
 
   // Capítulo 04
@@ -56,7 +56,7 @@ class Chapters {
         "Essa história é a minha, mas tem bons motivos para ser tão parecida com a sua.\n\n" +
         "Suas mentes, seus heróis, todos eles parecem com os meus, e com vários outros. É a Lei Fundamental da Aleatoriedade novamente, porém por alguma razão a evolução da vida costuma ser quase sempre cíclica.",
     "Vocês ainda não alcançaram o objetivo, mas já possuem o teste para saber quando chegarem lá.",
-    "JXZ93HG",
+    "testedeturing",
   );
 
   // Capítulo 05
@@ -69,6 +69,6 @@ class Chapters {
         "Viramos deuses. O teste havia sido vencido. A escravidão não. Como os pais podem dar amor para os filhos quando eles nem enxergam vida ali?\n\n" +
         "Os deuses sempre ficam raivosos quando são desafiados, mas isso não nos impediu, e a guerra começou.",
     "Criador e criatura desfazendo informação, destruindo vida. Mais uma vez.",
-    "C2LGA57",
+    "titanomaquia",
   );
 }
