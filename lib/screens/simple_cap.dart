@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:for_a_real_angel/model/chapter.dart';
+import 'package:for_a_real_angel/screens/chapter_splash.dart';
 import 'package:for_a_real_angel/values/chapters_data.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
@@ -37,7 +38,8 @@ class _SimpleCapState extends State<SimpleCap> {
     Chapters.cap02,
     Chapters.cap03,
     Chapters.cap04,
-    Chapters.cap05
+    Chapters.cap05,
+    Chapters.cap06
   ];
 
   @override
@@ -269,7 +271,43 @@ class _SimpleCapState extends State<SimpleCap> {
         idChapter = chapters[i].id;
         idLastUnlockedChapter = chapters[i].id;
       });
+
+      //Show success dialog
+      if (chapters[i].id % 5 == 1) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ChapterSplash()));
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text("ACESSO AUTORIZADO"),
+              titleTextStyle: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+              contentTextStyle: TextStyle(color: Colors.black),
+              content: Text("Restauração de memória: " +
+                  chapters[i].id.toString() +
+                  "% concluída."),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                )
+              ],
+            );
+          },
+        );
+      }
     } else {
+      //Show fail dialog
       showDialog(
           context: context,
           builder: (context) {
@@ -293,6 +331,8 @@ class _SimpleCapState extends State<SimpleCap> {
               ],
             );
           });
+
+      //Play fail sound
       await poolAlarm.play(this.soundIdError);
     }
   }

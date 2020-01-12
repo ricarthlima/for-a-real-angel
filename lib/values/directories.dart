@@ -52,6 +52,8 @@ class Directories {
         chapter: 5,
         icon: IconsValues.image,
         title: "unknow.jpg",
-        type: MFileTypes.image)
+        type: MFileTypes.image,
+        filePath: "unknow.jpg",
+        downlink: "https://projeto-k22b.herokuapp.com/files/unknow.jpg")
   ]);
 }

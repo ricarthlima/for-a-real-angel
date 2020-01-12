@@ -11,6 +11,7 @@ class ChapterSplash extends StatefulWidget {
 
 class _ChapterSplashState extends State<ChapterSplash> {
   int idChapter;
+  int idEpisode;
 
   @override
   void initState() {
@@ -20,8 +21,11 @@ class _ChapterSplashState extends State<ChapterSplash> {
 
   @override
   Widget build(BuildContext context) {
-    _justWait(numberOfSeconds: 3);
+    setState(() {
+      this.idEpisode = (idChapter ~/ 5.1) + 1;
+    });
 
+    _justWait(numberOfSeconds: 3);
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -30,7 +34,9 @@ class _ChapterSplashState extends State<ChapterSplash> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Icon(
-              Icons.ac_unit,
+              (this.idEpisode == 1)
+                  ? Icons.ac_unit
+                  : (this.idEpisode == 2) ? Icons.leak_remove : Icons.lens,
               size: 45,
             ),
             Padding(

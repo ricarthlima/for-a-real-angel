@@ -93,6 +93,23 @@ class _StarterState extends State<Starter> {
                       child: Column(
                         children: <Widget>[
                           Icon(
+                            Icons.open_in_new,
+                            size: 100,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 10),
+                          ),
+                          Text(
+                            "Você está lidando com arquivos e informações secretas, sigilosas e criptografadas. Nada é o que parece, use todas as ferramentas para manipular os arquivos investigados.",
+                            textAlign: TextAlign.center,
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Icon(
                             Icons.public,
                             size: 100,
                           ),

@@ -72,4 +72,15 @@ class Chapters {
     "Criador e criatura desfazendo informação, destruindo vida. Mais uma vez.",
     "testedeturing",
   );
+
+  // Capítulo 06
+
+  static const Chapter cap06 = Chapter(
+    6,
+    Icons.leak_remove,
+    "Cotidiano",
+    "Em breve",
+    "Previsão: 20/01/2019",
+    "titanomaquia",
+  );
 }
