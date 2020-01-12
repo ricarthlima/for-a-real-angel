@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/values/enum_icons.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 
 AppBar getMenuBar(
@@ -17,7 +16,9 @@ AppBar getMenuBar(
       title,
       style: TextStyle(
         fontSize: 20,
-        fontFamily: "PTSerif",
+        fontFamily: "CourierPrime",
+        letterSpacing: -2,
+        wordSpacing: -3,
       ),
     ),
     centerTitle: true,

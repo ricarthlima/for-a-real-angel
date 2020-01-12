@@ -2,6 +2,7 @@ class IconsValues {
   static const String dir = "assets/icons/";
 
   static const String desktop = dir + "desktop-0.png";
+  static const String directory = dir + "directory.png";
   static const String directory_closed = dir + "directory_closed_cool-0.png";
   static const String directory_open = dir + "directory_open_cool-0.png";
   static const String speaker_on = dir + "loudspeaker_rays-0.png";
@@ -14,4 +15,7 @@ class IconsValues {
   static const String windows = dir + "windows-0.png";
 
   static const String fara = dir + "fara.png";
+  static const String agent = dir + "agent.png";
+
+  static const String image = dir + "image.png";
 }

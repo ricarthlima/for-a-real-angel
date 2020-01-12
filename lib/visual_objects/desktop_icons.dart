@@ -24,7 +24,7 @@ class DesktopIcon extends StatelessWidget {
           style: TextStyle(
             fontSize: 11,
             color: Colors.white,
-            fontFamily: "PTSerif",
+            fontFamily: "CourierPrime",
             shadows: [
               Shadow(
                 blurRadius: 1,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:for_a_real_angel/model/chapter.dart';
 import 'package:for_a_real_angel/values/chapters_data.dart';
-import 'package:for_a_real_angel/values/enum_icons.dart';
+import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/visual_objects/menu_bar.dart';
@@ -55,9 +55,10 @@ class _SimpleCapState extends State<SimpleCap> {
 
     return Scaffold(
       appBar: getMenuBar(
-          context: context,
-          icon: IconsValues.fara,
-          title: "F(or) A Real Angel"),
+        context: context,
+        icon: IconsValues.agent,
+        title: "Andrew",
+      ),
       body: SwipeDetector(
         swipeConfiguration: SwipeConfiguration(
           horizontalSwipeMinVelocity: 100.0,
@@ -74,9 +75,21 @@ class _SimpleCapState extends State<SimpleCap> {
           }
         },
         child: GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+            if (!currentFocus.hasPrimaryFocus) {
+              currentFocus.unfocus();
+            }
+          },
           child: Container(
-            color: Colors.black,
-            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              border: Border.all(
+                color: MyColors.topBlue,
+                width: 5,
+              ),
+            ),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: SingleChildScrollView(
               controller: _controllerScroll,
               child: Column(
@@ -139,61 +152,36 @@ class _SimpleCapState extends State<SimpleCap> {
                     textAlign: TextAlign.justify,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 10),
-                  ),
-                  Text(
-                    cap.tipQuote,
-                    style: TextStyle(color: Colors.orange, fontSize: 20),
-                    textAlign: TextAlign.justify,
-                  ),
-                  Padding(
                     padding: EdgeInsets.only(top: 35),
                   ),
                   Container(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(7),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.red, width: 3),
-                      color: Colors.white,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Text(
-                          "PROJETO K22B",
+                          cap.tipQuote,
                           style: TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            fontFamily: "CourierPrime",
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 5),
-                        ),
-                        Text(
-                          "ARMAZENAMENTO EXTREMAMENTE COMPROMETIDO",
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "CourierPrime",
+                            fontSize: 18,
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 12),
                         ),
-                        Text(
-                          "Insira código de restauração para recuperar setor defeituoso:",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "CourierPrime",
-                          ),
-                        ),
                         TextField(
                           controller: _controllerCode,
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontFamily: "CourierPrime",
                           ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -201,12 +189,15 @@ class _SimpleCapState extends State<SimpleCap> {
                           },
                           child: Container(
                             padding: EdgeInsets.all(10),
-                            color: Colors.black,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: Colors.grey, width: 2),
+                            ),
                             child: Text(
                               "RESTAURAR",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontFamily: "CourierPrime",
                               ),
                             ),
@@ -246,7 +237,8 @@ class _SimpleCapState extends State<SimpleCap> {
     bool correct = false;
     int i = 1;
     while (i < chapters.length) {
-      if (value == chapters[i].code) {
+      if (value.toLowerCase().replaceAll(" ", "") ==
+          chapters[i].code.toLowerCase().replaceAll(" ", "")) {
         correct = true;
         break;
       }

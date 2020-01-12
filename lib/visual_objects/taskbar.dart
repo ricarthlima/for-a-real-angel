@@ -1,4 +1,3 @@
-import 'package:for_a_real_angel/values/enum_icons.dart';
 import 'package:flutter/material.dart';
 
 class TaskBar extends StatefulWidget {
@@ -7,8 +6,10 @@ class TaskBar extends StatefulWidget {
 }
 
 class _TaskBarState extends State<TaskBar> {
+  String hour = "";
   @override
   Widget build(BuildContext context) {
+    _getHour();
     Size size = MediaQuery.of(context).size;
     return Positioned(
       bottom: 0,
@@ -72,7 +73,11 @@ class _TaskBarState extends State<TaskBar> {
                   Padding(
                     padding: EdgeInsets.only(right: 10),
                   ),
-                  Text("18:18 AM"),
+                  Text(
+                    hour,
+                    style: TextStyle(
+                        color: Colors.black, fontFamily: "CourierPrime"),
+                  ),
                 ],
               ),
             )
@@ -80,6 +85,14 @@ class _TaskBarState extends State<TaskBar> {
         ),
       ),
     );
+  }
+
+  _getHour() {
+    setState(() {
+      hour = DateTime.now().hour.toString() +
+          ":" +
+          DateTime.now().minute.toString();
+    });
   }
 }
 
@@ -124,7 +137,7 @@ class _TaskBarButtonState extends State<TaskBarButton> {
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: Colors.black,
-                fontFamily: "PTSerif"),
+                fontFamily: "CourierPrime"),
           ),
         ],
       ),
