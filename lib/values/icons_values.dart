@@ -18,4 +18,5 @@ class IconsValues {
   static const String agent = dir + "agent.png";
 
   static const String image = dir + "image.png";
+  static const String console = dir + "console.png";
 }

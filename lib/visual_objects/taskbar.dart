@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/values/icons_values.dart';
 
 class TaskBar extends StatefulWidget {
   @override
@@ -67,7 +68,7 @@ class _TaskBarState extends State<TaskBar> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Image.asset(
-                    "assets/icons/loudspeaker_muted-0.png",
+                    IconsValues.speaker_on,
                     height: 20,
                   ),
                   Padding(

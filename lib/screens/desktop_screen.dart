@@ -1,5 +1,6 @@
 import 'package:for_a_real_angel/screens/explorer.dart';
 import 'package:for_a_real_angel/screens/simple_cap.dart';
+import 'package:for_a_real_angel/screens/terminal.dart';
 import 'package:for_a_real_angel/values/directories.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,21 @@ class _DesktopScreenState extends State<DesktopScreen> {
           Column(
             children: <Widget>[
               // LIXEIRA
-              DesktopIcon(
-                IconsValues.recycle_bin_empty,
-                "Recycle \nBin",
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Explorer(
+                        folder: Directories.recycleBin,
+                      ),
+                    ),
+                  );
+                },
+                child: DesktopIcon(
+                  IconsValues.recycle_bin_empty,
+                  "Recycle \nBin",
+                ),
               ),
               GestureDetector(
                 onTap: () {
@@ -49,6 +62,13 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   IconsValues.directory_closed,
                   "Documents",
                 ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Terminal()));
+                },
+                child: DesktopIcon(IconsValues.console, "Terminal"),
               ),
             ],
           )

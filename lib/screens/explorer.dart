@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/file_opener.dart';
 import 'package:for_a_real_angel/model/mfile.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
@@ -82,8 +83,13 @@ class _ExplorerState extends State<Explorer> {
                     : Container(),
               for (var arquivo in widget.folder.listFiles)
                 (arquivo.chapter <= idChapter)
-                    ? ExplorerListFile(
-                        file: arquivo,
+                    ? GestureDetector(
+                        onTap: () {
+                          routerFileType(arquivo, context);
+                        },
+                        child: ExplorerListFile(
+                          file: arquivo,
+                        ),
                       )
                     : Container(),
             ],

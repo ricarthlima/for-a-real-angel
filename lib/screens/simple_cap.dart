@@ -51,6 +51,7 @@ class _SimpleCapState extends State<SimpleCap> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     Chapter cap = chapters[idChapter];
 
     return Scaffold(
@@ -82,6 +83,8 @@ class _SimpleCapState extends State<SimpleCap> {
             }
           },
           child: Container(
+            height: size.height,
+            width: size.width,
             decoration: BoxDecoration(
               color: Colors.black,
               border: Border.all(
@@ -117,7 +120,7 @@ class _SimpleCapState extends State<SimpleCap> {
                       Column(
                         children: <Widget>[
                           Icon(cap.icon),
-                          Text(cap.title),
+                          Text(cap.id.toString() + " - " + cap.title),
                         ],
                       ),
                       GestureDetector(

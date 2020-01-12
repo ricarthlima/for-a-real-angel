@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/desktop.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
@@ -12,7 +13,7 @@ class Starter extends StatefulWidget {
 
 class _StarterState extends State<Starter> {
   bool _selectSkip = false;
-  int nav = 0;
+  int _current = 0;
 
   @override
   void initState() {
@@ -29,146 +30,86 @@ class _StarterState extends State<Starter> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text("Como jogar F(or) A Real Angel?"),
-          SwipeDetector(
-            swipeConfiguration: SwipeConfiguration(
-              horizontalSwipeMinVelocity: 50.0,
-              horizontalSwipeMinDisplacement: 10.0,
-            ),
-            onSwipeLeft: () {
-              if (nav < 3) {
-                setState(() {
-                  nav += 1;
-                });
-              }
-            },
-            onSwipeRight: () {
-              if (nav > 0) {
-                setState(() {
-                  nav -= 1;
-                });
-              }
-            },
-            child: Column(
-              children: <Widget>[
-                (nav == 0)
-                    ? Container(
-                        height: 400,
-                        child: Image.asset("assets/melhor.png"),
-                      )
-                    : (nav == 1)
-                        ? Container(
-                            height: 400,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset("assets/help2.png"),
-                                Center(
-                                  child: Text(
-                                    "Acesse o sistema do PROJETO K22B para conseguir os Códigos de Restauração.",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                )
-                              ],
-                            ),
+          Text("Dicas sobre F(or) A Real Angel"),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(15),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  border: Border.all(color: Colors.grey, width: 5),
+                ),
+                child: CarouselSlider(
+                  height: 200,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 5),
+                  pauseAutoPlayOnTouch: Duration(seconds: 15),
+                  enlargeCenterPage: true,
+                  viewportFraction: 1.0,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _current = index;
+                    });
+                  },
+                  items: <Widget>[
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Icon(
+                            Icons.sentiment_satisfied,
+                            size: 100,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 10),
+                          ),
+                          Text(
+                            "Se você desiste fácil, FARA não é um jogo para você.",
+                            textAlign: TextAlign.center,
                           )
-                        : (nav == 2)
-                            ? Container(
-                                height: 400,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Image.asset("assets/dicas.png"),
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: 10),
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        "A cada capítulo, você receberá em laranja, uma dica crucial para a descoberta da chave que gera o código no sistema do PROJETO K22B.",
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            : Container(
-                                height: 400,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Image.asset("assets/acerte.png"),
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: 10),
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        "Quando você tiver o código, volte aqui e restaure o armazenamento para progredir na história.",
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: (nav == 0) ? Colors.white : Colors.grey,
-                            width: 5),
-                        borderRadius: BorderRadius.circular(50),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 5),
-                    ),
                     Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: (nav == 1) ? Colors.white : Colors.grey,
-                            width: 5),
-                        borderRadius: BorderRadius.circular(50),
+                      child: Column(
+                        children: <Widget>[
+                          Icon(
+                            Icons.headset,
+                            size: 100,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 10),
+                          ),
+                          Text(
+                            "Os sons são importantes em FARA. Se possível, jogue com fones de ouvido.",
+                            textAlign: TextAlign.center,
+                          )
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 5),
-                    ),
                     Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: (nav == 2) ? Colors.white : Colors.grey,
-                            width: 5),
-                        borderRadius: BorderRadius.circular(50),
+                      child: Column(
+                        children: <Widget>[
+                          Icon(
+                            Icons.public,
+                            size: 100,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 10),
+                          ),
+                          Text(
+                            "Use todas as informações possíveis para resolver os enigmas. Não hesite em pesquisar e aprender sobre algum assunto novo.",
+                            textAlign: TextAlign.center,
+                          )
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 5),
-                    ),
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: (nav == 3) ? Colors.white : Colors.grey,
-                            width: 5),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    )
                   ],
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
           Column(
             children: <Widget>[
@@ -190,28 +131,25 @@ class _StarterState extends State<Starter> {
               ),
               GestureDetector(
                 onTap: () {
-                  if (nav == 3) {
-                    if (_selectSkip) {
-                      _saveSkip();
-                    }
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ChapterSplash()));
+                  if (_selectSkip) {
+                    _saveSkip();
                   }
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => ChapterSplash()));
                 },
                 child: Center(
                   child: Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: (nav == 3) ? Colors.white : Colors.black,
+                      color: Colors.black,
                       border: Border.all(color: Colors.grey, width: 3),
                     ),
                     child: Center(
                       child: Text(
                         "Continuar",
                         style: TextStyle(
-                            color: (nav == 3) ? Colors.black : Colors.white),
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

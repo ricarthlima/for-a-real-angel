@@ -4,7 +4,7 @@ import 'package:for_a_real_angel/values/icons_values.dart';
 
 class Directories {
   static const MFolder recycleBin =
-      MFolder(chapter: 0, title: "recycleBin", listFiles: [], listFolders: []);
+      MFolder(chapter: 0, title: "Recycle Bin", listFiles: [], listFolders: []);
 
   static const MFolder documents =
       MFolder(chapter: 0, title: "Documents", listFolders: [
@@ -18,32 +18,32 @@ class Directories {
           icon: IconsValues.image,
           title: "wing.jpg",
           type: MFileTypes.image,
-          filePath: "wing.jpg",
-          downlink: "",
+          filePath: "n2/wing.jpg",
+          downlink: "https://projeto-k22b.herokuapp.com/files/n2/wing.jpg",
         ),
         MFile(
           chapter: 0,
           icon: IconsValues.image,
           title: "mouth.jpg",
           type: MFileTypes.image,
-          filePath: "mouth.jpg",
-          downlink: "",
+          filePath: "n2/mouth.jpg",
+          downlink: "https://projeto-k22b.herokuapp.com/files/n2/mouth.jpg",
         ),
         MFile(
           chapter: 0,
           icon: IconsValues.image,
           title: "fur.jpg",
           type: MFileTypes.image,
-          filePath: "fur.jpg",
-          downlink: "",
+          filePath: "n2/fur.jpg",
+          downlink: "https://projeto-k22b.herokuapp.com/files/n2/fur.jpg",
         ),
         MFile(
           chapter: 0,
           icon: IconsValues.image,
           title: "eyes.jpg",
           type: MFileTypes.image,
-          filePath: "eyes.jpg",
-          downlink: "",
+          filePath: "n2/eyes.jpg",
+          downlink: "https://projeto-k22b.herokuapp.com/files/n2/eyes.jpg",
         ),
       ],
     ),

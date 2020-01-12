@@ -1,8 +1,10 @@
 import 'package:for_a_real_angel/screens/desktop_screen.dart';
 import 'package:for_a_real_angel/visual_objects/taskbar.dart';
 import 'package:flutter/material.dart';
+import 'package:swipedetector/swipedetector.dart';
 
 class Desktop extends StatefulWidget {
+  String wallpaper = "assets/wallpaper-def.png";
   @override
   _DesktopState createState() => _DesktopState();
 }
@@ -14,11 +16,19 @@ class _DesktopState extends State<Desktop> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Center(
-            child: Image.asset(
-              "assets/wallpaper.jpg",
-              height: size.height,
-              fit: BoxFit.none,
+          SwipeDetector(
+            onSwipeLeft: () {
+              _inverterWallpaper();
+            },
+            onSwipeRight: () {
+              _normalizarWallpaper();
+            },
+            child: Center(
+              child: Image.asset(
+                widget.wallpaper,
+                height: size.height,
+                fit: BoxFit.none,
+              ),
             ),
           ),
           DesktopScreen(),
@@ -26,5 +36,17 @@ class _DesktopState extends State<Desktop> {
         ],
       ),
     );
+  }
+
+  void _inverterWallpaper() {
+    setState(() {
+      widget.wallpaper = "assets/wallpaper-inv.png";
+    });
+  }
+
+  void _normalizarWallpaper() {
+    setState(() {
+      widget.wallpaper = "assets/wallpaper-def.png";
+    });
   }
 }
