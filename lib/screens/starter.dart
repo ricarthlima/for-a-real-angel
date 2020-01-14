@@ -20,8 +20,6 @@ class _StarterState extends State<Starter> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Container(
       alignment: Alignment.bottomCenter,
       padding: EdgeInsets.all(25),
