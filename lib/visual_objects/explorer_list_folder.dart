@@ -3,7 +3,7 @@ import 'package:for_a_real_angel/model/mfile.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 
 class ExplorerListFolder extends StatefulWidget {
-  MFolder folder;
+  final MFolder folder;
   ExplorerListFolder({@required this.folder});
 
   @override

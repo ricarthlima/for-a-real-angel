@@ -1,10 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/desktop.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swipedetector/swipedetector.dart';
 
 class Starter extends StatefulWidget {
   @override
@@ -13,15 +11,17 @@ class Starter extends StatefulWidget {
 
 class _StarterState extends State<Starter> {
   bool _selectSkip = false;
-  int _current = 0;
 
   @override
   void initState() {
     _read();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       alignment: Alignment.bottomCenter,
       padding: EdgeInsets.all(25),
@@ -40,27 +40,20 @@ class _StarterState extends State<Starter> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  border: Border.all(color: Colors.grey, width: 5),
                 ),
                 child: CarouselSlider(
-                  height: 200,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 4),
-                  pauseAutoPlayOnTouch: Duration(seconds: 15),
+                  autoPlayInterval: Duration(seconds: 3),
+                  pauseAutoPlayOnTouch: Duration(seconds: 10),
                   enlargeCenterPage: true,
                   viewportFraction: 1.0,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
                   items: <Widget>[
                     Container(
                       child: Column(
                         children: <Widget>[
                           Icon(
                             Icons.sentiment_satisfied,
-                            size: 100,
+                            size: 75,
                           ),
                           Padding(
                             padding: EdgeInsets.only(bottom: 10),
@@ -77,7 +70,7 @@ class _StarterState extends State<Starter> {
                         children: <Widget>[
                           Icon(
                             Icons.headset,
-                            size: 100,
+                            size: 75,
                           ),
                           Padding(
                             padding: EdgeInsets.only(bottom: 10),
@@ -94,7 +87,7 @@ class _StarterState extends State<Starter> {
                         children: <Widget>[
                           Icon(
                             Icons.open_in_new,
-                            size: 100,
+                            size: 75,
                           ),
                           Padding(
                             padding: EdgeInsets.only(bottom: 10),
@@ -111,7 +104,7 @@ class _StarterState extends State<Starter> {
                         children: <Widget>[
                           Icon(
                             Icons.public,
-                            size: 100,
+                            size: 75,
                           ),
                           Padding(
                             padding: EdgeInsets.only(bottom: 10),
@@ -128,7 +121,7 @@ class _StarterState extends State<Starter> {
                         children: <Widget>[
                           Icon(
                             Icons.comment,
-                            size: 100,
+                            size: 75,
                           ),
                           Padding(
                             padding: EdgeInsets.only(bottom: 10),

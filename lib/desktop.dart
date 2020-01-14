@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 class Desktop extends StatefulWidget {
-  String wallpaper = "assets/wallpaper-def.png";
   @override
   _DesktopState createState() => _DesktopState();
 }
 
 class _DesktopState extends State<Desktop> {
+  String wallpaper = "assets/wallpaper-def.png";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +25,7 @@ class _DesktopState extends State<Desktop> {
             },
             child: Center(
               child: Image.asset(
-                widget.wallpaper,
+                this.wallpaper,
                 height: size.height,
                 fit: BoxFit.none,
               ),
@@ -40,13 +40,13 @@ class _DesktopState extends State<Desktop> {
 
   void _inverterWallpaper() {
     setState(() {
-      widget.wallpaper = "assets/wallpaper-inv.png";
+      this.wallpaper = "assets/wallpaper-inv.png";
     });
   }
 
   void _normalizarWallpaper() {
     setState(() {
-      widget.wallpaper = "assets/wallpaper-def.png";
+      this.wallpaper = "assets/wallpaper-def.png";
     });
   }
 }

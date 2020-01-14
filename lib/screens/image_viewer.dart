@@ -6,7 +6,7 @@ import 'package:for_a_real_angel/visual_objects/menu_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ImageViewer extends StatefulWidget {
-  MFile file;
+  final MFile file;
   ImageViewer({@required this.file});
 
   @override

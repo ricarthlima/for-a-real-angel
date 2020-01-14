@@ -55,7 +55,7 @@ class _TaskBarState extends State<TaskBar> {
             // RELOGIO
             Container(
               height: 30,
-              padding: EdgeInsets.fromLTRB(2, 0, 5, 0),
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(color: Colors.grey, width: 1),
@@ -92,14 +92,14 @@ class _TaskBarState extends State<TaskBar> {
     setState(() {
       hour = DateTime.now().hour.toString() +
           ":" +
-          DateTime.now().minute.toString();
+          ("0" + DateTime.now().minute.toString()).substring(0);
     });
   }
 }
 
 class TaskBarButton extends StatefulWidget {
-  String icon;
-  String text;
+  final String icon;
+  final String text;
 
   TaskBarButton(this.icon, this.text);
   @override

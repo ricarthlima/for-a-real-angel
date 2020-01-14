@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/model/mfile.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
 
 class ExplorerListFile extends StatefulWidget {
-  MFile file;
+  final MFile file;
   ExplorerListFile({@required this.file});
 
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/desktop.dart';
-import 'package:for_a_real_angel/screens/simple_cap.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,8 +9,8 @@ class ChapterSplash extends StatefulWidget {
 }
 
 class _ChapterSplashState extends State<ChapterSplash> {
-  int idChapter;
-  int idEpisode;
+  int idChapter = 0;
+  int idEpisode = 0;
 
   @override
   void initState() {

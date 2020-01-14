@@ -7,14 +7,14 @@ import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Terminal extends StatefulWidget {
-  String version = "0.3.1";
-  int idChapter = 1;
-
   @override
   _TerminalState createState() => _TerminalState();
 }
 
 class _TerminalState extends State<Terminal> {
+  String version = "0.3.1";
+  int idChapter = 1;
+
   @override
   void initState() {
     _readVersion();
@@ -46,7 +46,7 @@ class _TerminalState extends State<Terminal> {
             children: <Widget>[
               Text(
                 "PROJECT K22B [" +
-                    widget.version +
+                    this.version +
                     "]\n" +
                     "(org) 1962 USA-URSS EXCEPTION UNION\n",
                 style: TextStyle(
@@ -54,7 +54,7 @@ class _TerminalState extends State<Terminal> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              (widget.idChapter == 4)
+              (this.idChapter == 4)
                   ? Text(
                       "venceu_enigma",
                       style: TextStyle(fontFamily: "CourierPrime"),
@@ -70,7 +70,7 @@ class _TerminalState extends State<Terminal> {
   _readVersion() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     setState(() {
-      widget.version = packageInfo.version;
+      this.version = packageInfo.version;
     });
   }
 
@@ -81,11 +81,11 @@ class _TerminalState extends State<Terminal> {
 
     if (value != null) {
       setState(() {
-        widget.idChapter = value;
+        this.idChapter = value;
       });
     } else {
       setState(() {
-        widget.idChapter = 1;
+        this.idChapter = 1;
       });
     }
   }

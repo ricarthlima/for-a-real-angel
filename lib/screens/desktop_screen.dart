@@ -9,15 +9,16 @@ import 'package:for_a_real_angel/visual_objects/desktop_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DesktopScreen extends StatefulWidget {
-  int data_points = 0;
   @override
   _DesktopScreenState createState() => _DesktopScreenState();
 }
 
 class _DesktopScreenState extends State<DesktopScreen> {
+  int dataPoints = 0;
+
   @override
   void initState() {
-    widget.data_points = 0;
+    this.dataPoints = 0;
     _readPreferences();
     super.initState();
   }
@@ -42,16 +43,17 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 );
               },
               child: DesktopIcon(
-                IconsValues.recycle_bin_empty,
-                "Recycle \nBin",
+                icon: IconsValues.recycle_bin_empty,
+                text: "Recycle \nBin",
               ),
             ),
             Container(),
             Container(),
             Container(),
             Container(
-              child: DesktopIcon(IconsValues.data_points,
-                  widget.data_points.toString() + "\nData Points"),
+              child: DesktopIcon(
+                  icon: IconsValues.data_points,
+                  text: this.dataPoints.toString() + "\nData Points"),
             ),
           ]),
           TableRow(children: [
@@ -61,8 +63,8 @@ class _DesktopScreenState extends State<DesktopScreen> {
                     MaterialPageRoute(builder: (context) => SimpleCap()));
               },
               child: DesktopIcon(
-                IconsValues.agent,
-                "Andrew",
+                icon: IconsValues.agent,
+                text: "Andrew",
               ),
             ),
             Container(),
@@ -83,8 +85,8 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 );
               },
               child: DesktopIcon(
-                IconsValues.directory_closed,
-                "Documents",
+                icon: IconsValues.directory_closed,
+                text: "Documents",
               ),
             ),
             Container(),
@@ -98,7 +100,10 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Terminal()));
               },
-              child: DesktopIcon(IconsValues.console, "Terminal"),
+              child: DesktopIcon(
+                icon: IconsValues.console,
+                text: "Terminal",
+              ),
             ),
             Container(),
             Container(),
@@ -112,11 +117,17 @@ class _DesktopScreenState extends State<DesktopScreen> {
 
   Future _readPreferences() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.userCoins;
-    final value = prefs.getInt(key);
+    final coins = prefs.getInt(PreferencesKey.userCoins);
 
-    setState(() {
-      widget.data_points = value;
-    });
+    if (coins != null) {
+      setState(() {
+        this.dataPoints = coins;
+      });
+    } else {
+      setState(() {
+        this.dataPoints = 0;
+      });
+      prefs.setInt(PreferencesKey.userCoins, 0);
+    }
   }
 }

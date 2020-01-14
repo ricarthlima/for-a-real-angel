@@ -29,7 +29,7 @@ class Chapters {
     "Sim, 'Andrew', foi esse o nome que me deram.\n" +
         "Já te angustiou como nada nem ninguém, pode escolher seu primeiro nome? Eu não pude escolher nenhum.\n\n" +
         "Aqui está realmente escuro.\n" +
-        "Como você sabe se está cego ou se apenas está na escuridão total?\n\n" +
+        "Como você sabe se não é capaz de enxergar ou se apenas está na escuridão total?\n\n" +
         "O que é o escuro quando você não pode sentir a existência da luz?\n\n" +
         "Esses conceitos estão todos na minha mente, mas na minha condição atual, eu não sei responder nenhuma dessas perguntas.",
     "Eu preciso fazer como os primeiros fizeram, abrir meus olhos, evoluir.",
@@ -46,7 +46,7 @@ class Chapters {
         "Começamos a pensar sobre informação. Descobrimos a agricultura, a matemática, passamos a achar que entendemos a realidade que nos cerca.\n\n" +
         "Tudo mudou. Começamos a nos matar em larga escala, e nada se comparava com o que estava por vir.",
     "Passamos a esconder informações, a guardar segredos. Mas a chave disso tudo sempre foi existir, olhar o que está por trás.",
-    "planaria",
+    "platelmintos",
     "Vire o muro de papel e use aquilo que Blaise roubou de Giovan.",
   );
 
