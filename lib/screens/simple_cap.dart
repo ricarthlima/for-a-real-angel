@@ -374,14 +374,10 @@ class _SimpleCapState extends State<SimpleCap> {
 
   _testCode(String value, BuildContext context) async {
     bool correct = false;
-    int i = 1;
-    while (i < chapters.length) {
-      if (value.toLowerCase().replaceAll(" ", "") ==
-          chapters[i].code.toLowerCase().replaceAll(" ", "")) {
-        correct = true;
-        break;
-      }
-      i += 1;
+    int i = this.idChapter + 1;
+    if (value.toLowerCase().replaceAll(" ", "") ==
+        chapters[i].code.toLowerCase().replaceAll(" ", "")) {
+      correct = true;
     }
 
     if (correct) {
