@@ -33,7 +33,7 @@ class _SimpleCapState extends State<SimpleCap> {
   TextEditingController _controllerCode = TextEditingController();
 
   List<Chapter> chapters = [
-    Chapter(0, Icons.ac_unit, "", "", "", "-159-"),
+    Chapter(0, Icons.ac_unit, "", "", "", "-159-", ""),
     Chapters.cap01,
     Chapters.cap02,
     Chapters.cap03,
@@ -41,6 +41,12 @@ class _SimpleCapState extends State<SimpleCap> {
     Chapters.cap05,
     Chapters.cap06
   ];
+
+  //Hints Unlocked
+  bool isUnlockedHint = false;
+
+  //User Coins
+  int userCoins;
 
   @override
   void initState() {
@@ -159,58 +165,139 @@ class _SimpleCapState extends State<SimpleCap> {
                   Padding(
                     padding: EdgeInsets.only(top: 35),
                   ),
-                  Container(
-                    padding: EdgeInsets.all(7),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.red, width: 3),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Text(
-                          cap.tipQuote,
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                  ((this.idChapter == this.idLastUnlockedChapter) &&
+                          (this.chapters[this.idChapter].goodHint != "last"))
+                      ? Container(
+                          padding: EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.red, width: 3),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 12),
-                        ),
-                        TextField(
-                          controller: _controllerCode,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "CourierPrime",
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 10),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            _testCode(_controllerCode.text, context);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.grey, width: 2),
-                            ),
-                            child: Text(
-                              "RESTAURAR",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: "CourierPrime",
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Text(
+                                cap.tipQuote,
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                            ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 12),
+                              ),
+                              TextField(
+                                controller: _controllerCode,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "CourierPrime",
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  GestureDetector(
+                                    onTap: () {
+                                      _testCode(_controllerCode.text, context);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                            color: Colors.grey, width: 2),
+                                      ),
+                                      child: Text(
+                                        "RESTAURAR",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: "CourierPrime",
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _showHint(context);
+                                    },
+                                    child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black,
+                                          border: Border.all(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Text(
+                                              "Dica",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: "CourierPrime",
+                                              ),
+                                            ),
+                                            (!this.isUnlockedHint)
+                                                ? Row(
+                                                    children: <Widget>[
+                                                      Text(" (10"),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 2),
+                                                      ),
+                                                      Image.asset(
+                                                        IconsValues.data_points,
+                                                        width: 15,
+                                                        height: 15,
+                                                      ),
+                                                      Text(")"),
+                                                    ],
+                                                  )
+                                                : Container()
+                                          ],
+                                        )),
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        )
+                      : Container(
+                          child: Column(
+                          children: <Widget>[
+                            Text(
+                              chapters[idChapter].tipQuote,
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 5),
+                            ),
+                            Text(
+                              (this.chapters[this.idChapter].goodHint != "last")
+                                  ? chapters[idChapter + 1].code
+                                  : "",
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        )),
                 ],
               ),
             ),
@@ -222,9 +309,9 @@ class _SimpleCapState extends State<SimpleCap> {
 
   Future _read() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.chapterId;
-    final value = prefs.getInt(key);
+    final value = prefs.getInt(PreferencesKey.chapterId);
 
+    //Chapter ID
     if (value != null) {
       setState(() {
         this.idChapter = value;
@@ -236,6 +323,53 @@ class _SimpleCapState extends State<SimpleCap> {
         this.idLastUnlockedChapter = 1;
       });
     }
+
+    _readHints(prePrefs: prefs);
+    _readCoins(prePrefs: prefs);
+  }
+
+  Future _readHints({prePrefs = "null"}) async {
+    var prefs = prePrefs;
+    if (prePrefs == "null") {
+      prefs = await SharedPreferences.getInstance();
+    }
+    final hints = prefs.getBool(PreferencesKey.isUnlockedHint);
+
+    //Hints
+    if (hints != null) {
+      setState(() {
+        this.isUnlockedHint = hints;
+      });
+    } else {
+      setState(() {
+        this.isUnlockedHint = false;
+      });
+      _saveHintsChange();
+    }
+  }
+
+  Future _readCoins({prePrefs = "null"}) async {
+    var prefs = prePrefs;
+    if (prePrefs == "null") {
+      prefs = await SharedPreferences.getInstance();
+    }
+
+    final coins = prefs.getInt(PreferencesKey.userCoins);
+    if (coins != null) {
+      setState(() {
+        this.userCoins = coins;
+      });
+    } else {
+      setState(() {
+        this.userCoins = 0;
+      });
+      _saveUserCoins();
+    }
+  }
+
+  Future _saveUserCoins() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt(PreferencesKey.userCoins, this.userCoins);
   }
 
   _testCode(String value, BuildContext context) async {
@@ -264,13 +398,30 @@ class _SimpleCapState extends State<SimpleCap> {
       }
 
       //Save unlocked stage
-      _save(chapters[i].id);
+      _saveChapterId(chapters[i].id);
 
       //Change the screen
       setState(() {
         idChapter = chapters[i].id;
         idLastUnlockedChapter = chapters[i].id;
       });
+
+      //Add Data Points
+      setState(() {
+        userCoins += 5;
+      });
+      _saveUserCoins();
+
+      //Clear input area
+      setState(() {
+        _controllerCode.text = "";
+      });
+
+      //Lock next hint
+      setState(() {
+        isUnlockedHint = false;
+      });
+      _saveHintsChange();
 
       //Show success dialog
       if (chapters[i].id % 5 == 1) {
@@ -288,9 +439,9 @@ class _SimpleCapState extends State<SimpleCap> {
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
               contentTextStyle: TextStyle(color: Colors.black),
-              content: Text("Restauração de memória: " +
-                  chapters[i].id.toString() +
-                  "% concluída."),
+              content: Text("Restauração de memória: \n" +
+                  (chapters[i].id * 2).toString() +
+                  "% concluída.\n\nPontos de dados adicionados: 5"),
               actions: <Widget>[
                 FlatButton(
                   onPressed: () {
@@ -337,11 +488,14 @@ class _SimpleCapState extends State<SimpleCap> {
     }
   }
 
-  _save(int chapterId) async {
+  _saveChapterId(int chapterId) async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.chapterId;
-    final value = chapterId;
-    prefs.setInt(key, value);
+    prefs.setInt(PreferencesKey.chapterId, chapterId);
+  }
+
+  _saveHintsChange() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(PreferencesKey.isUnlockedHint, this.isUnlockedHint);
   }
 
   _loadSounds() async {
@@ -380,4 +534,66 @@ class _SimpleCapState extends State<SimpleCap> {
   }
 
   _navigateError() {}
+
+  _showHint(BuildContext context) async {
+    if (this.isUnlockedHint) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            backgroundColor: Colors.white,
+            child: Container(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                chapters[idChapter].goodHint,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      if (this.userCoins >= 10) {
+        setState(() {
+          userCoins -= 10;
+          this.isUnlockedHint = true;
+        });
+        _saveUserCoins();
+        _saveHintsChange();
+        _showHint(context);
+      } else {
+        //Play fail sound
+        await poolAlarm.play(this.soundIdError);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("ERRO"),
+              content: Text(
+                  "Não tenho pontos de dados suficientes para lhe ajudar!"),
+              backgroundColor: Colors.white,
+              titleTextStyle: TextStyle(
+                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
+              contentTextStyle: TextStyle(color: Colors.black),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                )
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
 }

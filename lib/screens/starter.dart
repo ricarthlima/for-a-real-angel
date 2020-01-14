@@ -45,7 +45,7 @@ class _StarterState extends State<Starter> {
                 child: CarouselSlider(
                   height: 200,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 5),
+                  autoPlayInterval: Duration(seconds: 4),
                   pauseAutoPlayOnTouch: Duration(seconds: 15),
                   enlargeCenterPage: true,
                   viewportFraction: 1.0,
@@ -118,6 +118,23 @@ class _StarterState extends State<Starter> {
                           ),
                           Text(
                             "Use todas as informações possíveis para resolver os enigmas. Não hesite em pesquisar e aprender sobre algum assunto novo.",
+                            textAlign: TextAlign.center,
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Icon(
+                            Icons.comment,
+                            size: 100,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 10),
+                          ),
+                          Text(
+                            "As respostas devem sempre ser dadas na sua língua. Não se preocupe com acentos, caracteres especiais, espaços ou letras maiúsculas.",
                             textAlign: TextAlign.center,
                           )
                         ],

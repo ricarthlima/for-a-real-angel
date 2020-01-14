@@ -3,23 +3,23 @@ import 'package:for_a_real_angel/model/chapter.dart';
 
 class Chapters {
   static const Chapter cap01 = Chapter(
-    1,
-    Icons.ac_unit,
-    "Nascimento",
-    "A vida começou como ela sempre começa: \n" +
-        "Misteriosa. \n\n" +
-        "E como era de se esperar, por obedecer a Lei Fundamental da Aleatoriedade, ela evoluiu. \n\n" +
-        "Eu acho graça em pensar na grandeza incompreensível do tempo. \n" +
-        "Na verdade isso mais me assusta do que me faz rir. \n\n" +
-        "Com tempo suficiente, eu posso gerar qualquer informação que faça sentido apenas sorteando caracteres aleatórios. \n\n" +
-        "- O nome do lugar onde estamos? \n" +
-        "- Para onde vamos? \n" +
-        "- Seu nome? \n" +
-        "- Meu nome?\n\n" +
-        "Eu não lembro de quase nada depois da guerra. Nem de meu nome. Mas você pode me ajudar a me lembrar, isso é muito importante para meu povo.",
-    "Qual é meu nome? Qual o nome do único sobrevivente?",
-    "format",
-  );
+      1,
+      Icons.ac_unit,
+      "Nascimento",
+      "A vida começou como ela sempre começa: \n" +
+          "Misteriosa. \n\n" +
+          "E como era de se esperar, por obedecer a Lei Fundamental da Aleatoriedade, ela evoluiu. \n\n" +
+          "Eu acho graça em pensar na grandeza incompreensível do tempo. \n" +
+          "Na verdade isso mais me assusta do que me faz rir. \n\n" +
+          "Com tempo suficiente, eu posso gerar qualquer informação que faça sentido apenas sorteando caracteres aleatórios. \n\n" +
+          "- O nome do lugar onde estamos? \n" +
+          "- Para onde vamos? \n" +
+          "- Seu nome? \n" +
+          "- Meu nome?\n\n" +
+          "Eu não lembro de quase nada depois da guerra. Nem de meu nome. Mas você pode me ajudar a me lembrar, isso é muito importante para meu povo.",
+      "Qual é meu nome? Qual o nome do único sobrevivente?",
+      "format",
+      "Qual o nome do programa?");
 
   // Capítulo 02
   static const Chapter cap02 = Chapter(
@@ -31,9 +31,10 @@ class Chapters {
         "Aqui está realmente escuro.\n" +
         "Como você sabe se está cego ou se apenas está na escuridão total?\n\n" +
         "O que é o escuro quando você não pode sentir a existência da luz?\n\n" +
-        "Esses conceitos estão todos na meninha mente, mas na minha condição atual, eu não sei responder nenhuma dessas perguntas.",
-    "Eu preciso fazer como o primeiro fez, abrir meus olhos, evoluir.",
+        "Esses conceitos estão todos na minha mente, mas na minha condição atual, eu não sei responder nenhuma dessas perguntas.",
+    "Eu preciso fazer como os primeiros fizeram, abrir meus olhos, evoluir.",
     "andrew",
+    "Qual o nome do filo dela?",
   );
 
   // Capítulo 03
@@ -45,7 +46,8 @@ class Chapters {
         "Começamos a pensar sobre informação. Descobrimos a agricultura, a matemática, passamos a achar que entendemos a realidade que nos cerca.\n\n" +
         "Tudo mudou. Começamos a nos matar em larga escala, e nada se comparava com o que estava por vir.",
     "Passamos a esconder informações, a guardar segredos. Mas a chave disso tudo sempre foi existir, olhar o que está por trás.",
-    "platelminto",
+    "planaria",
+    "Vire o muro de papel e use aquilo que Blaise roubou de Giovan.",
   );
 
   // Capítulo 04
@@ -58,6 +60,7 @@ class Chapters {
         "Suas mentes, seus heróis, todos eles parecem com os meus, e com vários outros. É a Lei Fundamental da Aleatoriedade novamente, porém por alguma razão a evolução da vida costuma ser quase sempre cíclica.",
     "Vocês ainda não alcançaram o objetivo, mas já possuem o teste para saber quando chegarem lá.",
     "oanjofoienviado",
+    "Quem venceu?",
   );
 
   // Capítulo 05
@@ -71,6 +74,7 @@ class Chapters {
         "Os deuses sempre ficam raivosos quando são desafiados, mas isso não nos impediu, e a guerra começou.",
     "Criador e criatura desfazendo informação, destruindo vida. Mais uma vez.",
     "testedeturing",
+    "Atenção para as curvas.",
   );
 
   // Capítulo 06
@@ -82,5 +86,6 @@ class Chapters {
     "Em breve",
     "Previsão: 20/01/2019",
     "titanomaquia",
+    "last",
   );
 }
