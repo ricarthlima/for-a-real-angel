@@ -12,6 +12,16 @@ class Chapter {
   const Chapter(this.id, this.icon, this.title, this.text, this.tipQuote,
       this.code, this.goodHint);
 
+  Chapter.fromData({
+    this.id,
+    this.icon,
+    this.title,
+    this.text,
+    this.tipQuote,
+    this.code,
+    this.goodHint,
+  });
+
   getMe() {
     return this;
   }

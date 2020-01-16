@@ -15,6 +15,7 @@ class _StarterState extends State<Starter> {
   @override
   void initState() {
     _read();
+    /*_fazerPessoa();*/
     super.initState();
   }
 
@@ -204,4 +205,28 @@ class _StarterState extends State<Starter> {
     final value = true;
     prefs.setBool(key, value);
   }
+
+  // _fazerPessoa() async {
+  //   List<Chapter> chapters = [
+  //     Chapter(0, Icons.ac_unit, "", "", "", "-159-", ""),
+  //     Chapters.cap01,
+  //     Chapters.cap02,
+  //     Chapters.cap03,
+  //     Chapters.cap04,
+  //     Chapters.cap05,
+  //     Chapters.cap06
+  //   ];
+
+  //   Firestore db = Firestore.instance;
+  //   for (var chap in chapters) {
+  //     db.collection("chapters").document(chap.id.toString()).setData({
+  //       "id": chap.id,
+  //       "icon": chap.icon.toString(),
+  //       "text": chap.text,
+  //       "tipQuote": chap.tipQuote,
+  //       "code": chap.code,
+  //       "goodHint": chap.goodHint
+  //     });
+  //   }
+  // }
 }

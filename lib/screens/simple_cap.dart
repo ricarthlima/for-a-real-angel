@@ -1,10 +1,9 @@
+import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:for_a_real_angel/model/chapter.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
-import 'package:for_a_real_angel/values/chapters_data.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
@@ -32,15 +31,7 @@ class _SimpleCapState extends State<SimpleCap> {
   ScrollController _controllerScroll;
   TextEditingController _controllerCode = TextEditingController();
 
-  List<Chapter> chapters = [
-    Chapter(0, Icons.ac_unit, "", "", "", "-159-", ""),
-    Chapters.cap01,
-    Chapters.cap02,
-    Chapters.cap03,
-    Chapters.cap04,
-    Chapters.cap05,
-    Chapters.cap06
-  ];
+  List<Chapter> chapters = [Chapter(0, Icons.ac_unit, "", "", "", "-159-", "")];
 
   //Hints Unlocked
   bool isUnlockedHint = false;
@@ -326,6 +317,38 @@ class _SimpleCapState extends State<SimpleCap> {
 
     _readHints(prePrefs: prefs);
     _readCoins(prePrefs: prefs);
+
+    // Read Chapter List
+    _readChapterList(prefs);
+  }
+
+  _readChapterList(prefs) {
+    // List to get chapters
+    List<Chapter> tempList = new List<Chapter>();
+
+    // Read from Shared Preferences
+    var rawData = prefs.getString(PreferencesKey.chaptersList);
+
+    // Decode a String
+    Map<String, dynamic> jsonData = jsonDecode(rawData);
+    for (var key in jsonData.keys) {
+      Map<String, dynamic> data = jsonData[key];
+      Chapter tempCap = Chapter.fromData(
+        id: data["id"],
+        icon: Icons.ac_unit,
+        title: data["title"],
+        text: data["text"],
+        tipQuote: data["tipQuote"],
+        code: data["code"],
+        goodHint: data["goodHint"],
+      );
+      tempList.add(tempCap);
+    }
+
+    // Update real list chapters
+    setState(() {
+      this.chapters = tempList;
+    });
   }
 
   Future _readHints({prePrefs = "null"}) async {
