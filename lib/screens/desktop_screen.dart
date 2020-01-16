@@ -1,4 +1,5 @@
 import 'package:for_a_real_angel/screens/explorer.dart';
+import 'package:for_a_real_angel/screens/ranking.dart';
 import 'package:for_a_real_angel/screens/simple_cap.dart';
 import 'package:for_a_real_angel/screens/terminal.dart';
 import 'package:for_a_real_angel/values/directories.dart';
@@ -70,7 +71,20 @@ class _DesktopScreenState extends State<DesktopScreen> {
             Container(),
             Container(),
             Container(),
-            Container(),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RankingScreen(),
+                  ),
+                );
+              },
+              child: DesktopIcon(
+                icon: IconsValues.notepad_file,
+                text: "Ranking",
+              ),
+            ),
           ]),
           TableRow(children: [
             GestureDetector(
