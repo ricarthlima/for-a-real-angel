@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/model/ranking.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
@@ -16,14 +17,21 @@ class _RankingScreenState extends State<RankingScreen> {
   String username = "";
   bool logado = false;
   int coins = 0;
-  int chapter_id = 0;
+  int chapterId = 0;
 
   TextEditingController _controllerCode = TextEditingController();
+
+  List<Ranking> listRanking = [
+    Ranking(pos: 0, username: "andrew", chapter: 999, coins: 999)
+  ];
+
+  Ranking userRanking;
 
   @override
   void initState() {
     _checkAuth();
     _readInfos();
+    _updateRanking();
     super.initState();
   }
 
@@ -44,6 +52,54 @@ class _RankingScreenState extends State<RankingScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              (logado)
+                  ? Table(
+                      children: [
+                        TableRow(children: [
+                          Text(
+                            "POS",
+                            style: TextStyle(fontSize: 10),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            "USERNAME",
+                            style: TextStyle(fontSize: 10),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            "CHAPTER",
+                            style: TextStyle(fontSize: 10),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            "COINS",
+                            style: TextStyle(fontSize: 10),
+                            textAlign: TextAlign.center,
+                          ),
+                        ]),
+                        TableRow(
+                          children: <Widget>[
+                            Text(
+                              this.userRanking.pos.toString(),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              this.userRanking.username,
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              this.userRanking.chapter.toString(),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              this.userRanking.coins.toString(),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        )
+                      ],
+                    )
+                  : Container(),
               (!logado) ? Text("Você ainda não se cadastrou.") : Container(),
               (!logado)
                   ? TextField(
@@ -54,9 +110,7 @@ class _RankingScreenState extends State<RankingScreen> {
                       ),
                       textAlign: TextAlign.center,
                     )
-                  : Container(
-                      child: Text(username),
-                    ),
+                  : Container(),
               (!logado)
                   ? GestureDetector(
                       onTap: () {
@@ -76,6 +130,68 @@ class _RankingScreenState extends State<RankingScreen> {
                       ),
                     )
                   : Container(),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
+              Divider(
+                color: Colors.white,
+                thickness: 2.0,
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
+              Text(
+                "WORLD RANKING",
+                style: TextStyle(color: Colors.yellow),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
+              Table(
+                children: [
+                  TableRow(children: [
+                    Text(
+                      "POS",
+                      style: TextStyle(fontSize: 10),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      "USERNAME",
+                      style: TextStyle(fontSize: 10),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      "CHAPTER",
+                      style: TextStyle(fontSize: 10),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      "COINS",
+                      style: TextStyle(fontSize: 10),
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  for (var rank in this.listRanking)
+                    TableRow(children: [
+                      Text(
+                        rank.pos.toString(),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        rank.username,
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        rank.chapter.toString(),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        rank.coins.toString(),
+                        textAlign: TextAlign.center,
+                      ),
+                    ]),
+                ],
+              ),
             ],
           ),
         ),
@@ -110,14 +226,14 @@ class _RankingScreenState extends State<RankingScreen> {
       }
 
       if (capId != null) {
-        this.chapter_id = capId;
+        this.chapterId = capId;
       } else {
-        this.chapter_id = 1;
+        this.chapterId = 1;
       }
     });
   }
 
-  Future<String> _authenticateUser(BuildContext context, String name) async {
+  _authenticateUser(BuildContext context, String name) async {
     // Make a query to check username
     QuerySnapshot query = await db
         .collection("users")
@@ -129,7 +245,7 @@ class _RankingScreenState extends State<RankingScreen> {
 
       // Add to Firebase
       DocumentReference ref = await db.collection("users").add(
-          {"username": name, "chapter": this.chapter_id, "coins": this.coins});
+          {"username": name, "chapter": this.chapterId, "coins": this.coins});
 
       // Save username and firebaseid
       prefs.setString(PreferencesKey.username, name);
@@ -140,6 +256,9 @@ class _RankingScreenState extends State<RankingScreen> {
         this.logado = true;
         this.username = name;
       });
+
+      //Update ranking
+      _updateRanking();
     } else {
       showDialog(
           context: context,
@@ -165,5 +284,50 @@ class _RankingScreenState extends State<RankingScreen> {
             );
           });
     }
+  }
+
+  _updateRanking() async {
+    //Create a temp list
+    List<Ranking> rankingTemp = new List<Ranking>();
+
+    //Add Andrew
+    rankingTemp
+        .add(Ranking(pos: 0, username: "andrew", chapter: 999, coins: 999));
+
+    //Make the query
+    QuerySnapshot query = await db
+        .collection("users")
+        .orderBy("chapter", descending: true)
+        .orderBy("coins", descending: true)
+        .limit(100)
+        .getDocuments();
+
+    //Make the ranking
+    int i = 0;
+    for (var userData in query.documents) {
+      i += 1;
+      Map<String, dynamic> data = userData.data;
+      Ranking temp = Ranking(
+        pos: i,
+        username: data["username"],
+        chapter: data["chapter"],
+        coins: data["coins"],
+      );
+      rankingTemp.add(temp);
+
+      //Find user ranking
+      if (logado) {
+        if (temp.username == this.username) {
+          setState(() {
+            this.userRanking = temp;
+          });
+        }
+      }
+    }
+
+    //Refresh state
+    setState(() {
+      this.listRanking = rankingTemp;
+    });
   }
 }

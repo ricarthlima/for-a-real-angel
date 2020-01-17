@@ -149,7 +149,7 @@ class _SimpleCapState extends State<SimpleCap> {
                     padding: EdgeInsets.only(top: 10),
                   ),
                   Text(
-                    cap.text,
+                    cap.text.replaceAll("/n", "\n"),
                     style: TextStyle(color: Colors.white, fontSize: 20),
                     textAlign: TextAlign.justify,
                   ),
