@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
+import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskBar extends StatefulWidget {
+  SoundPlayer soundPlayer;
+  TaskBar({this.soundPlayer});
   @override
   _TaskBarState createState() => _TaskBarState();
 }
 
 class _TaskBarState extends State<TaskBar> {
   String hour = "";
+  bool isSoundActive = true;
+
   @override
   Widget build(BuildContext context) {
     _getHour();
@@ -31,24 +38,26 @@ class _TaskBarState extends State<TaskBar> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    widget.soundPlayer.playExitSound();
+                  },
                   child: TaskBarButton(null, "Start"),
                 ),
                 Padding(padding: EdgeInsets.only(right: 2)),
-                Text(
-                  "|",
-                  style: TextStyle(color: Colors.grey, fontSize: 20),
-                ),
-                Padding(padding: EdgeInsets.only(right: 2)),
-                Image.asset(
-                  "assets/icons/desktop-0.png",
-                  height: 20,
-                ),
-                Padding(padding: EdgeInsets.only(right: 2)),
-                Text(
-                  "|",
-                  style: TextStyle(color: Colors.grey, fontSize: 20),
-                ),
+                // Text(
+                //   "|",
+                //   style: TextStyle(color: Colors.grey, fontSize: 20),
+                // ),
+                // Padding(padding: EdgeInsets.only(right: 2)),
+                // Image.asset(
+                //   "assets/icons/desktop-0.png",
+                //   height: 20,
+                // ),
+                // Padding(padding: EdgeInsets.only(right: 2)),
+                // Text(
+                //   "|",
+                //   style: TextStyle(color: Colors.grey, fontSize: 20),
+                // ),
               ],
             ),
 
@@ -67,9 +76,16 @@ class _TaskBarState extends State<TaskBar> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(
-                    IconsValues.speaker_on,
-                    height: 20,
+                  GestureDetector(
+                    onTap: () {
+                      _switchSoundActive();
+                    },
+                    child: Image.asset(
+                      (isSoundActive)
+                          ? IconsValues.speaker_on
+                          : IconsValues.speaker_off,
+                      height: 20,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
@@ -88,11 +104,42 @@ class _TaskBarState extends State<TaskBar> {
     );
   }
 
+  _readPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isAct = prefs.getBool(PreferencesKey.isSoundActive);
+
+    if (isAct != null) {
+      setState(() {
+        this.isSoundActive = isAct;
+      });
+    } else {
+      setState(() {
+        this.isSoundActive = true;
+        prefs.setBool(PreferencesKey.isSoundActive, true);
+      });
+    }
+  }
+
+  _switchSoundActive() async {
+    setState(() {
+      this.isSoundActive = !this.isSoundActive;
+    });
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(PreferencesKey.isSoundActive, this.isSoundActive);
+
+    if (this.isSoundActive) {
+      widget.soundPlayer.playExitSound();
+    }
+  }
+
   _getHour() {
     setState(() {
-      hour = DateTime.now().hour.toString() +
-          ":" +
-          ("0" + DateTime.now().minute.toString()).substring(0);
+      hour = DateTime.now().hour.toString() + ":";
+      if (DateTime.now().minute < 10) {
+        hour = hour + "0";
+      }
+      hour = hour + DateTime.now().minute.toString();
     });
   }
 }

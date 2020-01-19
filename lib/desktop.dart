@@ -1,9 +1,12 @@
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/screens/desktop_screen.dart';
 import 'package:for_a_real_angel/visual_objects/taskbar.dart';
 import 'package:flutter/material.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 class Desktop extends StatefulWidget {
+  SoundPlayer soundPlayer;
+  Desktop({this.soundPlayer});
   @override
   _DesktopState createState() => _DesktopState();
 }
@@ -31,8 +34,12 @@ class _DesktopState extends State<Desktop> {
               ),
             ),
           ),
-          DesktopScreen(),
-          TaskBar(),
+          DesktopScreen(
+            soundPlayer: widget.soundPlayer,
+          ),
+          TaskBar(
+            soundPlayer: widget.soundPlayer,
+          ),
         ],
       ),
     );

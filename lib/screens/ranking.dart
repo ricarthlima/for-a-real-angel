@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/model/ranking.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
@@ -8,6 +9,8 @@ import 'package:for_a_real_angel/visual_objects/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RankingScreen extends StatefulWidget {
+  SoundPlayer soundPlayer;
+  RankingScreen({this.soundPlayer});
   @override
   _RankingScreenState createState() => _RankingScreenState();
 }
@@ -37,13 +40,16 @@ class _RankingScreenState extends State<RankingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getMenuBar(
         context: context,
         icon: IconsValues.console,
         title: "ranking",
+        soundPlayer: widget.soundPlayer,
       ),
       body: Container(
+        height: size.height,
         padding: EdgeInsets.all(25),
         decoration: BoxDecoration(
           border: Border.all(color: MyColors.topBlue, width: 5),

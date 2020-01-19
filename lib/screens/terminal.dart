@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/model/ranking.dart';
 import 'package:for_a_real_angel/screens/ranking.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
@@ -9,6 +10,8 @@ import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Terminal extends StatefulWidget {
+  SoundPlayer soundPlayer;
+  Terminal({this.soundPlayer});
   @override
   _TerminalState createState() => _TerminalState();
 }
@@ -33,7 +36,11 @@ class _TerminalState extends State<Terminal> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getMenuBar(
-          icon: IconsValues.console, title: "Terminal", context: context),
+        icon: IconsValues.console,
+        title: "Terminal",
+        context: context,
+        soundPlayer: widget.soundPlayer,
+      ),
       body: Container(
         padding: EdgeInsets.all(10),
         height: size.height,
@@ -129,8 +136,11 @@ class _TerminalState extends State<Terminal> {
         }
       case "ranking":
         {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => RankingScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      RankingScreen(soundPlayer: widget.soundPlayer)));
           break;
         }
       default:

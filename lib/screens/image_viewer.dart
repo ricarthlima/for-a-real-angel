@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/model/mfile.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
@@ -7,7 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ImageViewer extends StatefulWidget {
   final MFile file;
-  ImageViewer({@required this.file});
+  SoundPlayer soundPlayer;
+  ImageViewer({@required this.file, this.soundPlayer});
 
   @override
   _ImageViewerState createState() => _ImageViewerState();
@@ -30,6 +32,7 @@ class _ImageViewerState extends State<ImageViewer> {
         icon: IconsValues.image,
         title: widget.file.title,
         context: context,
+        soundPlayer: widget.soundPlayer,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

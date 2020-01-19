@@ -9,4 +9,6 @@ class PreferencesKey {
 
   static const String username = "username";
   static const String firebaseIdUser = "firebase_id_user";
+
+  static const String isSoundActive = "is_sound_active";
 }
