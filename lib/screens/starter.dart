@@ -17,6 +17,7 @@ class _StarterState extends State<Starter> {
   @override
   void initState() {
     _read();
+    soundPlayer.playBGM();
     // _fazerPessoa();
     super.initState();
   }

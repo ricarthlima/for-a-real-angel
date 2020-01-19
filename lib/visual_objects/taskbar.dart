@@ -14,6 +14,7 @@ class TaskBar extends StatefulWidget {
 class _TaskBarState extends State<TaskBar> {
   String hour = "";
   bool isSoundActive = true;
+  bool isMusicActive = true;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +89,20 @@ class _TaskBarState extends State<TaskBar> {
                     ),
                   ),
                   Padding(
+                    padding: EdgeInsets.only(right: 5),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _switchMusicActive();
+                    },
+                    child: Image.asset(
+                      (isMusicActive)
+                          ? IconsValues.music_on
+                          : IconsValues.music_off,
+                      height: 20,
+                    ),
+                  ),
+                  Padding(
                     padding: EdgeInsets.only(right: 10),
                   ),
                   Text(
@@ -107,6 +122,7 @@ class _TaskBarState extends State<TaskBar> {
   _readPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final isAct = prefs.getBool(PreferencesKey.isSoundActive);
+    final isMusicAct = prefs.getBool(PreferencesKey.isMusicActive);
 
     if (isAct != null) {
       setState(() {
@@ -118,6 +134,15 @@ class _TaskBarState extends State<TaskBar> {
         prefs.setBool(PreferencesKey.isSoundActive, true);
       });
     }
+
+    setState(() {
+      if (isMusicAct != null) {
+        this.isMusicActive = isMusicAct;
+      } else {
+        this.isMusicActive = true;
+        prefs.setBool(PreferencesKey.isMusicActive, true);
+      }
+    });
   }
 
   _switchSoundActive() async {
@@ -130,6 +155,21 @@ class _TaskBarState extends State<TaskBar> {
 
     if (this.isSoundActive) {
       widget.soundPlayer.playExitSound();
+    }
+  }
+
+  _switchMusicActive() async {
+    setState(() {
+      this.isMusicActive = !this.isMusicActive;
+    });
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(PreferencesKey.isMusicActive, this.isMusicActive);
+
+    if (this.isMusicActive) {
+      widget.soundPlayer.playBGM();
+    } else {
+      widget.soundPlayer.stopBGM();
     }
   }
 

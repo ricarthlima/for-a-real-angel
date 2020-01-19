@@ -49,6 +49,7 @@ class _DesktopState extends State<Desktop> {
     setState(() {
       this.wallpaper = "assets/wallpaper-inv.png";
     });
+    this.widget.soundPlayer.playGetHintSound();
   }
 
   void _normalizarWallpaper() {

@@ -1,4 +1,6 @@
 import 'dart:typed_data';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
@@ -16,9 +18,13 @@ class SoundPlayer {
   int _idCloseTry;
   int _idGetHint;
 
+  final _player = AudioCache(prefix: 'music/');
+  AudioPlayer _playingBGM;
+
   SoundPlayer() {
     _poolAlarm = Soundpool(streamType: StreamType.music);
     _loadSounds();
+    _loadMusic();
   }
 
   void _playSound({@required int soundId}) async {
@@ -105,5 +111,17 @@ class SoundPlayer {
         await rootBundle.load("sounds/gethint.mp3").then((ByteData soundData) {
       return _poolAlarm.load(soundData);
     });
+  }
+
+  _loadMusic() async {
+    this._player.load("mainbgm.mp3");
+  }
+
+  playBGM() async {
+    this._playingBGM = await this._player.loop("mainbgm.mp3", volume: 0.6);
+  }
+
+  stopBGM() {
+    this._playingBGM.stop();
   }
 }

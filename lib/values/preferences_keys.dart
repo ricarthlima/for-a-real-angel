@@ -11,4 +11,5 @@ class PreferencesKey {
   static const String firebaseIdUser = "firebase_id_user";
 
   static const String isSoundActive = "is_sound_active";
+  static const String isMusicActive = "is_music_active";
 }
