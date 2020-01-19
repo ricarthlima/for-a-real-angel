@@ -25,7 +25,7 @@ class _RankingScreenState extends State<RankingScreen> {
     Ranking(pos: 0, username: "andrew", chapter: 999, coins: 999)
   ];
 
-  Ranking userRanking;
+  Ranking userRanking = Ranking(pos: 0, username: "", chapter: 0, coins: 0);
 
   @override
   void initState() {

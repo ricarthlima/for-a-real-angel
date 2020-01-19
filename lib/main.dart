@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
       title: 'For a Real Angel',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          brightness: Brightness.dark,
-          backgroundColor: Colors.black,
-          fontFamily: "JosefinSans"),
+        brightness: Brightness.dark,
+        backgroundColor: Colors.black,
+        fontFamily: "JosefinSans",
+      ),
       home: Scaffold(
         body: Starter(),
       ),
@@ -41,8 +42,28 @@ _loadFirebase() async {
 
       // Percorrer a Query
       for (DocumentSnapshot queryCap in snapshot.documents) {
+        // Basic infos
         var data = queryCap.data;
         chapters[data["id"].toString()] = data;
+
+        // closeTry Query
+        QuerySnapshot closeTrysQuery = await db
+            .collection("chapters")
+            .document(data["id"].toString())
+            .collection("closeTrys")
+            .getDocuments();
+
+        Map<String, String> closeTryEmbed = Map<String, String>();
+
+        // Percorrer a closeTry Query
+        List<DocumentSnapshot> closeTryList = closeTrysQuery.documents;
+        for (DocumentSnapshot closeTry in closeTryList) {
+          Map<String, dynamic> ctdata = closeTry.data;
+          closeTryEmbed[closeTry.documentID] = ctdata["hint"];
+        }
+
+        //Embed Close Trys
+        chapters[data["id"].toString()]["closeTrys"] = closeTryEmbed;
       }
 
       final prefs = await SharedPreferences.getInstance();

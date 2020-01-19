@@ -20,4 +20,5 @@ class IconsValues {
   static const String image = dir + "image.png";
   static const String console = dir + "console.png";
   static const String data_points = dir + "data_points.png";
+  static const String soul = dir + "soul.png";
 }

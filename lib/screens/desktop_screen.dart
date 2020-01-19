@@ -16,10 +16,13 @@ class DesktopScreen extends StatefulWidget {
 
 class _DesktopScreenState extends State<DesktopScreen> {
   int dataPoints = 0;
+  int chapterId = 1;
 
   @override
   void initState() {
     this.dataPoints = 0;
+    this.chapterId = 1;
+    _readChapterId();
     _readPreferences();
     super.initState();
   }
@@ -64,27 +67,14 @@ class _DesktopScreenState extends State<DesktopScreen> {
                     MaterialPageRoute(builder: (context) => SimpleCap()));
               },
               child: DesktopIcon(
-                icon: IconsValues.agent,
-                text: "Andrew",
+                icon: IconsValues.soul,
+                text: (chapterId <= 1) ? "97 110 100 114 101 119" : "andrew",
               ),
             ),
             Container(),
             Container(),
             Container(),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RankingScreen(),
-                  ),
-                );
-              },
-              child: DesktopIcon(
-                icon: IconsValues.notepad_file,
-                text: "Ranking",
-              ),
-            ),
+            Container(),
           ]),
           TableRow(children: [
             GestureDetector(
@@ -142,6 +132,21 @@ class _DesktopScreenState extends State<DesktopScreen> {
         this.dataPoints = 0;
       });
       prefs.setInt(PreferencesKey.userCoins, 0);
+    }
+  }
+
+  _readChapterId() async {
+    final prefs = await SharedPreferences.getInstance();
+    final capId = prefs.getInt(PreferencesKey.chapterId);
+
+    if (capId != null) {
+      setState(() {
+        this.chapterId = capId;
+      });
+    } else {
+      setState(() {
+        this.chapterId = 1;
+      });
     }
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:for_a_real_angel/helper/update_ranking.dart';
 import 'package:for_a_real_angel/model/chapter.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
@@ -31,7 +32,18 @@ class _SimpleCapState extends State<SimpleCap> {
   ScrollController _controllerScroll;
   TextEditingController _controllerCode = TextEditingController();
 
-  List<Chapter> chapters = [Chapter(0, Icons.ac_unit, "", "", "", "-159-", "")];
+  List<Chapter> chapters = [
+    Chapter(
+      0,
+      Icons.ac_unit,
+      "",
+      "",
+      "",
+      "-159-",
+      "",
+      Map<String, String>(),
+    )
+  ];
 
   //Hints Unlocked
   bool isUnlockedHint = false;
@@ -56,8 +68,8 @@ class _SimpleCapState extends State<SimpleCap> {
     return Scaffold(
       appBar: getMenuBar(
         context: context,
-        icon: IconsValues.agent,
-        title: "Andrew",
+        icon: IconsValues.soul,
+        title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew",
       ),
       body: SwipeDetector(
         swipeConfiguration: SwipeConfiguration(
@@ -118,7 +130,13 @@ class _SimpleCapState extends State<SimpleCap> {
                       ),
                       Column(
                         children: <Widget>[
-                          Icon(cap.icon),
+                          Icon(
+                            (this.idChapter <= 5)
+                                ? Icons.ac_unit
+                                : (this.idChapter <= 10)
+                                    ? Icons.leak_remove
+                                    : Icons.radio_button_unchecked,
+                          ),
                           Text(cap.id.toString() + " - " + cap.title),
                         ],
                       ),
@@ -341,6 +359,7 @@ class _SimpleCapState extends State<SimpleCap> {
         tipQuote: data["tipQuote"],
         code: data["code"],
         goodHint: data["goodHint"],
+        closeTrys: data["closeTrys"],
       );
       tempList.add(tempCap);
     }
@@ -393,6 +412,7 @@ class _SimpleCapState extends State<SimpleCap> {
   Future _saveUserCoins() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.userCoins, this.userCoins);
+    updateRanking();
   }
 
   _testCode(String value, BuildContext context) async {
@@ -477,17 +497,25 @@ class _SimpleCapState extends State<SimpleCap> {
         );
       }
     } else {
-      //Show fail dialog
-      showDialog(
+      if (chapters[this.idChapter]
+          .closeTrys
+          .keys
+          .contains(value.toLowerCase().replaceAll(" ", ""))) {
+        String hint = chapters[this.idChapter]
+            .closeTrys[value.toLowerCase().replaceAll(" ", "")]
+            .toString();
+        showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.white,
-              title: Text("ERRO!"),
+              title: Text("ESTOU ME LEMBRANDO..."),
               titleTextStyle: TextStyle(
-                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
+                  color: MyColors.topBlue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
               contentTextStyle: TextStyle(color: Colors.black),
-              content: Text("Código de Restauração Incorreto!"),
+              content: Text(hint),
               actions: <Widget>[
                 FlatButton(
                   onPressed: () {
@@ -500,16 +528,46 @@ class _SimpleCapState extends State<SimpleCap> {
                 )
               ],
             );
-          });
+          },
+        );
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                backgroundColor: Colors.white,
+                title: Text("ERRO!"),
+                titleTextStyle: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                contentTextStyle: TextStyle(color: Colors.black),
+                content: Text("Código de Restauração Incorreto!"),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "OK",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )
+                ],
+              );
+            });
+        //Play fail sound
+        await poolAlarm.play(this.soundIdError);
+      }
+      //Show fail dialog
 
-      //Play fail sound
-      await poolAlarm.play(this.soundIdError);
     }
   }
 
   _saveChapterId(int chapterId) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.chapterId, chapterId);
+    updateRanking();
   }
 
   _saveHintsChange() async {
