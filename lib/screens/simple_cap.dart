@@ -51,6 +51,8 @@ class _SimpleCapState extends State<SimpleCap> {
     _read();
     _controllerScroll = ScrollController();
     super.initState();
+
+    _especialSounds();
   }
 
   @override
@@ -358,6 +360,11 @@ class _SimpleCapState extends State<SimpleCap> {
       tempList.add(tempCap);
     }
 
+    // Sort list by ID
+    tempList.sort((a, b) {
+      return a.id.compareTo(b.id);
+    });
+
     // Update real list chapters
     setState(() {
       this.chapters = tempList;
@@ -455,6 +462,9 @@ class _SimpleCapState extends State<SimpleCap> {
         isUnlockedHint = false;
       });
       _saveHintsChange();
+
+      //If necessary play sound
+      _especialSounds();
 
       //Show success dialog
       if (chapters[i].id % 5 == 1) {
@@ -651,6 +661,13 @@ class _SimpleCapState extends State<SimpleCap> {
           },
         );
       }
+    }
+  }
+
+  _especialSounds() {
+    //Play sound of Chapter 7
+    if (this.idChapter == 7) {
+      widget.soundPlayer.playMusic("files/message.mp3");
     }
   }
 }

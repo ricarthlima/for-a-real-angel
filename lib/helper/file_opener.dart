@@ -23,6 +23,10 @@ routerFileType({
     case MFileTypes.text:
       break;
     case MFileTypes.audio:
+      soundPlayer.playMusicWithDialog(
+        context: context,
+        file: file,
+      );
       break;
     case MFileTypes.other:
       break;

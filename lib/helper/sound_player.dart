@@ -2,10 +2,13 @@ import 'dart:typed_data';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:for_a_real_angel/model/mfile.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soundpool/soundpool.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SoundPlayer {
   Soundpool _poolAlarm;
@@ -118,10 +121,90 @@ class SoundPlayer {
   }
 
   playBGM() async {
-    this._playingBGM = await this._player.loop("mainbgm.mp3", volume: 0.6);
+    this._playingBGM = await this._player.loop("mainbgm.mp3", volume: 0.40);
   }
 
   stopBGM() {
     this._playingBGM.stop();
+  }
+
+  playMusic(String path) {
+    final tempPlayer = AudioCache();
+    tempPlayer.play(path);
+  }
+
+  playMusicWithDialog({
+    @required BuildContext context,
+    @required MFile file,
+  }) async {
+    String path = "files/" + file.filePath;
+    final tempPlayer = AudioCache();
+    AudioPlayer playingMusic = await tempPlayer.play(path);
+    playingMusic.resume();
+    int duration = 0;
+    int position = 0;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(builder: (content, setState) {
+          playingMusic.onDurationChanged.listen((Duration d) {
+            setState(() => duration = d.inMilliseconds);
+          });
+          playingMusic.onAudioPositionChanged.listen((Duration p) {
+            setState(() => position = p.inMilliseconds);
+          });
+          return AlertDialog(
+            title: Text(path.split("/").removeLast()),
+            content: Container(
+              height: 50,
+              child: Slider(
+                min: -5,
+                max: (duration / 1) + 5,
+                value: position / 1,
+              ),
+            ),
+            actions: <Widget>[
+              Row(
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      playingMusic.resume();
+                    },
+                    child: Icon(Icons.play_arrow),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      playingMusic.pause();
+                    },
+                    child: Icon(Icons.pause),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      playingMusic.stop();
+                    },
+                    child: Icon(Icons.stop),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      _launchURL(file.downlink);
+                    },
+                    child: Icon(Icons.cloud_download),
+                  ),
+                ],
+              )
+            ],
+          );
+        });
+      },
+    );
+  }
+}
+
+_launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
