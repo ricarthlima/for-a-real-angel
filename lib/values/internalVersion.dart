@@ -1,3 +1,3 @@
 class InternalVersion {
-  static const int version = 7;
+  static const int version = 8;
 }

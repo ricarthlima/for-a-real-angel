@@ -118,6 +118,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
               Container(),
               GestureDetector(
                 onTap: () {
+                  widget.soundPlayer.playClickSound();
                   showMyCustomDialog(
                       context: context,
                       title: Text("Beta Disclaimer"),

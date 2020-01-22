@@ -13,7 +13,7 @@ description: A new Flutter project.
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
 # MUDA TAMBÉM EM "values/internalVersion" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-version: 0.4.1+7
+version: 0.4.2+8
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -32,6 +32,7 @@ dependencies:
   package_info: ^0.4.0+13
   carousel_slider: ^1.4.1
   audioplayers: ^0.13.7
+  after_layout: ^1.0.7+2
 
   # Firebase
   firebase_core: ^0.4.0
