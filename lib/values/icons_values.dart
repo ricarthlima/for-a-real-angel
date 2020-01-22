@@ -24,4 +24,5 @@ class IconsValues {
 
   static const String music_on = dir + "cd_on.png";
   static const String music_off = dir + "cd_off.png";
+  static const String warning = dir + "msg_warning-0.png";
 }

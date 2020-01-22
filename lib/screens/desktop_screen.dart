@@ -1,3 +1,4 @@
+import 'package:for_a_real_angel/helper/customDialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/screens/explorer.dart';
 import 'package:for_a_real_angel/screens/simple_cap.dart';
@@ -115,7 +116,37 @@ class _DesktopScreenState extends State<DesktopScreen> {
               Container(),
               Container(),
               Container(),
-              Container(),
+              GestureDetector(
+                onTap: () {
+                  showMyCustomDialog(
+                      context: context,
+                      title: Text("Beta Disclaimer"),
+                      content: Text(
+                        "Se você está vendo esse aviso, você está jogando uma versão beta de FARA. " +
+                            "Como o jogo está em construção você pode se deparar com erros ou bugs. " +
+                            "Esses podem influenciar na sua experiência.\n\n" +
+                            "Se achar algo de errado, me avisa: ricarth1@gmail.com.",
+                        textAlign: TextAlign.justify,
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "OK",
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )
+                      ]);
+                },
+                child: DesktopIcon(
+                  icon: IconsValues.warning,
+                  text: "Beta Disclaimer",
+                ),
+              ),
             ]),
             TableRow(children: [
               GestureDetector(

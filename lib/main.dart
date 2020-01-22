@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:for_a_real_angel/screens/starter.dart';
+import 'package:for_a_real_angel/values/internalVersion.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,6 +33,26 @@ class MyApp extends StatelessWidget {
 }
 
 _loadFirebase() async {
+  Firestore db = Firestore.instance;
+  final prefs = await SharedPreferences.getInstance();
+  final chapters = prefs.getString(PreferencesKey.chaptersList);
+
+  prefs.setString(PreferencesKey.newVersion, null);
+
+  DocumentSnapshot versionQueryQuery =
+      await db.collection("version").document("version").get();
+  Map<String, dynamic> versionQuery = versionQueryQuery.data;
+  if (InternalVersion.version < versionQuery["pubCode"]) {
+    prefs.setString(PreferencesKey.newVersion, jsonEncode(versionQuery));
+    if (chapters == null) {
+      _loadChapters();
+    }
+  } else {
+    _loadChapters();
+  }
+}
+
+_loadChapters() async {
   Firestore db = Firestore.instance;
 
   db.collection("chapters").snapshots().listen(

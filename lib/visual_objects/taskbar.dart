@@ -17,6 +17,12 @@ class _TaskBarState extends State<TaskBar> {
   bool isMusicActive = true;
 
   @override
+  void initState() {
+    _readPreferences();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _getHour();
     Size size = MediaQuery.of(context).size;

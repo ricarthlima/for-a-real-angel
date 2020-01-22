@@ -17,7 +17,7 @@ class _StarterState extends State<Starter> {
   @override
   void initState() {
     _read();
-    soundPlayer.playBGM();
+    _startTheMusic();
     // _fazerPessoa();
     super.initState();
   }
@@ -217,5 +217,19 @@ class _StarterState extends State<Starter> {
     final key = PreferencesKey.skipBasicInfos;
     final value = true;
     prefs.setBool(key, value);
+  }
+
+  void _startTheMusic() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isMusicOn = prefs.getBool(PreferencesKey.isMusicActive);
+
+    if (isMusicOn != null) {
+      if (isMusicOn) {
+        soundPlayer.playBGM();
+      }
+    } else {
+      prefs.setBool(PreferencesKey.isMusicActive, true);
+      soundPlayer.playBGM();
+    }
   }
 }

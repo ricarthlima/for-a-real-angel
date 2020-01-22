@@ -508,11 +508,10 @@ class _SimpleCapState extends State<SimpleCap> {
       if (chapters[this.idChapter]
           .closeTrys
           .keys
-          .contains(value.toLowerCase().replaceAll(" ", ""))) {
+          .contains(value.toLowerCase())) {
         this.widget.soundPlayer.playCloseTrySound();
-        String hint = chapters[this.idChapter]
-            .closeTrys[value.toLowerCase().replaceAll(" ", "")]
-            .toString();
+        String hint =
+            chapters[this.idChapter].closeTrys[value.toLowerCase()].toString();
         showDialog(
           context: context,
           builder: (context) {
