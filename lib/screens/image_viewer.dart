@@ -3,7 +3,7 @@ import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/model/mfile.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:for_a_real_angel_demo/values/my_colors.dart';
-import 'package:for_a_real_angel_demo/visual_objects/menu_bar.dart';
+import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ImageViewer extends StatefulWidget {

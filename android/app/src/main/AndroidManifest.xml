@@ -10,7 +10,7 @@
     
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="F(or) A Real Angel"
+        android:label="F(or) A Real Angel (DEMO)"
         android:icon="@drawable/icon_demo">
         <activity
             android:name=".MainActivity"

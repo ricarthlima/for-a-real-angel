@@ -1,4 +1,5 @@
 import 'package:for_a_real_angel_demo/helper/customDialog.dart';
+import 'package:for_a_real_angel_demo/helper/launch_url.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/screens/explorer.dart';
 import 'package:for_a_real_angel_demo/screens/simple_cap.dart';
@@ -7,7 +8,7 @@ import 'package:for_a_real_angel_demo/values/directories.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
-import 'package:for_a_real_angel_demo/visual_objects/desktop_icons.dart';
+import 'package:for_a_real_angel_demo/partials/desktop_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DesktopScreen extends StatefulWidget {
@@ -171,7 +172,39 @@ class _DesktopScreenState extends State<DesktopScreen> {
               Container(),
               Container(),
               Container(),
-              Container(),
+              GestureDetector(
+                onTap: () {
+                  showMyCustomDialog(
+                      context: context,
+                      title: Text("Compre FARA!"),
+                      content: Text(
+                        "Chegou no nível 10? Compre a versão completa de FARA para ter acesso a continuação dessa história.\nBenefícios:\n" +
+                            "\n- Novos níveis chegam semanalmente." +
+                            "\n- Correção em tempo real de erros e bugs." +
+                            "\n- Participação no ranking mundial.",
+                        textAlign: TextAlign.justify,
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            "Quero comprar!",
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          onPressed: () {
+                            launchURL(
+                              "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel",
+                            );
+                          },
+                        ),
+                      ]);
+                },
+                child: DesktopIcon(
+                  icon: IconsValues.fara,
+                  text: "Compre FARA!",
+                ),
+              ),
             ]),
             TableRow(children: [
               GestureDetector(

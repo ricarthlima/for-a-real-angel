@@ -5,7 +5,7 @@ import 'package:for_a_real_angel_demo/helper/customDialog.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/screens/desktop_screen.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
-import 'package:for_a_real_angel_demo/visual_objects/taskbar.dart';
+import 'package:for_a_real_angel_demo/partials/taskbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';

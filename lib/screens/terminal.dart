@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel_demo/helper/customDialog.dart';
+import 'package:for_a_real_angel_demo/helper/launch_url.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:for_a_real_angel_demo/values/my_colors.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
-import 'package:for_a_real_angel_demo/visual_objects/menu_bar.dart';
+import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Terminal extends StatefulWidget {
   SoundPlayer soundPlayer;
@@ -140,7 +142,32 @@ class _TerminalState extends State<Terminal> {
               title: Text("Acesso negado!"),
               content: Text(
                   "O acesso ao ranking mundial está disponível apenas na versão completa."),
-              actions: <Widget>[]);
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(
+                    "Deixa...",
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                FlatButton(
+                  child: Text(
+                    "Quero comprar!",
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  onPressed: () {
+                    launchURL(
+                      "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel",
+                    );
+                  },
+                ),
+              ]);
         }
         break;
       default:
