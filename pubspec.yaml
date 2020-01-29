@@ -11,7 +11,9 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.3.1+5
+
+# MUDA TAMBÉM EM "values/internalVersion" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+version: 0.4.2+8
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -29,6 +31,15 @@ dependencies:
   url_launcher: ^5.4.1
   package_info: ^0.4.0+13
   carousel_slider: ^1.4.1
+  audioplayers: ^0.13.7
+  after_layout: ^1.0.7+2
+
+  # Firebase
+  firebase_core: ^0.4.0
+  cloud_firestore: ^0.13.0+1
+  firebase_storage: ^3.1.1
+  firebase_auth: ^0.15.3+1
+  google_sign_in: ^4.1.1  
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +64,7 @@ flutter:
    - assets/files/
    - assets/files/n2/
    - assets/icons/
+   - assets/music/
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

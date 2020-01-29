@@ -1,19 +1,19 @@
-import 'dart:typed_data';
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/helper/update_ranking.dart';
 import 'package:for_a_real_angel/model/chapter.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
-import 'package:for_a_real_angel/values/chapters_data.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/visual_objects/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:soundpool/soundpool.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 class SimpleCap extends StatefulWidget {
+  SoundPlayer soundPlayer;
+  SimpleCap({this.soundPlayer});
   @override
   _SimpleCapState createState() => _SimpleCapState();
 }
@@ -22,24 +22,21 @@ class _SimpleCapState extends State<SimpleCap> {
   int idChapter = 0;
   int idLastUnlockedChapter = 0;
 
-  // Sound
-  Soundpool poolAlarm = Soundpool(streamType: StreamType.music);
-  int soundIdSuccess;
-  int soundIdError;
-  int soundIdPage;
-
   // Controllers
   ScrollController _controllerScroll;
   TextEditingController _controllerCode = TextEditingController();
 
   List<Chapter> chapters = [
-    Chapter(0, Icons.ac_unit, "", "", "", "-159-", ""),
-    Chapters.cap01,
-    Chapters.cap02,
-    Chapters.cap03,
-    Chapters.cap04,
-    Chapters.cap05,
-    Chapters.cap06
+    Chapter(
+      0,
+      Icons.ac_unit,
+      "",
+      "",
+      "",
+      "-159-",
+      "",
+      Map<String, String>(),
+    )
   ];
 
   //Hints Unlocked
@@ -52,9 +49,10 @@ class _SimpleCapState extends State<SimpleCap> {
   void initState() {
     idChapter = 0;
     _read();
-    _loadSounds();
     _controllerScroll = ScrollController();
     super.initState();
+
+    _especialSounds();
   }
 
   @override
@@ -65,8 +63,9 @@ class _SimpleCapState extends State<SimpleCap> {
     return Scaffold(
       appBar: getMenuBar(
         context: context,
-        icon: IconsValues.agent,
-        title: "Andrew",
+        icon: IconsValues.soul,
+        title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew",
+        soundPlayer: widget.soundPlayer,
       ),
       body: SwipeDetector(
         swipeConfiguration: SwipeConfiguration(
@@ -127,7 +126,13 @@ class _SimpleCapState extends State<SimpleCap> {
                       ),
                       Column(
                         children: <Widget>[
-                          Icon(cap.icon),
+                          Icon(
+                            (this.idChapter <= 5)
+                                ? Icons.ac_unit
+                                : (this.idChapter <= 10)
+                                    ? Icons.leak_remove
+                                    : Icons.radio_button_unchecked,
+                          ),
                           Text(cap.id.toString() + " - " + cap.title),
                         ],
                       ),
@@ -158,7 +163,7 @@ class _SimpleCapState extends State<SimpleCap> {
                     padding: EdgeInsets.only(top: 10),
                   ),
                   Text(
-                    cap.text,
+                    cap.text.replaceAll("/n", "\n"),
                     style: TextStyle(color: Colors.white, fontSize: 20),
                     textAlign: TextAlign.justify,
                   ),
@@ -326,6 +331,44 @@ class _SimpleCapState extends State<SimpleCap> {
 
     _readHints(prePrefs: prefs);
     _readCoins(prePrefs: prefs);
+
+    // Read Chapter List
+    _readChapterList(prefs);
+  }
+
+  _readChapterList(prefs) {
+    // List to get chapters
+    List<Chapter> tempList = new List<Chapter>();
+
+    // Read from Shared Preferences
+    var rawData = prefs.getString(PreferencesKey.chaptersList);
+
+    // Decode a String
+    Map<String, dynamic> jsonData = jsonDecode(rawData);
+    for (var key in jsonData.keys) {
+      Map<String, dynamic> data = jsonData[key];
+      Chapter tempCap = Chapter.fromData(
+        id: data["id"],
+        icon: Icons.ac_unit,
+        title: data["title"],
+        text: data["text"],
+        tipQuote: data["tipQuote"],
+        code: data["code"],
+        goodHint: data["goodHint"],
+        closeTrys: data["closeTrys"],
+      );
+      tempList.add(tempCap);
+    }
+
+    // Sort list by ID
+    tempList.sort((a, b) {
+      return a.id.compareTo(b.id);
+    });
+
+    // Update real list chapters
+    setState(() {
+      this.chapters = tempList;
+    });
   }
 
   Future _readHints({prePrefs = "null"}) async {
@@ -370,6 +413,7 @@ class _SimpleCapState extends State<SimpleCap> {
   Future _saveUserCoins() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.userCoins, this.userCoins);
+    updateRanking();
   }
 
   _testCode(String value, BuildContext context) async {
@@ -382,7 +426,7 @@ class _SimpleCapState extends State<SimpleCap> {
 
     if (correct) {
       //Play Success SFX
-      await poolAlarm.play(this.soundIdSuccess);
+      widget.soundPlayer.playSuccessSound();
 
       //Scroll screen to top
       _controllerScroll.jumpTo(0.0);
@@ -419,10 +463,17 @@ class _SimpleCapState extends State<SimpleCap> {
       });
       _saveHintsChange();
 
+      //If necessary play sound
+      _especialSounds();
+
       //Show success dialog
       if (chapters[i].id % 5 == 1) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ChapterSplash()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ChapterSplash(
+                      soundPlayer: widget.soundPlayer,
+                    )));
       } else {
         showDialog(
           context: context,
@@ -454,17 +505,25 @@ class _SimpleCapState extends State<SimpleCap> {
         );
       }
     } else {
-      //Show fail dialog
-      showDialog(
+      if (chapters[this.idChapter]
+          .closeTrys
+          .keys
+          .contains(value.toLowerCase())) {
+        this.widget.soundPlayer.playCloseTrySound();
+        String hint =
+            chapters[this.idChapter].closeTrys[value.toLowerCase()].toString();
+        showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.white,
-              title: Text("ERRO!"),
+              title: Text("ESTOU ME LEMBRANDO..."),
               titleTextStyle: TextStyle(
-                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
+                  color: MyColors.topBlue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
               contentTextStyle: TextStyle(color: Colors.black),
-              content: Text("Código de Restauração Incorreto!"),
+              content: Text(hint),
               actions: <Widget>[
                 FlatButton(
                   onPressed: () {
@@ -477,16 +536,46 @@ class _SimpleCapState extends State<SimpleCap> {
                 )
               ],
             );
-          });
+          },
+        );
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                backgroundColor: Colors.white,
+                title: Text("ERRO!"),
+                titleTextStyle: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                contentTextStyle: TextStyle(color: Colors.black),
+                content: Text("Código de Restauração Incorreto!"),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "OK",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )
+                ],
+              );
+            });
+        //Play fail sound
+        widget.soundPlayer.playErrorSound();
+      }
+      //Show fail dialog
 
-      //Play fail sound
-      await poolAlarm.play(this.soundIdError);
     }
   }
 
   _saveChapterId(int chapterId) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.chapterId, chapterId);
+    updateRanking();
   }
 
   _saveHintsChange() async {
@@ -494,45 +583,25 @@ class _SimpleCapState extends State<SimpleCap> {
     prefs.setBool(PreferencesKey.isUnlockedHint, this.isUnlockedHint);
   }
 
-  _loadSounds() async {
-    this.soundIdSuccess =
-        await rootBundle.load("sounds/success.mp3").then((ByteData soundData) {
-      return poolAlarm.load(soundData);
-    });
-
-    this.soundIdError =
-        await rootBundle.load("sounds/error.mp3").then((ByteData soundData) {
-      return poolAlarm.load(soundData);
-    });
-
-    this.soundIdPage =
-        await rootBundle.load("sounds/page.mp3").then((ByteData soundData) {
-      return poolAlarm.load(soundData);
-    });
-  }
-
   _navigateBack() {
-    _playPageSound();
+    widget.soundPlayer.playPageSound();
     setState(() {
       this.idChapter -= 1;
     });
   }
 
   _navigateFoward() {
-    _playPageSound();
+    widget.soundPlayer.playPageSound();
     setState(() {
       this.idChapter += 1;
     });
-  }
-
-  _playPageSound() async {
-    await poolAlarm.play(this.soundIdPage);
   }
 
   _navigateError() {}
 
   _showHint(BuildContext context) async {
     if (this.isUnlockedHint) {
+      this.widget.soundPlayer.playGetHintSound();
       showDialog(
         context: context,
         builder: (context) {
@@ -554,6 +623,7 @@ class _SimpleCapState extends State<SimpleCap> {
       );
     } else {
       if (this.userCoins >= 10) {
+        this.widget.soundPlayer.playGetHintSound();
         setState(() {
           userCoins -= 10;
           this.isUnlockedHint = true;
@@ -563,7 +633,7 @@ class _SimpleCapState extends State<SimpleCap> {
         _showHint(context);
       } else {
         //Play fail sound
-        await poolAlarm.play(this.soundIdError);
+        widget.soundPlayer.playErrorSound();
         showDialog(
           context: context,
           builder: (context) {
@@ -590,6 +660,13 @@ class _SimpleCapState extends State<SimpleCap> {
           },
         );
       }
+    }
+  }
+
+  _especialSounds() {
+    //Play sound of Chapter 7
+    if (this.idChapter == 7) {
+      widget.soundPlayer.playMusic("files/message.mp3");
     }
   }
 }

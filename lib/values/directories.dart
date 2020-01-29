@@ -46,6 +46,34 @@ class Directories {
         ),
       ],
     ),
+    MFolder(chapter: 0, title: "Memories", listFiles: [], listFolders: [
+      MFolder(chapter: 0, title: "Andrew", listFiles: [
+        MFile(
+          chapter: 6,
+          title: "map.png",
+          icon: IconsValues.image,
+          type: MFileTypes.image,
+          filePath: "map.png",
+          downlink: "https://projeto-k22b.herokuapp.com/files/map.png",
+        ),
+        MFile(
+          chapter: 7,
+          title: "message.mp3",
+          icon: IconsValues.music_on,
+          type: MFileTypes.audio,
+          filePath: "message.mp3",
+          downlink: "https://projeto-k22b.herokuapp.com/files/message.mp3",
+        ),
+        MFile(
+          chapter: 8,
+          title: "message2.jpg",
+          icon: IconsValues.image,
+          type: MFileTypes.image,
+          filePath: "message2.jpg",
+          downlink: "https://projeto-k22b.herokuapp.com/files/message2.jpg",
+        ),
+      ], listFolders: [])
+    ]),
   ], listFiles: [
     MFile(
         chapter: 5,

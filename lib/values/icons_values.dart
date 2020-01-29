@@ -20,4 +20,9 @@ class IconsValues {
   static const String image = dir + "image.png";
   static const String console = dir + "console.png";
   static const String data_points = dir + "data_points.png";
+  static const String soul = dir + "soul.png";
+
+  static const String music_on = dir + "cd_on.png";
+  static const String music_off = dir + "cd_off.png";
+  static const String warning = dir + "msg_warning-0.png";
 }

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,18 +11,19 @@ class Starter extends StatefulWidget {
 }
 
 class _StarterState extends State<Starter> {
+  SoundPlayer soundPlayer = SoundPlayer();
   bool _selectSkip = false;
 
   @override
   void initState() {
     _read();
+    _startTheMusic();
+    // _fazerPessoa();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Container(
       alignment: Alignment.bottomCenter,
       padding: EdgeInsets.all(25),
@@ -161,8 +163,12 @@ class _StarterState extends State<Starter> {
                   if (_selectSkip) {
                     _saveSkip();
                   }
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => ChapterSplash()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ChapterSplash(
+                                soundPlayer: this.soundPlayer,
+                              )));
                 },
                 child: Center(
                   child: Container(
@@ -196,7 +202,13 @@ class _StarterState extends State<Starter> {
 
     if (value != null && value) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => ChapterSplash()));
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChapterSplash(
+            soundPlayer: this.soundPlayer,
+          ),
+        ),
+      );
     }
   }
 
@@ -205,5 +217,19 @@ class _StarterState extends State<Starter> {
     final key = PreferencesKey.skipBasicInfos;
     final value = true;
     prefs.setBool(key, value);
+  }
+
+  void _startTheMusic() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isMusicOn = prefs.getBool(PreferencesKey.isMusicActive);
+
+    if (isMusicOn != null) {
+      if (isMusicOn) {
+        soundPlayer.playBGM();
+      }
+    } else {
+      prefs.setBool(PreferencesKey.isMusicActive, true);
+      soundPlayer.playBGM();
+    }
   }
 }

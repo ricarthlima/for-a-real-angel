@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/screens/ranking.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
@@ -7,13 +9,19 @@ import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Terminal extends StatefulWidget {
+  SoundPlayer soundPlayer;
+  Terminal({this.soundPlayer});
   @override
   _TerminalState createState() => _TerminalState();
 }
 
 class _TerminalState extends State<Terminal> {
+  TextEditingController _inputController = new TextEditingController();
+
   String version = "0.3.1";
   int idChapter = 1;
+
+  List<String> log = [""];
 
   @override
   void initState() {
@@ -27,7 +35,11 @@ class _TerminalState extends State<Terminal> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: getMenuBar(
-          icon: IconsValues.console, title: "Terminal", context: context),
+        icon: IconsValues.console,
+        title: "Terminal",
+        context: context,
+        soundPlayer: widget.soundPlayer,
+      ),
       body: Container(
         padding: EdgeInsets.all(10),
         height: size.height,
@@ -48,7 +60,8 @@ class _TerminalState extends State<Terminal> {
                 "PROJECT K22B [" +
                     this.version +
                     "]\n" +
-                    "(org) 1962 USA-URSS EXCEPTION UNION\n",
+                    "(org) 1962 USA-URSS EXCEPTION UNION\n" +
+                    "Type 'help' to list the commands.\n",
                 style: TextStyle(
                   fontFamily: "CourierPrime",
                 ),
@@ -60,6 +73,29 @@ class _TerminalState extends State<Terminal> {
                       style: TextStyle(fontFamily: "CourierPrime"),
                     )
                   : Container(),
+              for (var text in log)
+                Text(
+                  text,
+                  style: TextStyle(
+                    fontFamily: "CourierPrime",
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+              TextField(
+                controller: _inputController,
+                onSubmitted: (string) {
+                  setState(() {
+                    log.add(string);
+                    _commandBatch(_inputController.text, context);
+                    _inputController.text = "";
+                  });
+                },
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: "CourierPrime",
+                ),
+                textAlign: TextAlign.start,
+              ),
             ],
           ),
         ),
@@ -87,6 +123,33 @@ class _TerminalState extends State<Terminal> {
       setState(() {
         this.idChapter = 1;
       });
+    }
+  }
+
+  _commandBatch(String cmd, BuildContext context) {
+    switch (cmd) {
+      case "help":
+        {
+          log.add("\nCommand List\n\n- 'ranking':\tShows the global ranking\n");
+          break;
+        }
+      case "ranking":
+        {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      RankingScreen(soundPlayer: widget.soundPlayer)));
+          break;
+        }
+      default:
+        {
+          setState(() {
+            log.add("'" +
+                cmd +
+                "' não foi reconhecido como um comando do terminal.\n");
+          });
+        }
     }
   }
 }

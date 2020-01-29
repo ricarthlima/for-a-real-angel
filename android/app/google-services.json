@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "274526408897",
+    "firebase_url": "https://fara-535bf.firebaseio.com",
+    "project_id": "fara-535bf",
+    "storage_bucket": "fara-535bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274526408897:android:7c58dec585fa3c01c08440",
+        "android_client_info": {
+          "package_name": "com.ricarthlima.for_a_real_angel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgy9mFC0cYGs1SkqGYVcRBctPoUByjxa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

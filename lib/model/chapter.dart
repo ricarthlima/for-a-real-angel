@@ -8,9 +8,21 @@ class Chapter {
   final String tipQuote;
   final String code;
   final String goodHint;
+  final Map<String, dynamic> closeTrys;
 
   const Chapter(this.id, this.icon, this.title, this.text, this.tipQuote,
-      this.code, this.goodHint);
+      this.code, this.goodHint, this.closeTrys);
+
+  Chapter.fromData({
+    this.id,
+    this.icon,
+    this.title,
+    this.text,
+    this.tipQuote,
+    this.code,
+    this.goodHint,
+    this.closeTrys,
+  });
 
   getMe() {
     return this;

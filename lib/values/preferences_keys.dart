@@ -5,4 +5,13 @@ class PreferencesKey {
 
   //Chapter's Hints Unlocked
   static const String isUnlockedHint = "is_unlocked_hint";
+  static const String chaptersList = "chapters_list";
+
+  static const String username = "username";
+  static const String firebaseIdUser = "firebase_id_user";
+
+  static const String isSoundActive = "is_sound_active";
+  static const String isMusicActive = "is_music_active";
+
+  static const String newVersion = "new_version";
 }

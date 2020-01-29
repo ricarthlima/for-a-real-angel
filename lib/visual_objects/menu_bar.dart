@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 
-AppBar getMenuBar(
-    {@required BuildContext context, @required title, @required icon}) {
+AppBar getMenuBar({
+  @required BuildContext context,
+  @required title,
+  @required icon,
+  @required SoundPlayer soundPlayer,
+}) {
   return AppBar(
     leading: Container(
       padding: EdgeInsets.all(10),
@@ -27,6 +32,7 @@ AppBar getMenuBar(
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
+          soundPlayer.playExitSound();
           Navigator.pop(context);
         },
       )

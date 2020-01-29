@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/file_opener.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/model/mfile.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
@@ -12,7 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Explorer extends StatefulWidget {
   MFolder folder;
   List<MFolder> roots = [];
-  Explorer({@required this.folder});
+  SoundPlayer soundPlayer;
+  Explorer({@required this.folder, this.soundPlayer});
 
   @override
   _ExplorerState createState() => _ExplorerState();
@@ -20,6 +22,7 @@ class Explorer extends StatefulWidget {
 
 class _ExplorerState extends State<Explorer> {
   int idChapter;
+
   @override
   void initState() {
     _readChapter();
@@ -35,6 +38,7 @@ class _ExplorerState extends State<Explorer> {
         context: context,
         title: widget.folder.title,
         icon: IconsValues.directory,
+        soundPlayer: widget.soundPlayer,
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -57,6 +61,7 @@ class _ExplorerState extends State<Explorer> {
                         setState(() {
                           widget.folder = pai;
                         });
+                        widget.soundPlayer.playFolderSound();
                       },
                       child: ExplorerListFolder(
                         folder: MFolder(
@@ -75,6 +80,7 @@ class _ExplorerState extends State<Explorer> {
                             widget.roots.add(widget.folder);
                             widget.folder = pasta;
                           });
+                          widget.soundPlayer.playFolderSound();
                         },
                         child: ExplorerListFolder(
                           folder: pasta,
@@ -85,7 +91,12 @@ class _ExplorerState extends State<Explorer> {
                 (arquivo.chapter <= idChapter)
                     ? GestureDetector(
                         onTap: () {
-                          routerFileType(arquivo, context);
+                          routerFileType(
+                            file: arquivo,
+                            context: context,
+                            soundPlayer: widget.soundPlayer,
+                          );
+                          widget.soundPlayer.playClickSound();
                         },
                         child: ExplorerListFile(
                           file: arquivo,

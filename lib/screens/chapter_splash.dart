@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/desktop.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChapterSplash extends StatefulWidget {
+  SoundPlayer soundPlayer;
+  ChapterSplash({this.soundPlayer});
+
   @override
   _ChapterSplashState createState() => _ChapterSplashState();
 }
@@ -24,7 +28,8 @@ class _ChapterSplashState extends State<ChapterSplash> {
       this.idEpisode = (idChapter ~/ 5.1) + 1;
     });
 
-    _justWait(numberOfSeconds: 3);
+    widget.soundPlayer.playSuccessSound();
+    _justWait(numberOfSeconds: 4);
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -70,6 +75,10 @@ class _ChapterSplashState extends State<ChapterSplash> {
   void _justWait({@required int numberOfSeconds}) async {
     await Future.delayed(Duration(seconds: numberOfSeconds));
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Desktop()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => Desktop(
+                  soundPlayer: widget.soundPlayer,
+                )));
   }
 }
