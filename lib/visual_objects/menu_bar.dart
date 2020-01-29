@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/values/my_colors.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/values/my_colors.dart';
 
 AppBar getMenuBar({
   @required BuildContext context,

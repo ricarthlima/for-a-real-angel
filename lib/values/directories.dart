@@ -1,5 +1,5 @@
-import 'package:for_a_real_angel/model/mfile.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
+import 'package:for_a_real_angel_demo/model/mfile.dart';
+import 'package:for_a_real_angel_demo/values/icons_values.dart';
 
 class Directories {
   static const MFolder recycleBin =

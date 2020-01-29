@@ -1,13 +1,13 @@
-import 'package:for_a_real_angel/helper/customDialog.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/screens/explorer.dart';
-import 'package:for_a_real_angel/screens/simple_cap.dart';
-import 'package:for_a_real_angel/screens/terminal.dart';
-import 'package:for_a_real_angel/values/directories.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
+import 'package:for_a_real_angel_demo/helper/customDialog.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/screens/explorer.dart';
+import 'package:for_a_real_angel_demo/screens/simple_cap.dart';
+import 'package:for_a_real_angel_demo/screens/terminal.dart';
+import 'package:for_a_real_angel_demo/values/directories.dart';
+import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/visual_objects/desktop_icons.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/visual_objects/desktop_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DesktopScreen extends StatefulWidget {

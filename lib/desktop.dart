@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:after_layout/after_layout.dart';
-import 'package:for_a_real_angel/helper/customDialog.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/screens/desktop_screen.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/visual_objects/taskbar.dart';
+import 'package:for_a_real_angel_demo/helper/customDialog.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/screens/desktop_screen.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/visual_objects/taskbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
@@ -96,7 +96,7 @@ class _DesktopState extends State<Desktop> with AfterLayoutMixin<Desktop> {
           FlatButton(
             onPressed: () {
               _launchURL(
-                "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel",
+                "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel_demo",
               );
             },
             child: Text(

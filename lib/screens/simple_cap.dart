@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/helper/update_ranking.dart';
-import 'package:for_a_real_angel/model/chapter.dart';
-import 'package:for_a_real_angel/screens/chapter_splash.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
-import 'package:for_a_real_angel/values/my_colors.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/visual_objects/menu_bar.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/model/chapter.dart';
+import 'package:for_a_real_angel_demo/screens/chapter_splash.dart';
+import 'package:for_a_real_angel_demo/values/icons_values.dart';
+import 'package:for_a_real_angel_demo/values/my_colors.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/visual_objects/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
 
@@ -163,7 +162,7 @@ class _SimpleCapState extends State<SimpleCap> {
                     padding: EdgeInsets.only(top: 10),
                   ),
                   Text(
-                    cap.text.replaceAll("/n", "\n"),
+                    cap.text.replaceAll("/n", "\n").replaceAll("/a", "'"),
                     style: TextStyle(color: Colors.white, fontSize: 20),
                     textAlign: TextAlign.justify,
                   ),
@@ -413,7 +412,6 @@ class _SimpleCapState extends State<SimpleCap> {
   Future _saveUserCoins() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.userCoins, this.userCoins);
-    updateRanking();
   }
 
   _testCode(String value, BuildContext context) async {
@@ -575,7 +573,6 @@ class _SimpleCapState extends State<SimpleCap> {
   _saveChapterId(int chapterId) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.chapterId, chapterId);
-    updateRanking();
   }
 
   _saveHintsChange() async {

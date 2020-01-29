@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/model/mfile.dart';
+import 'package:for_a_real_angel_demo/model/mfile.dart';
 
 class ExplorerListFile extends StatefulWidget {
   final MFile file;
