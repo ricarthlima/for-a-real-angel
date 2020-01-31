@@ -114,7 +114,19 @@ class _RankingScreenState extends State<RankingScreen> {
                         color: Colors.white,
                         fontFamily: "CourierPrime",
                       ),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
+                      showCursor: true,
+                      maxLines: 1,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                        labelText: "Insira seu nickname",
+                        prefixIcon: Icon(
+                          Icons.account_circle,
+                        ),
+                        helperText:
+                            "Pense bem, esse nickname não pode ser alterado.",
+                      ),
+                      maxLength: 7,
                     )
                   : Container(),
               (!logado)
@@ -123,7 +135,7 @@ class _RankingScreenState extends State<RankingScreen> {
                         _authenticateUser(context, _controllerCode.text);
                       },
                       child: Container(
-                        margin: EdgeInsets.only(top: 10),
+                        margin: EdgeInsets.only(top: 15),
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                         decoration: BoxDecoration(color: Colors.white),
@@ -147,7 +159,7 @@ class _RankingScreenState extends State<RankingScreen> {
                 padding: EdgeInsets.only(bottom: 10),
               ),
               Text(
-                "WORLD RANKING",
+                "RANKING MUNDIAL",
                 style: TextStyle(color: Colors.yellow),
               ),
               Padding(
