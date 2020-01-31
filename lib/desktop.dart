@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:after_layout/after_layout.dart';
-import 'package:for_a_real_angel/helper/customDialog.dart';
+import 'package:for_a_real_angel/helper/custom_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/screens/desktop_screen.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/visual_objects/taskbar.dart';
+import 'package:for_a_real_angel/partials/taskbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';

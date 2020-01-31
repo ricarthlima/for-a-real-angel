@@ -1,4 +1,4 @@
-import 'package:for_a_real_angel/helper/customDialog.dart';
+import 'package:for_a_real_angel/helper/custom_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/screens/explorer.dart';
 import 'package:for_a_real_angel/screens/simple_cap.dart';
@@ -7,7 +7,7 @@ import 'package:for_a_real_angel/values/directories.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/visual_objects/desktop_icons.dart';
+import 'package:for_a_real_angel/partials/desktop_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DesktopScreen extends StatefulWidget {

@@ -7,7 +7,7 @@ import 'package:for_a_real_angel/screens/chapter_splash.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/visual_objects/menu_bar.dart';
+import 'package:for_a_real_angel/partials/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
 
