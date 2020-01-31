@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/model/chapter.dart';
 import 'package:for_a_real_angel_demo/screens/chapter_splash.dart';
+import 'package:for_a_real_angel_demo/values/ad_values.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:for_a_real_angel_demo/values/my_colors.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
@@ -44,6 +46,24 @@ class _SimpleCapState extends State<SimpleCap> {
   //User Coins
   int userCoins;
 
+  //Errors
+  int _errors = 0;
+  InterstitialAd myInterstitial;
+
+  InterstitialAd buildInterstitial() {
+    return InterstitialAd(
+        adUnitId: AdValues.tela,
+        targetingInfo: AdValues.targetingInfo,
+        listener: (MobileAdEvent event) {
+          if (event == MobileAdEvent.loaded) {
+            myInterstitial?.show();
+          }
+          if (event == MobileAdEvent.clicked || event == MobileAdEvent.closed) {
+            myInterstitial.dispose();
+          }
+        });
+  }
+
   @override
   void initState() {
     idChapter = 0;
@@ -52,6 +72,7 @@ class _SimpleCapState extends State<SimpleCap> {
     super.initState();
 
     _especialSounds();
+    FirebaseAdMob.instance.initialize(appId: AdValues.app);
   }
 
   @override
@@ -98,7 +119,7 @@ class _SimpleCapState extends State<SimpleCap> {
                 width: 5,
               ),
             ),
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 50),
             child: SingleChildScrollView(
               controller: _controllerScroll,
               child: Column(
@@ -537,6 +558,15 @@ class _SimpleCapState extends State<SimpleCap> {
           },
         );
       } else {
+        setState(() {
+          this._errors += 1;
+        });
+        if (this._errors >= 5) {
+          this._errors = 0;
+          this.myInterstitial = buildInterstitial()
+            ..load()
+            ..show();
+        }
         showDialog(
             context: context,
             builder: (context) {

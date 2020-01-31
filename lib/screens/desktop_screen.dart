@@ -1,9 +1,11 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:for_a_real_angel_demo/helper/customDialog.dart';
 import 'package:for_a_real_angel_demo/helper/launch_url.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/screens/explorer.dart';
 import 'package:for_a_real_angel_demo/screens/simple_cap.dart';
 import 'package:for_a_real_angel_demo/screens/terminal.dart';
+import 'package:for_a_real_angel_demo/values/ad_values.dart';
 import 'package:for_a_real_angel_demo/values/directories.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,11 @@ class _DesktopScreenState extends State<DesktopScreen> {
     _readChapterId();
     _readPreferences();
     super.initState();
+
+    RewardedVideoAd.instance.load(
+      adUnitId: AdValues.premiado,
+      targetingInfo: AdValues.targetingInfo,
+    );
   }
 
   @override
@@ -65,31 +72,52 @@ class _DesktopScreenState extends State<DesktopScreen> {
               GestureDetector(
                 onTap: () {
                   widget.soundPlayer.playClickSound();
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text(
-                            "Data Points",
-                            style: TextStyle(color: Colors.yellow),
+                  showMyCustomDialog(
+                    context: context,
+                    title: Text("Data Points"),
+                    content: Text(
+                      "Você tem " +
+                          this.dataPoints.toString() +
+                          " Data Points\n\n" +
+                          "Data Points são setores recuperados após uma desfragmentação. Você pode usar DPs para facilitar o processo de restauração dos dados. Eles também contam para seu ranking.",
+                      textAlign: TextAlign.justify,
+                    ),
+                    actions: <Widget>[
+                      FlatButton(
+                        onPressed: () {
+                          RewardedVideoAd.instance
+                              .show()
+                              .then((e) {})
+                              .catchError((onError) {
+                            showMyCustomDialog(
+                                context: context,
+                                title: Text("ERRO!"),
+                                content: Text(
+                                    "Você ainda não possui anúncios disponíveis."),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      "OK",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  )
+                                ]);
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "Ganhe 5 DP de graça!",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
                           ),
-                          content: Text(
-                            "Você tem " +
-                                this.dataPoints.toString() +
-                                " Data Points\n\n" +
-                                "Data Points são setores recuperados após uma desfragmentação. Você pode usar DPs para facilitar o processo de restauração dos dados. Eles também contam para seu ranking.",
-                            textAlign: TextAlign.justify,
-                          ),
-                          actions: <Widget>[
-                            FlatButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text("OK"),
-                            )
-                          ],
-                        );
-                      });
+                        ),
+                      )
+                    ],
+                  );
                 },
                 child: DesktopIcon(
                     icon: IconsValues.data_points,
@@ -179,6 +207,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       title: Text("Compre FARA!"),
                       content: Text(
                         "Chegou no nível 10? Compre a versão completa de FARA para ter acesso a continuação dessa história.\nBenefícios:\n" +
+                            "\n- Sem anúncios." +
                             "\n- Novos níveis chegam semanalmente." +
                             "\n- Correção em tempo real de erros e bugs." +
                             "\n- Participação no ranking mundial.",

@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "274526408897",
-    "firebase_url": "https://fara-535bf.firebaseio.com",
-    "project_id": "fara-535bf",
-    "storage_bucket": "fara-535bf.appspot.com"
+    "project_number": "588411708816",
+    "firebase_url": "https://fara-demo.firebaseio.com",
+    "project_id": "fara-demo",
+    "storage_bucket": "fara-demo.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:274526408897:android:7c58dec585fa3c01c08440",
+        "mobilesdk_app_id": "1:588411708816:android:f8c52498d44d2168ce3f15",
         "android_client_info": {
           "package_name": "com.ricarthlima.for_a_real_angel_demo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
+          "client_id": "588411708816-i34i31n288jih1o2qef4hmv39cbtv8fh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ricarthlima.for_a_real_angel_demo",
+            "certificate_hash": "7aa9c1239a4e0834448e9767c56ebccf23a96bd5"
+          }
+        },
+        {
+          "client_id": "588411708816-l95pphmtk613lrsjimui5jqfn7a77v88.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDgy9mFC0cYGs1SkqGYVcRBctPoUByjxa8"
+          "current_key": "AIzaSyCbtIuaiUsUDMGVIqZVJ5E3vPK8ZhTHIfQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
+              "client_id": "588411708816-l95pphmtk613lrsjimui5jqfn7a77v88.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

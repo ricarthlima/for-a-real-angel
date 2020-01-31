@@ -13,7 +13,7 @@ description: Version demo from F(or) A Real Angel.
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
 # MUDA TAMBÉM EM "values/internalVersion" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-version: 0.1.0+1
+version: 0.2.0+2
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -33,6 +33,9 @@ dependencies:
   carousel_slider: ^1.4.1
   audioplayers: ^0.13.7
   after_layout: ^1.0.7+2
+
+  # Firebase for Ads  
+  firebase_admob: ^0.9.0+10
 
 dev_dependencies:
   flutter_test:
