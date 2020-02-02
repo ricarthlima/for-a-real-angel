@@ -524,25 +524,25 @@ class _SimpleCapState extends State<SimpleCap> {
         );
       }
     } else {
-      if (chapters[this.idChapter]
-          .closeTrys
-          .keys
-          .contains(value.toLowerCase())) {
-        this.widget.soundPlayer.playCloseTrySound();
-        String hint =
-            chapters[this.idChapter].closeTrys[value.toLowerCase()].toString();
-        showDialog(
+      setState(() {
+        this._errors += 1;
+      });
+      if (this._errors >= 5) {
+        this._errors = 0;
+        this.myInterstitial = buildInterstitial()
+          ..load()
+          ..show();
+      }
+      showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.white,
-              title: Text("ESTOU ME LEMBRANDO..."),
+              title: Text("ERRO!"),
               titleTextStyle: TextStyle(
-                  color: MyColors.topBlue,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
+                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
               contentTextStyle: TextStyle(color: Colors.black),
-              content: Text(hint),
+              content: Text("Código de Restauração Incorreto!"),
               actions: <Widget>[
                 FlatButton(
                   onPressed: () {
@@ -555,46 +555,10 @@ class _SimpleCapState extends State<SimpleCap> {
                 )
               ],
             );
-          },
-        );
-      } else {
-        setState(() {
-          this._errors += 1;
-        });
-        if (this._errors >= 5) {
-          this._errors = 0;
-          this.myInterstitial = buildInterstitial()
-            ..load()
-            ..show();
-        }
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                backgroundColor: Colors.white,
-                title: Text("ERRO!"),
-                titleTextStyle: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-                contentTextStyle: TextStyle(color: Colors.black),
-                content: Text("Código de Restauração Incorreto!"),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "OK",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ],
-              );
-            });
-        //Play fail sound
-        widget.soundPlayer.playErrorSound();
-      }
+          });
+      //Play fail sound
+      widget.soundPlayer.playErrorSound();
+
       //Show fail dialog
 
     }

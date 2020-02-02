@@ -1,4 +1,5 @@
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
 import 'package:for_a_real_angel_demo/helper/customDialog.dart';
 import 'package:for_a_real_angel_demo/helper/launch_url.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
@@ -33,7 +34,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
     super.initState();
 
     RewardedVideoAd.instance.load(
-      adUnitId: AdValues.premiado,
+      adUnitId: AdValues.premiado, //AdValues.premiado,
       targetingInfo: AdValues.targetingInfo,
     );
   }
@@ -85,10 +86,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
                     actions: <Widget>[
                       FlatButton(
                         onPressed: () {
-                          RewardedVideoAd.instance
-                              .show()
-                              .then((e) {})
-                              .catchError((onError) {
+                          RewardedVideoAd.instance.show().then((e) {
+                            _giveFiveDP(context);
+                          }).catchError((onError) {
                             showMyCustomDialog(
                                 context: context,
                                 title: Text("ERRO!"),
@@ -208,6 +208,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       content: Text(
                         "Chegou no nível 10? Compre a versão completa de FARA para ter acesso a continuação dessa história.\nBenefícios:\n" +
                             "\n- Sem anúncios." +
+                            "\n- Dicas gratúitas por aproximação (Andrew te avisa se você chegar perto)." +
                             "\n- Novos níveis chegam semanalmente." +
                             "\n- Correção em tempo real de erros e bugs." +
                             "\n- Participação no ranking mundial.",
@@ -291,5 +292,26 @@ class _DesktopScreenState extends State<DesktopScreen> {
         this.chapterId = 1;
       });
     }
+  }
+
+  void _giveFiveDP(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt(PreferencesKey.userCoins, this.dataPoints + 5);
+
+    showMyCustomDialog(
+        context: context,
+        title: Text("Aqui está!"),
+        content: Text("Consegui recuperar 5DPs para você como prometido."),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              "Obrigado",
+              style: TextStyle(color: Colors.grey),
+            ),
+          )
+        ]);
   }
 }

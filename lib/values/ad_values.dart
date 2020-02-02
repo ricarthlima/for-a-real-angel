@@ -7,7 +7,22 @@ class AdValues {
   static const String premiado = "ca-app-pub-1049717100151954/5310704023";
 
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    keywords: <String>['game', 'puzzle', 'mistery', 'jogo', 'riddle'],
+    keywords: <String>[
+      'game',
+      'puzzle',
+      'mistery',
+      'jogo',
+      'riddle',
+      'misterio',
+      'twitch',
+      'stream',
+      'diversão',
+      'policial',
+      'investigação',
+      'invetigation',
+      'detective',
+      'police'
+    ],
     childDirected: false,
     testDevices: <String>[],
   );
