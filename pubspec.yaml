@@ -13,7 +13,7 @@ description: Version demo from F(or) A Real Angel.
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
 # MUDA TAMBÉM EM "values/internalVersion" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-version: 0.2.0+2
+version: 0.2.1+3
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
