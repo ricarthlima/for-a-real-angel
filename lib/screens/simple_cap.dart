@@ -398,6 +398,7 @@ class _SimpleCapState extends State<SimpleCap> {
     }
 
     final coins = prefs.getInt(PreferencesKey.userCoins);
+
     if (coins != null) {
       setState(() {
         this.userCoins = coins;

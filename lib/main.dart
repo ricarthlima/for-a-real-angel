@@ -55,40 +55,38 @@ _loadFirebase() async {
 _loadChapters() async {
   Firestore db = Firestore.instance;
 
-  db.collection("chapters").snapshots().listen(
-    (snapshot) async {
-      // Map de Maps
-      Map<String, Map<String, dynamic>> chapters =
-          new Map<String, Map<String, dynamic>>();
+  QuerySnapshot snapshot = await db.collection("chapters").getDocuments();
 
-      // Percorrer a Query
-      for (DocumentSnapshot queryCap in snapshot.documents) {
-        // Basic infos
-        var data = queryCap.data;
-        chapters[data["id"].toString()] = data;
+  // Map de Maps
+  Map<String, Map<String, dynamic>> chapters =
+      new Map<String, Map<String, dynamic>>();
 
-        // closeTry Query
-        QuerySnapshot closeTrysQuery = await db
-            .collection("chapters")
-            .document(data["id"].toString())
-            .collection("closeTrys")
-            .getDocuments();
+  // Percorrer a Query
+  for (DocumentSnapshot queryCap in snapshot.documents) {
+    // Basic infos
+    var data = queryCap.data;
+    chapters[data["id"].toString()] = data;
 
-        Map<String, String> closeTryEmbed = Map<String, String>();
+    // closeTry Query
+    QuerySnapshot closeTrysQuery = await db
+        .collection("chapters")
+        .document(data["id"].toString())
+        .collection("closeTrys")
+        .getDocuments();
 
-        // Percorrer a closeTry Query
-        List<DocumentSnapshot> closeTryList = closeTrysQuery.documents;
-        for (DocumentSnapshot closeTry in closeTryList) {
-          Map<String, dynamic> ctdata = closeTry.data;
-          closeTryEmbed[closeTry.documentID] = ctdata["hint"];
-        }
+    Map<String, String> closeTryEmbed = Map<String, String>();
 
-        //Embed Close Trys
-        chapters[data["id"].toString()]["closeTrys"] = closeTryEmbed;
-      }
+    // Percorrer a closeTry Query
+    List<DocumentSnapshot> closeTryList = closeTrysQuery.documents;
+    for (DocumentSnapshot closeTry in closeTryList) {
+      Map<String, dynamic> ctdata = closeTry.data;
+      closeTryEmbed[closeTry.documentID] = ctdata["hint"];
+    }
 
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setString(PreferencesKey.chaptersList, jsonEncode(chapters));
-    },
-  );
+    //Embed Close Trys
+    chapters[data["id"].toString()]["closeTrys"] = closeTryEmbed;
+  }
+
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setString(PreferencesKey.chaptersList, jsonEncode(chapters));
 }

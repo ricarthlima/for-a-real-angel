@@ -20,12 +20,14 @@ class DesktopScreen extends StatefulWidget {
 class _DesktopScreenState extends State<DesktopScreen> {
   int dataPoints = 0;
   int chapterId = 1;
+  bool isShowGiveCoinDialog = false;
 
   @override
   void initState() {
     this.dataPoints = 0;
     this.chapterId = 1;
     _readChapterId();
+    _giveCoinsVerification();
     _readPreferences();
     super.initState();
   }
@@ -64,31 +66,31 @@ class _DesktopScreenState extends State<DesktopScreen> {
               GestureDetector(
                 onTap: () {
                   widget.soundPlayer.playClickSound();
-                  showDialog(
+                  showMyCustomDialog(
                       context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text(
-                            "Data Points",
-                            style: TextStyle(color: Colors.yellow),
+                      title: Text(
+                        "Data Points",
+                      ),
+                      content: Text(
+                        "Você tem " +
+                            this.dataPoints.toString() +
+                            " Data Points\n\n" +
+                            "Data Points são setores recuperados após uma desfragmentação. Você pode usar DPs para facilitar o processo de restauração dos dados. Eles também contam para seu ranking.",
+                        textAlign: TextAlign.justify,
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "OK",
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
                           ),
-                          content: Text(
-                            "Você tem " +
-                                this.dataPoints.toString() +
-                                " Data Points\n\n" +
-                                "Data Points são setores recuperados após uma desfragmentação. Você pode usar DPs para facilitar o processo de restauração dos dados. Eles também contam para seu ranking.",
-                            textAlign: TextAlign.justify,
-                          ),
-                          actions: <Widget>[
-                            FlatButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text("OK"),
-                            )
-                          ],
-                        );
-                      });
+                        )
+                      ]);
                 },
                 child: DesktopIcon(
                     icon: IconsValues.data_points,
@@ -126,7 +128,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         "Se você está vendo esse aviso, você está jogando uma versão beta de FARA. " +
                             "Como o jogo está em construção você pode se deparar com erros ou bugs. " +
                             "Esses podem influenciar na sua experiência.\n\n" +
-                            "Se achar algo de errado, me avisa: ricarth1@gmail.com.",
+                            "Se achar algo de errado, me avisa: playfaragame@gmail.com.",
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
@@ -228,6 +230,22 @@ class _DesktopScreenState extends State<DesktopScreen> {
       setState(() {
         this.chapterId = 1;
       });
+    }
+  }
+
+  _giveCoinsVerification() async {
+    final prefs = await SharedPreferences.getInstance();
+    final giveCoins = prefs.getBool(PreferencesKey.giveCoins);
+
+    // Dar as 100 moedas
+    if (giveCoins == null) {
+      prefs.setInt(PreferencesKey.userCoins, 100);
+      prefs.setBool(PreferencesKey.giveCoins, false);
+      setState(
+        () {
+          this.dataPoints = 100;
+        },
+      );
     }
   }
 }
