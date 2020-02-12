@@ -1,0 +1,54 @@
+{
+  "@@last_modified": "2020-02-12T01:52:07.365139",
+  "title": "F(or) A Real Angel",
+  "@title": {
+    "description": "The application title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHints": "Dicas sobre F(or) A Real Angel",
+  "@starterHints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintGiveUp": "Se você desiste fácil, FARA não é um jogo para você.",
+  "@starterHintGiveUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintSounds": "Os sons são importantes em FARA. Se possível, jogue com fones de ouvido.",
+  "@starterHintSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintInfos": "Você está lidando com arquivos e informações secretas, sigilosas e criptografadas. Nada é o que parece, use todas as ferramentas para manipular os arquivos investigados.",
+  "@starterHintInfos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintTools": "Use todas as informações possíveis para resolver os enigmas. Não hesite em pesquisar e aprender sobre algum assunto novo.",
+  "@starterHintTools": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintCaps": "As respostas devem sempre ser dadas na sua língua. Não se preocupe com acentos, caracteres especiais, espaços ou letras maiúsculas.",
+  "@starterHintCaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintCheckbox": "Entendi, não mostrar novamente.",
+  "@starterHintCheckbox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continuar": "Continuar.",
+  "@continuar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "episode": "Episódio",
+  "@episode": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

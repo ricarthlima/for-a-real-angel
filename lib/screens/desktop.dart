@@ -11,14 +11,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Desktop extends StatefulWidget {
+class DesktopContextScreen extends StatefulWidget {
   SoundPlayer soundPlayer;
-  Desktop({this.soundPlayer});
+  DesktopContextScreen({this.soundPlayer});
   @override
-  _DesktopState createState() => _DesktopState();
+  _DesktopContextScreenState createState() => _DesktopContextScreenState();
 }
 
-class _DesktopState extends State<Desktop> with AfterLayoutMixin<Desktop> {
+class _DesktopContextScreenState extends State<DesktopContextScreen>
+    with AfterLayoutMixin<DesktopContextScreen> {
   String wallpaper = "assets/wallpaper-def.png";
 
   @override

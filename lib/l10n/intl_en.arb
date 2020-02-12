@@ -1,0 +1,54 @@
+{
+  "@@last_modified": "2020-02-12T01:31:00.655127",
+  "title": "F(or) A Real Angel",
+  "@title": {
+    "description": "The application title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHints": "Check this hints out!",
+  "@starterHints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintGiveUp": "If you easy give up, FARA isn't for you.",
+  "@starterHintGiveUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintSounds": "Sound are important in FARA. Try to play with headphones.",
+  "@starterHintSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintInfos": "You are dealing with secret, confidential and encrypted files and information. Nothing is as it seems, use all the tools to manipulate the investigated files.",
+  "@starterHintInfos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintTools": "Use all possible information to solve the puzzles. Do not hesitate to research and learn about any new theme.",
+  "@starterHintTools": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintCaps": "Answers should always be given in your language. Don't worry about special characters, spaces or capital letters.",
+  "@starterHintCaps": {
+    "type": "text",
+    "placeholders": {}
+  },  
+  "starterHintCheckbox": "Got it, don't show it again.",
+  "@starterHintCheckbox": {
+    "type": "text",
+    "placeholders": {}
+  },  
+  "continuar": "Continue",
+  "@continuar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "episode": "Episode",
+  "@episode": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

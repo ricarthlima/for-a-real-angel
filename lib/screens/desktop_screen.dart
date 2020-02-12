@@ -1,8 +1,8 @@
 import 'package:for_a_real_angel/helper/custom_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/screens/explorer.dart';
-import 'package:for_a_real_angel/screens/simple_cap.dart';
-import 'package:for_a_real_angel/screens/terminal.dart';
+import 'package:for_a_real_angel/screens/andrew_chapters_screen.dart';
+import 'package:for_a_real_angel/screens/explorer_screen.dart';
+import 'package:for_a_real_angel/screens/terminal_screen.dart';
 import 'package:for_a_real_angel/values/directories.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +104,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SimpleCap(
+                      builder: (context) => AndrewChaptersScreen(
                         soundPlayer: widget.soundPlayer,
                       ),
                     ),

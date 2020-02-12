@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/screens/ranking.dart';
+import 'package:for_a_real_angel/screens/ranking_screen.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
