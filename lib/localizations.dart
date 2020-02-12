@@ -66,7 +66,7 @@ class AppLocalizations {
 
   String get starterHintCaps {
     return Intl.message(
-      "As respostas devem sempre ser dadas na sua língua. Não se preocupe com acentos, caracteres especiais, espaços ou letras maiúsculas.",
+      "Não se preocupe com acentos, caracteres especiais, espaços ou letras maiúsculas.",
       name: "starterHintCaps",
     );
   }
@@ -89,6 +89,167 @@ class AppLocalizations {
     return Intl.message(
       "Episódio",
       name: "episode",
+    );
+  }
+
+  String get loading {
+    return Intl.message(
+      "Carregando",
+      name: "loading",
+    );
+  }
+
+  String get restore {
+    return Intl.message(
+      "Restaurar",
+      name: "restore",
+    );
+  }
+
+  String get hint {
+    return Intl.message(
+      "Dica",
+      name: "hint",
+    );
+  }
+
+  String get memoryRestored {
+    return Intl.message(
+      "Memória Restaurada",
+      name: "memoryRestored",
+    );
+  }
+
+  String get remebering {
+    return Intl.message(
+      "Estou me lembrando",
+      name: "remebering",
+    );
+  }
+
+  String get error {
+    return Intl.message(
+      "Erro",
+      name: "error",
+    );
+  }
+
+  String get incorrectRestaurationCode {
+    return Intl.message(
+      "Código de Restauração Incorreto!",
+      name: "incorrectRestaurationCode",
+    );
+  }
+
+  String get noDataPoints {
+    return Intl.message(
+      "Eu não tenho Pontos de Dados suficientes para te ajudar.",
+      name: "noDataPoints",
+    );
+  }
+
+  String get recycleBin {
+    return Intl.message(
+      "Lixeira\n",
+      name: "recycleBin",
+    );
+  }
+
+  String get dataPoints {
+    return Intl.message(
+      "Pontos de Dados",
+      name: "dataPoints",
+    );
+  }
+
+  String get youHave {
+    return Intl.message(
+      "Você tem",
+      name: "youHave",
+    );
+  }
+
+  String get dataPointsExplanation {
+    return Intl.message(
+      "Data Points são setores recuperados após uma desfragmentação. Você pode usar DPs para facilitar o processo de restauração dos dados. Eles também contam para seu ranking.",
+      name: "dataPointsExplanation",
+    );
+  }
+
+  String get okay {
+    return Intl.message(
+      "OK",
+      name: "okay",
+    );
+  }
+
+  String get betaDisclaimer {
+    return Intl.message(
+      "Aviso de versão Beta",
+      name: "betaDisclaimer",
+    );
+  }
+
+  String get betaDisclaimerText {
+    return Intl.message(
+      "Se você está vendo esse aviso, você está jogando uma versão beta de FARA. Como o jogo está em construção você pode se deparar com erros ou bugs. Esses podem influenciar na sua experiência.\n\nSe achar algo de errado, me avisa: playfaragame@gmail.com.",
+      name: "betaDisclaimerText",
+    );
+  }
+
+  String get documents {
+    return Intl.message(
+      "Documentos",
+      name: "documents",
+    );
+  }
+
+  String get update {
+    return Intl.message(
+      "Atualizar",
+      name: "update",
+    );
+  }
+
+  String get notSignUp {
+    return Intl.message(
+      "Você ainda não se cadastrou.",
+      name: "notSignUp",
+    );
+  }
+
+  String get putUsername {
+    return Intl.message(
+      "Insira seu nickname",
+      name: "putUsername",
+    );
+  }
+
+  String get usernameDisclaimer {
+    return Intl.message(
+      "Pense bem, esse nickname não pode ser alterado.",
+      name: "usernameDisclaimer",
+    );
+  }
+
+  String get signUp {
+    return Intl.message(
+      "Cadastrar",
+      name: "signUp",
+    );
+  }
+
+  String get usernameTaked {
+    return Intl.message(
+      "Nome de usuário em uso.",
+      name: "usernameTaked",
+    );
+  }
+
+  String get notRecognizedCommand {
+    return Intl.message(
+      "não foi reconhecido como um comando do terminal.",
+      name: "notRecognizedCommand",
     );
   }
 }

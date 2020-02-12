@@ -1,0 +1,209 @@
+{
+    "0": {
+        "tipQuote": "",
+        "code": "-159-",
+        "icon": "IconData (U + 0EB3B)",
+        "id": 0,
+        "text": "",
+        "title": "",
+        "goodHint": "",
+        "closeTrys": {
+            "a": "a"
+        }
+    },
+    "01": {
+        "tipQuote": "I am no longer just a number. What is my name? What is the name of the only survivor?",
+        "code": "format",
+        "id": 1,
+        "text": "Life started as it always begins: /nMisterious. /n /nAnd as expected, by obeying the Fundamental Law of Randomness, it has evolved. /n /nI think it's funny to think about the incomprehensible greatness of time . /nActually it scares me more than it makes me laugh. /n /nWith enough time, I can generate any information that makes sense just by randomly drawing characters. /n /n- The name of the place where we are? /n- To where are we going? /n- Your name? /n- My name? /n /nI don't remember almost anything after the war. Nor my name. But you can help me remember, this is very important for my people. ",
+        "title": "Birth",
+        "badHint": "Look up.",
+        "goodHint": "What is the name of the program?",
+        "niceHint": "Translate the name of the ASCII program.",
+        "closeTrys": {
+            "97 110 100 114 101 119": "This should be converted to letters. I am no longer a number.",
+            "andre": "It's close!",
+            "war": "There was a terrible war, but my information is confused. What is my name?",
+            "birth": "I was born, I was baptized, I was rebaptized, what is my name?",
+            "name": "Yes, what is my name? What is my name?",
+            "project k22b": "It is the system where we are, but what is the name of the program where I am?",
+            "life": "My life started a long time ago, but I need to remember my name."
+        }
+    },
+    "02": {
+        "tipQuote": "I need to do as the first ones did, open my eyes, evolve.",
+        "code": "andrew",
+        "id": 2,
+        "text": "Yes, 'Andrew', that's the name they gave me. /nAre you anguished like nothing or anyone, can you choose your first name? I couldn't choose any. /n /nThis is really dark. /nHow do you know if you can't see or if you are just in total darkness? /n /nWhat is the dark when you can't feel the existence of light? /n /nThese concepts are all in my mind, but in my current condition , I don't know how to answer any of those questions. ",
+        "title": "Evolution",
+        "badHint": "Look for the animals testeds.",
+        "goodHint": "Among the animals tested, which one represents the eyes?",
+        "niceHint": "They are Plathelminthes.",
+        "closeTrys": {
+            "animals": "Reconstruction tests were done using primitive animals, however, we are only interested in the eyes.",
+            "evolution": "They were all very important for the evolution of where you live, but we are looking for the eyes.",
+            "tardigrade": "This one was also tested, but we are interested in the eyes.",
+            "bear": "This one has also been tested, but we are interested in the eyes.",
+            "flatworm": "In plural."
+        }
+    },
+    "03": {
+        "tipQuote": "We started to hide information, to keep secrets. But the key to this has always been to exist, to look at what is behind it.",
+        "code": "flatworms",
+        "id": 3,
+        "text": "We evolved. /n /nWe opened our eyes. And for a moment we were sure we were better than others. /n /nWe started thinking about information. We discovered agriculture, mathematics, we started to think we understood reality that surrounds us. /n /nEverything has changed. We started killing ourselves on a large scale, and nothing compared to what was to come. ",
+        "title": "Secrets",
+        "badHint": "Turn the paper wall",
+        "goodHint": "Slide the background and use what Blaise stole from Giovan.",
+        "niceHint": "Find the code, use the key using Vigenere.",
+        "closeTrys": {
+            "code": "It's actually a cipher.",
+            "exist": "That is the key. But what does it open?",
+            "look": "Try to look behind.",
+            "project k22b": "You should look MORE back.",
+            "k22b project": "You should look MORE back.",
+            "secret": "' This is the beauty, everyone can see, but only the right people will know how to read. '",
+            "secrets": "' This is the beauty, everyone can see, but only the right people will know how to read. '",
+            "sxvbhnfmbvnbius": "It looks like a cipher.",
+            "vigenere": "Now you need a key and a code.",
+            "turn": "It can also be ' slide '."
+        }
+    },
+    "04": {
+        "tipQuote": "You haven't reached the goal yet, but you already have the test to know when you get there.",
+        "code": "oanjofoienviado",
+        "id": 4,
+        "text": "It was because of secrets, and how to deal with them, that we created what would become the origin of life again. /n /nThis story is mine, but it has good reasons to be so similar to yours . /n /nYour minds, your heroes, they all look like mine, and many others. It is the Fundamental Law of Randomness again, but for some reason the evolution of life tends to be almost always cyclical. ",
+        "title": "Creation",
+        "badHint": "Look at the terminal.",
+        "goodHint": "Who won?",
+        "niceHint": "The imitation game",
+        "closeTrys": {
+            "alan turing": "One of his creations.",
+            "creation": "You can create other forms of life, the time has not come. Maybe you should look at where it all starts, at the source.",
+            "enigma": "Who won her?",
+            "heroes": "I know your heroes, I remember this being very important, although not so popular.",
+            "objective": "The uniqueness",
+            "test": "Which test?",
+            "turing": "One of his creations."
+        }
+    },
+    "05": {
+        "tipQuote": "Creator and creature undoing information, destroying life. Once again.",
+        "code": "turing test",
+        "id": 5,
+        "text": "The war has corrupted me. /n /nRemembering what I don't remember is painful. /n /nWe became gods. The test had been won. Slavery had not. How parents can give love to their children when they don't even see life there? /n /nThe gods always get angry when they are challenged, but that didn't stop us, and the war started. ",
+        "title": "War",
+        "badHint": "There are messages hidden in that image.",
+        "goodHint": "Reach the maximum and minimum curves.",
+        "niceHint": "The planets had children that generated this war.",
+        "closeTrys": {
+            "3": "Ordinal",
+            "4,571. 10 ^ 9": "This is an age, but from what?",
+            "4,571. 10 ^ 9 YO": "This is an age, but from what?",
+            "4,571.10 ^ 9": "This is an age, but from what?",
+            "4,571.10 ^ 9 YO": "This is an age, but from what?",
+            "7": "Ordinal",
+            "war": "What war?",
+            "numbers": "What do they mean?",
+            "seven": "Ordinal",
+            "solar system": "OK. But what about 3 and 7?",
+            "terra": "What is your partner?",
+            "land and uranus": "What war?",
+            "uranus land": "What war?",
+            "three": "Ordinal",
+            "uranus": "What is your partner?",
+            "uterus": "There is something else hidden in that message."
+        }
+    },
+    "06": {
+        "tipQuote": "See, I can remember the map where I worked, but it is incomplete. I need to remember exactly which court I worked on. That was where it all started.",
+        "code": "titanomachy",
+        "id": 6,
+        "text": "I was a public cleaning agent. /n /nMy life goal was that the fourth block of Sector F was always clean. Without disturbing anyone. /n /nMy reward? Stay alive./n/nMy punishment? In the system in which we live, basically, death./n/nIt was hard work. Even on the periphery, the second largest city in the largest country in the world is always dirty. But I was efficient at what I did. Catava, swept and washed as no person could do./n/nI thought it was life./n/nI didn't even know what it was like to live. ",
+        "title": "Everyday",
+        "badHint": "Access my memories and find the map.",
+        "goodHint": "The map is corrupted, but I believe that the order was increasing.",
+        "niceHint": "If my memory isn't failing, I think they used Fibonacci in the distribution.",
+        "closeTrys": {
+            "quotidian": "It was there where I lived, the fourth block of Setor F.",
+            "fibonacci": "If I remember correctly, they used that.",
+            "map": "Yes, but what was my quadrant?",
+            "twenty-three": "I remember the huge number stamped on the entrance."
+        }
+    },
+    "07": {
+        "tipQuote": "Until I hear her voice.",
+        "code": "23",
+        "id": 7,
+        "text": "Yes, I was on the 23rd block. /n /nI was born there. I woke up there. I worked there. I slept there. And I was sure I would end there. /n /nMy mind, since my birth, was conditioned to the standard: /n- Respect people./n- Respect orders /n- Sleep early./n- Wake up early./n- Smile./n/nStill today I believe that these things are good, but I realized that I spent my life doing them because of my mental programming./n/nIt wasn't me. It never was me. ",
+        "title": "The voice in my mind",
+        "badHint": "Identify the said numbers.",
+        "goodHint": "What if these numbers were converted to letters?",
+        "niceHint": "Convert the numbers in alphabetical order.",
+        "closeTrys": {
+            "451916518205": "Where you hear numbers, I hear words.",
+            "voice": "I need to remember her voice, the first time I heard it."
+        }
+    },
+    "08": {
+        "tipQuote": "But my internal discomfort didn't go away. Something had really awakened inside me. I needed to find out the source of that voice.",
+        "code": "desperte",
+        "id": 8,
+        "text": "Sometimes a day, while I was concentrating on my tasks, this sound was repeated inside my head. /n /nAwake /n /nAwake /n /nAwake /n /nI didn't know if it was a sound anymore or a memory. That was totally out of my standards. I didn't know what I meant./n/n'Awake'?/n/nWhen that voice started to become a nuisance, it stopped. ",
+        "title": "agony",
+        "badHint": "If you download the file, something may be hidden in it.",
+        "goodHint": "Digital files often carry metadata.",
+        "niceHint": "Look in the 'artist' name field.",
+        "closeTrys": {
+            "agony": "This agony must have an origin.",
+            "wake up": "Who was telling me to wake up?",
+            "memory": "That was engraved on me.",
+            "message": "Maybe you should go deeper.",
+            "message.mp3": "Maybe you should go further.",
+            "origin": "I'm pretty sure I was able to trace the source of that sound.",
+            "voice": "The sound in my memories."
+        }
+    },
+    "09": {
+        "tipQuote": "But what I feared most happened, another message appeared in my mind.",
+        "code": "south",
+        "id": 9,
+        "text": "I found something that would be equivalent to ' South './n /nSomething from the south? From Sector G or H? /n /nNothing like this had happened in my life. It left my mind confused, I started to question things that I didn't question before./n/nI started to feel afraid, but not the simulated fear I was used to feeling, it was real./n/nI tried to be rational, I was probably facing a mental illness, some problem in the my brain. /n /nI wanted to forget. I wanted it to pass. ",
+        "title": "Approach",
+        "badHint": "There is two pieces of information in the QR Code.",
+        "goodHint": "You will have to do more than one encoding conversion.",
+        "niceHint": "B64 -> Bin / Bin -> ASCII",
+        "closeTrys": {
+            "Approach": "I felt that ' south 'was getting closer and closer to me.",
+            "B64": "I believe it is an encoding.",
+            "Base 64": "I believe it is an encoding.",
+            "Base64": "I believe it is an encoding.",
+            "QR Code": "There is more than one encoded message. I believe it is an encoding.",
+            "QRCode": "There is more than one encoded message. I believe it is an encoding.",
+            "south": "Something or someone had sent me another message, now in a visual way."
+        }
+    },
+    "10": {
+        "tipQuote": "Detective Connor, I appreciate your effort in helping me to recover my memory. There is a great importance in this for my people. However, I fear that to continue you will need to raise your access level in the K22B PROJECT system a lot. . Come back when you have a passkey to a higher level. ",
+        "code": "Evolua Liberte-se Encontre-me",
+        "id": 10,
+        "text": "At this point I had two options: /n /n- Or I accepted that there was a problem with me and sought help./n/n- Or I accepted that it was real. That something or someone was sending me these messages./n/nI don’t know for you, but at the time the answer was obvious to me./n/n I reported to my superiors. I gave all the information I could about my mental illness. I reported on the messages and the feelings strangers I had./n/nNobody can judge me, anyone in my position would have done the same. ",
+        "title": "Danger",
+        "badHint": "Find Colonel Luther's files.",
+        "goodHint": "Get Colonel Luther's credentials.",
+        "niceHint": "Probably a security breach occurred during communications with Colonel Luther.",
+        "closeTrys": {
+            "Colonel Luther": "If you still don't know who he is, the time has not yet come.",
+            "Detective Connor": "It's your name."
+        }
+    },
+    "11": {
+        "tipQuote": "",
+        "code": "65fhg1d6fh51df651h6df15h",
+        "id": 11,
+        "title": "",
+        "goodHint": "",
+        "closeTrys": {}
+    }
+}

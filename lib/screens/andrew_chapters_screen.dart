@@ -1,8 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:for_a_real_angel/helper/custom_dialog.dart';
+import 'package:for_a_real_angel/helper/getAndrewChapterLocale.dart';
+import 'package:for_a_real_angel/helper/next_level_dialog.dart';
+import 'package:for_a_real_angel/helper/show_hint_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/helper/update_ranking.dart';
+import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/model/chapter.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
@@ -63,7 +67,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
           ? Container(
               color: Colors.black,
               alignment: Alignment.center,
-              child: Text("Loading..."),
+              child: Text(AppLocalizations.of(context).loading + "..."),
             )
           : SwipeDetector(
               swipeConfiguration: SwipeConfiguration(
@@ -226,7 +230,9 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                   color: Colors.grey, width: 2),
                                             ),
                                             child: Text(
-                                              "RESTAURAR",
+                                              AppLocalizations.of(context)
+                                                  .restore
+                                                  .toUpperCase(),
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 color: Colors.black,
@@ -254,7 +260,8 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                     CrossAxisAlignment.center,
                                                 children: <Widget>[
                                                   Text(
-                                                    "Dica",
+                                                    AppLocalizations.of(context)
+                                                        .hint,
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       color: Colors.white,
@@ -352,8 +359,8 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     // List to get chapters
     List<AndrewChapter> tempList = new List<AndrewChapter>();
 
-    String chapters =
-        await rootBundle.loadString("assets/chapters_json/pt_andrew.json");
+    String chapters = await getAndrewChapterLocale(context);
+
     Map jsonData = jsonDecode(chapters);
 
     for (var key in jsonData.keys) {
@@ -478,34 +485,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                       soundPlayer: widget.soundPlayer,
                     )));
       } else {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.white,
-              title: Text("ACESSO AUTORIZADO"),
-              titleTextStyle: TextStyle(
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-              contentTextStyle: TextStyle(color: Colors.black),
-              content: Text("Restauração de memória: \n" +
-                  (listChapters[i].id * 2).toString() +
-                  "% concluída.\n\nPontos de dados adicionados: 5"),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "OK",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )
-              ],
-            );
-          },
-        );
+        showNextLevelDialog(context, listChapters[i].id);
       }
     } else {
       if (listChapters[this.idChapter]
@@ -516,58 +496,13 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
         String hint = listChapters[this.idChapter]
             .closeTrys[value.toLowerCase()]
             .toString();
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.white,
-              title: Text("ESTOU ME LEMBRANDO..."),
-              titleTextStyle: TextStyle(
-                  color: MyColors.topBlue,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-              contentTextStyle: TextStyle(color: Colors.black),
-              content: Text(hint),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "OK",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )
-              ],
-            );
-          },
-        );
+        showHintDialog(context, hint);
       } else {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                backgroundColor: Colors.white,
-                title: Text("ERRO!"),
-                titleTextStyle: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-                contentTextStyle: TextStyle(color: Colors.black),
-                content: Text("Código de Restauração Incorreto!"),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "OK",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ],
-              );
-            });
+        showErrorDialog(
+          context: context,
+          title: AppLocalizations.of(context).error,
+          content: AppLocalizations.of(context).incorrectRestaurationCode,
+        );
         //Play fail sound
         widget.soundPlayer.playErrorSound();
       }
@@ -638,31 +573,10 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
       } else {
         //Play fail sound
         widget.soundPlayer.playErrorSound();
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text("ERRO"),
-              content: Text(
-                  "Não tenho pontos de dados suficientes para lhe ajudar!"),
-              backgroundColor: Colors.white,
-              titleTextStyle: TextStyle(
-                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
-              contentTextStyle: TextStyle(color: Colors.black),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "OK",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )
-              ],
-            );
-          },
-        );
+        showErrorDialog(
+            context: context,
+            title: AppLocalizations.of(context).error,
+            content: AppLocalizations.of(context).noDataPoints);
       }
     }
   }

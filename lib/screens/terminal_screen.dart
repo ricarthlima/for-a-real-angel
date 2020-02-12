@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/ranking_screen.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
@@ -147,7 +148,9 @@ class _TerminalState extends State<Terminal> {
           setState(() {
             log.add("'" +
                 cmd +
-                "' não foi reconhecido como um comando do terminal.\n");
+                "' " +
+                AppLocalizations.of(context).notRecognizedCommand +
+                "\n");
           });
         }
     }

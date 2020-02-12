@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:after_layout/after_layout.dart';
 import 'package:for_a_real_angel/helper/custom_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/desktop_screen.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/partials/taskbar.dart';
@@ -101,7 +102,7 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
               );
             },
             child: Text(
-              "Atualizar",
+              AppLocalizations.of(context).update,
               style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,

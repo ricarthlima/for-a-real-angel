@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/helper/custom_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/model/ranking.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
@@ -106,7 +108,9 @@ class _RankingScreenState extends State<RankingScreen> {
                       ],
                     )
                   : Container(),
-              (!logado) ? Text("Você ainda não se cadastrou.") : Container(),
+              (!logado)
+                  ? Text(AppLocalizations.of(context).notSignUp)
+                  : Container(),
               (!logado)
                   ? TextField(
                       controller: _controllerCode,
@@ -119,12 +123,12 @@ class _RankingScreenState extends State<RankingScreen> {
                       maxLines: 1,
                       autocorrect: false,
                       decoration: InputDecoration(
-                        labelText: "Insira seu nickname",
+                        labelText: AppLocalizations.of(context).putUsername,
                         prefixIcon: Icon(
                           Icons.account_circle,
                         ),
                         helperText:
-                            "Pense bem, esse nickname não pode ser alterado.",
+                            AppLocalizations.of(context).usernameDisclaimer,
                       ),
                       maxLength: 7,
                     )
@@ -140,7 +144,7 @@ class _RankingScreenState extends State<RankingScreen> {
                             EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                         decoration: BoxDecoration(color: Colors.white),
                         child: Text(
-                          "Cadastrar",
+                          AppLocalizations.of(context).signUp,
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -278,29 +282,11 @@ class _RankingScreenState extends State<RankingScreen> {
       //Update ranking
       _updateRanking();
     } else {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.white,
-              title: Text("ERRO!"),
-              titleTextStyle: TextStyle(
-                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
-              contentTextStyle: TextStyle(color: Colors.black),
-              content: Text("Nome de usuário em uso."),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "OK",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )
-              ],
-            );
-          });
+      showErrorDialog(
+        context: context,
+        title: AppLocalizations.of(context).error,
+        content: AppLocalizations.of(context).usernameTaked,
+      );
     }
   }
 

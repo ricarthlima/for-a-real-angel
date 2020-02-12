@@ -1,5 +1,6 @@
 import 'package:for_a_real_angel/helper/custom_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/andrew_chapters_screen.dart';
 import 'package:for_a_real_angel/screens/explorer_screen.dart';
 import 'package:for_a_real_angel/screens/terminal_screen.dart';
@@ -57,7 +58,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.recycle_bin_empty,
-                  text: "Recycle \nBin",
+                  text: AppLocalizations.of(context).recycleBin,
                 ),
               ),
               Container(),
@@ -69,13 +70,16 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   showMyCustomDialog(
                       context: context,
                       title: Text(
-                        "Data Points",
+                        AppLocalizations.of(context).dataPoints,
                       ),
                       content: Text(
-                        "Você tem " +
+                        AppLocalizations.of(context).youHave +
+                            " " +
                             this.dataPoints.toString() +
-                            " Data Points\n\n" +
-                            "Data Points são setores recuperados após uma desfragmentação. Você pode usar DPs para facilitar o processo de restauração dos dados. Eles também contam para seu ranking.",
+                            " " +
+                            AppLocalizations.of(context).dataPoints +
+                            ".\n\n" +
+                            AppLocalizations.of(context).dataPointsExplanation,
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
@@ -84,7 +88,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            "OK",
+                            AppLocalizations.of(context).okay,
                             style: TextStyle(
                               color: Colors.black,
                             ),
@@ -94,7 +98,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                     icon: IconsValues.data_points,
-                    text: this.dataPoints.toString() + "\nData Points"),
+                    text: this.dataPoints.toString() +
+                        "\n" +
+                        AppLocalizations.of(context).dataPoints),
               ),
             ]),
             TableRow(children: [
@@ -123,12 +129,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   widget.soundPlayer.playClickSound();
                   showMyCustomDialog(
                       context: context,
-                      title: Text("Beta Disclaimer"),
+                      title: Text(AppLocalizations.of(context).betaDisclaimer),
                       content: Text(
-                        "Se você está vendo esse aviso, você está jogando uma versão beta de FARA. " +
-                            "Como o jogo está em construção você pode se deparar com erros ou bugs. " +
-                            "Esses podem influenciar na sua experiência.\n\n" +
-                            "Se achar algo de errado, me avisa: playfaragame@gmail.com.",
+                        AppLocalizations.of(context).betaDisclaimerText,
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
@@ -137,7 +140,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            "OK",
+                            AppLocalizations.of(context).okay,
                             style: TextStyle(
                               color: Colors.grey,
                             ),
@@ -147,7 +150,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.warning,
-                  text: "Beta Disclaimer",
+                  text: AppLocalizations.of(context).betaDisclaimer,
                 ),
               ),
             ]),
@@ -167,7 +170,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.directory_closed,
-                  text: "Documents",
+                  text: AppLocalizations.of(context).documents,
                 ),
               ),
               Container(),

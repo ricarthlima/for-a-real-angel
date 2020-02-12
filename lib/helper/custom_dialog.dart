@@ -27,3 +27,29 @@ showMyCustomDialog({
         );
       });
 }
+
+showErrorDialog({BuildContext context, String title, String content}) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          title: Text(title),
+          titleTextStyle: TextStyle(
+              color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
+          contentTextStyle: TextStyle(color: Colors.black),
+          content: Text(content),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                "OK",
+                style: TextStyle(color: Colors.black),
+              ),
+            )
+          ],
+        );
+      });
+}

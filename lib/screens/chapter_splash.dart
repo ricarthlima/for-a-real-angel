@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/localizations.dart';
-import 'package:for_a_real_angel/screens/desktop.dart';
+import 'package:for_a_real_angel/screens/desktop_context_screen.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
