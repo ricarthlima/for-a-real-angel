@@ -252,6 +252,27 @@ class AppLocalizations {
       name: "notRecognizedCommand",
     );
   }
+
+  String get visitOur {
+    return Intl.message(
+      "Visite nosso",
+      name: "visitOur",
+    );
+  }
+
+  String get madeWith {
+    return Intl.message(
+      "Feito com amor e #Flutter, por Ricarth Lima.",
+      name: "madeWith",
+    );
+  }
+
+  String get start {
+    return Intl.message(
+      "Start",
+      name: "start",
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
