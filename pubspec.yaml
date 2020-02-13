@@ -2,7 +2,7 @@ name: for_a_real_angel_demo
 description: Demo version from F(or) A Real Angel.
 
 # MUDA TAMBÉM EM "values/internalVersion" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-version: 0.3.0+4
+version: 0.4.0+5
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
