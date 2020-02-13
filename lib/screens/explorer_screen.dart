@@ -42,7 +42,7 @@ class _ExplorerScreenState extends State<ExplorerScreen> {
       ),
       backgroundColor: Colors.white,
       body: Container(
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.fromLTRB(5, 5, 5, 55),
         height: size.height,
         decoration: BoxDecoration(
           color: Colors.white,

@@ -48,7 +48,7 @@
         }
     },
     "03": {
-        "tipQuote": "We started to hide information, to keep secrets. But the key to this has always been to exist, to look at what is behind it.",
+        "tipQuote": "We started to hide information, to keep secrets. But the key to this has always been to 'exist', to look at what is behind it.",
         "code": "flatworms",
         "id": 3,
         "text": "We evolved. /n /nWe opened our eyes. And for a moment we were sure we were better than others. /n /nWe started thinking about information. We discovered agriculture, mathematics, we started to think we understood reality that surrounds us. /n /nEverything has changed. We started killing ourselves on a large scale, and nothing compared to what was to come. ",
@@ -64,14 +64,14 @@
             "k22b project": "You should look MORE back.",
             "secret": "' This is the beauty, everyone can see, but only the right people will know how to read. '",
             "secrets": "' This is the beauty, everyone can see, but only the right people will know how to read. '",
-            "sxvbhnfmbvnbius": "It looks like a cipher.",
+            "xemsgkbtotwpmfm": "It looks like a cipher.",
             "vigenere": "Now you need a key and a code.",
             "turn": "It can also be ' slide '."
         }
     },
     "04": {
         "tipQuote": "You haven't reached the goal yet, but you already have the test to know when you get there.",
-        "code": "oanjofoienviado",
+        "code": "theangelwassent",
         "id": 4,
         "text": "It was because of secrets, and how to deal with them, that we created what would become the origin of life again. /n /nThis story is mine, but it has good reasons to be so similar to yours . /n /nYour minds, your heroes, they all look like mine, and many others. It is the Fundamental Law of Randomness again, but for some reason the evolution of life tends to be almost always cyclical. ",
         "title": "Creation",
@@ -175,12 +175,12 @@
         "goodHint": "You will have to do more than one encoding conversion.",
         "niceHint": "B64 -> Bin / Bin -> ASCII",
         "closeTrys": {
-            "Approach": "I felt that ' south 'was getting closer and closer to me.",
-            "B64": "I believe it is an encoding.",
-            "Base 64": "I believe it is an encoding.",
-            "Base64": "I believe it is an encoding.",
-            "QR Code": "There is more than one encoded message. I believe it is an encoding.",
-            "QRCode": "There is more than one encoded message. I believe it is an encoding.",
+            "approach": "I felt that ' south 'was getting closer and closer to me.",
+            "b64": "I believe it is an encoding.",
+            "base 64": "I believe it is an encoding.",
+            "base64": "I believe it is an encoding.",
+            "qr code": "There is more than one encoded message. I believe it is an encoding.",
+            "qrcode": "There is more than one encoded message. I believe it is an encoding.",
             "south": "Something or someone had sent me another message, now in a visual way."
         }
     },
@@ -194,8 +194,8 @@
         "goodHint": "Get Colonel Luther's credentials.",
         "niceHint": "Probably a security breach occurred during communications with Colonel Luther.",
         "closeTrys": {
-            "Colonel Luther": "If you still don't know who he is, the time has not yet come.",
-            "Detective Connor": "It's your name."
+            "colonel luther": "If you still don't know who he is, the time has not yet come.",
+            "detective connor": "It's your name."
         }
     },
     "11": {

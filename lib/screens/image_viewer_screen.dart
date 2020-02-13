@@ -27,34 +27,37 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: getMenuBar(
-        icon: IconsValues.image,
-        title: widget.file.title,
-        context: context,
-        soundPlayer: widget.soundPlayer,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _launchURL(widget.file.downlink);
-        },
-        backgroundColor: Colors.white,
-        child: Icon(
-          Icons.cloud_download,
-          color: MyColors.topBlue,
+    return Container(
+      padding: EdgeInsets.only(bottom: 50),
+      child: Scaffold(
+        appBar: getMenuBar(
+          icon: IconsValues.image,
+          title: widget.file.title,
+          context: context,
+          soundPlayer: widget.soundPlayer,
         ),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        width: size.width,
-        height: size.height,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          border: Border.all(color: MyColors.topBlue, width: 5),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _launchURL(widget.file.downlink);
+          },
+          backgroundColor: Colors.white,
+          child: Icon(
+            Icons.cloud_download,
+            color: MyColors.topBlue,
+          ),
         ),
-        child: Image.asset(
-          "assets/files/" + widget.file.filePath,
+        body: Container(
+          padding: EdgeInsets.all(10),
+          width: size.width,
+          height: size.height,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            border: Border.all(color: MyColors.topBlue, width: 5),
+          ),
+          child: Image.asset(
+            "assets/files/" + widget.file.filePath,
+          ),
         ),
       ),
     );

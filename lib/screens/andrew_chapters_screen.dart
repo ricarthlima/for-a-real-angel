@@ -48,7 +48,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   InterstitialAd buildInterstitial() {
     return InterstitialAd(
-        adUnitId: AdValues.tela,
+        adUnitId: AdValues().getTelaId(),
         targetingInfo: AdValues.targetingInfo,
         listener: (MobileAdEvent event) {
           if (event == MobileAdEvent.loaded) {
@@ -121,7 +121,8 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                       width: 5,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  padding: EdgeInsets.fromLTRB(20, 10, 20,
+                      60), //EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: SingleChildScrollView(
                     controller: _controllerScroll,
                     child: Column(

@@ -38,11 +38,16 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
   @override
   void afterFirstLayout(BuildContext context) {
     _versionVerification(context);
+    if (Localizations.localeOf(context).languageCode == "en") {
+      setState(() {
+        this.wallpaper = "assets/wallpaper-def-en.png";
+      });
+    }
   }
 
   void startBanner() {
     myBanner = BannerAd(
-      adUnitId: AdValues.banner,
+      adUnitId: AdValues().getBannerId(),
       size: AdSize.smartBanner,
       targetingInfo: AdValues.targetingInfo,
       listener: (MobileAdEvent event) {
@@ -105,6 +110,9 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
   void _inverterWallpaper() {
     setState(() {
       this.wallpaper = "assets/wallpaper-inv.png";
+      if (Localizations.localeOf(context).languageCode == "en") {
+        this.wallpaper = "assets/wallpaper-inv-en.png";
+      }
     });
     this.widget.soundPlayer.playGetHintSound();
   }
@@ -112,6 +120,9 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
   void _normalizarWallpaper() {
     setState(() {
       this.wallpaper = "assets/wallpaper-def.png";
+      if (Localizations.localeOf(context).languageCode == "en") {
+        this.wallpaper = "assets/wallpaper-def-en.png";
+      }
     });
   }
 

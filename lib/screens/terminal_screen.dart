@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel_demo/helper/custom_dialog.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/localizations.dart';
-import 'package:for_a_real_angel_demo/screens/ranking_screen.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:for_a_real_angel_demo/values/my_colors.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
@@ -136,11 +136,10 @@ class _TerminalScreenState extends State<TerminalScreen> {
         }
       case "ranking":
         {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      RankingScreen(soundPlayer: widget.soundPlayer)));
+          showErrorDialog(
+              context: context,
+              title: AppLocalizations.of(context).buyFARA,
+              content: AppLocalizations.of(context).buyFARAText);
           break;
         }
       default:

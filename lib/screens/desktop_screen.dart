@@ -35,7 +35,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
     super.initState();
 
     RewardedVideoAd.instance.load(
-      adUnitId: AdValues.premiado,
+      adUnitId: AdValues().getPremiadoId(),
       targetingInfo: AdValues.targetingInfo,
     );
   }
