@@ -10,17 +10,17 @@ import 'package:for_a_real_angel_demo/partials/explorer_list_folder.dart';
 import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Explorer extends StatefulWidget {
+class ExplorerScreen extends StatefulWidget {
   MFolder folder;
   List<MFolder> roots = [];
   SoundPlayer soundPlayer;
-  Explorer({@required this.folder, this.soundPlayer});
+  ExplorerScreen({@required this.folder, this.soundPlayer});
 
   @override
-  _ExplorerState createState() => _ExplorerState();
+  _ExplorerScreenState createState() => _ExplorerScreenState();
 }
 
-class _ExplorerState extends State<Explorer> {
+class _ExplorerScreenState extends State<ExplorerScreen> {
   int idChapter;
 
   @override

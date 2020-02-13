@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Chapter {
+class AndrewChapter {
   final int id;
   final IconData icon;
   final String title;
@@ -10,10 +10,10 @@ class Chapter {
   final String goodHint;
   final Map<String, dynamic> closeTrys;
 
-  const Chapter(this.id, this.icon, this.title, this.text, this.tipQuote,
+  const AndrewChapter(this.id, this.icon, this.title, this.text, this.tipQuote,
       this.code, this.goodHint, this.closeTrys);
 
-  Chapter.fromData({
+  AndrewChapter.fromData({
     this.id,
     this.icon,
     this.title,

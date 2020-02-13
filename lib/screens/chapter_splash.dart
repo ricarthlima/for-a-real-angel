@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel_demo/desktop.dart';
+import 'package:for_a_real_angel_demo/screens/desktop_context_screen.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -75,10 +75,12 @@ class _ChapterSplashState extends State<ChapterSplash> {
   void _justWait({@required int numberOfSeconds}) async {
     await Future.delayed(Duration(seconds: numberOfSeconds));
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Desktop(
-                  soundPlayer: widget.soundPlayer,
-                )));
+      context,
+      MaterialPageRoute(
+        builder: (context) => DesktopContextScreen(
+          soundPlayer: widget.soundPlayer,
+        ),
+      ),
+    );
   }
 }

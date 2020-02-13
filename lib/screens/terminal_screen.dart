@@ -9,14 +9,14 @@ import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Terminal extends StatefulWidget {
+class TerminalScreen extends StatefulWidget {
   SoundPlayer soundPlayer;
-  Terminal({this.soundPlayer});
+  TerminalScreen({this.soundPlayer});
   @override
-  _TerminalState createState() => _TerminalState();
+  _TerminalScreenState createState() => _TerminalScreenState();
 }
 
-class _TerminalState extends State<Terminal> {
+class _TerminalScreenState extends State<TerminalScreen> {
   TextEditingController _inputController = new TextEditingController();
 
   String version = "0.3.1";

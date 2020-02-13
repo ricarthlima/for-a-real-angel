@@ -3,9 +3,9 @@ import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
 import 'package:for_a_real_angel_demo/helper/customDialog.dart';
 import 'package:for_a_real_angel_demo/helper/launch_url.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
-import 'package:for_a_real_angel_demo/screens/explorer.dart';
-import 'package:for_a_real_angel_demo/screens/simple_cap.dart';
-import 'package:for_a_real_angel_demo/screens/terminal.dart';
+import 'package:for_a_real_angel_demo/screens/explorer_screen.dart';
+import 'package:for_a_real_angel_demo/screens/andrew_chapters_screen.dart';
+import 'package:for_a_real_angel_demo/screens/terminal_screen.dart';
 import 'package:for_a_real_angel_demo/values/ad_values.dart';
 import 'package:for_a_real_angel_demo/values/directories.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
@@ -55,7 +55,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Explorer(
+                      builder: (context) => ExplorerScreen(
                         folder: Directories.recycleBin,
                         soundPlayer: widget.soundPlayer,
                       ),
@@ -131,7 +131,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SimpleCap(
+                      builder: (context) => AndrewChaptersScreen(
                         soundPlayer: widget.soundPlayer,
                       ),
                     ),
@@ -185,7 +185,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Explorer(
+                      builder: (context) => ExplorerScreen(
                         folder: Directories.documents,
                         soundPlayer: widget.soundPlayer,
                       ),
@@ -243,7 +243,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Terminal(
+                          builder: (context) => TerminalScreen(
                                 soundPlayer: widget.soundPlayer,
                               )));
                 },

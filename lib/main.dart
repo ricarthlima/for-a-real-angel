@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:for_a_real_angel_demo/screens/starter.dart';
+import 'package:for_a_real_angel_demo/screens/starter_screen.dart';
 import 'package:for_a_real_angel_demo/values/internalVersion.dart';
 import 'package:for_a_real_angel_demo/values/local_chapters.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "JosefinSans",
       ),
       home: Scaffold(
-        body: Starter(),
+        body: StarterScreen(),
       ),
     );
   }

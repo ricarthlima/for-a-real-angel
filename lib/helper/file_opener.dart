@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/model/mfile.dart';
-import 'package:for_a_real_angel_demo/screens/image_viewer.dart';
+import 'package:for_a_real_angel_demo/screens/image_viewer_screen.dart';
 
 routerFileType({
   @required MFile file,
@@ -13,7 +13,7 @@ routerFileType({
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ImageViewer(
+          builder: (context) => ImageViewerScreen(
             file: file,
             soundPlayer: soundPlayer,
           ),

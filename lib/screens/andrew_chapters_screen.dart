@@ -12,14 +12,14 @@ import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
 
-class SimpleCap extends StatefulWidget {
+class AndrewChaptersScreen extends StatefulWidget {
   SoundPlayer soundPlayer;
-  SimpleCap({this.soundPlayer});
+  AndrewChaptersScreen({this.soundPlayer});
   @override
-  _SimpleCapState createState() => _SimpleCapState();
+  _AndrewChaptersScreenState createState() => _AndrewChaptersScreenState();
 }
 
-class _SimpleCapState extends State<SimpleCap> {
+class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   int idChapter = 0;
   int idLastUnlockedChapter = 0;
 
@@ -27,8 +27,8 @@ class _SimpleCapState extends State<SimpleCap> {
   ScrollController _controllerScroll;
   TextEditingController _controllerCode = TextEditingController();
 
-  List<Chapter> chapters = [
-    Chapter(
+  List<AndrewChapter> chapters = [
+    AndrewChapter(
       0,
       Icons.ac_unit,
       "",
@@ -78,7 +78,7 @@ class _SimpleCapState extends State<SimpleCap> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Chapter cap = chapters[idChapter];
+    AndrewChapter cap = chapters[idChapter];
 
     return Scaffold(
       appBar: getMenuBar(
@@ -358,7 +358,7 @@ class _SimpleCapState extends State<SimpleCap> {
 
   _readChapterList(prefs) {
     // List to get chapters
-    List<Chapter> tempList = new List<Chapter>();
+    List<AndrewChapter> tempList = new List<AndrewChapter>();
 
     // Read from Shared Preferences
     var rawData = prefs.getString(PreferencesKey.chaptersList);
@@ -367,7 +367,7 @@ class _SimpleCapState extends State<SimpleCap> {
     Map<String, dynamic> jsonData = jsonDecode(rawData);
     for (var key in jsonData.keys) {
       Map<String, dynamic> data = jsonData[key];
-      Chapter tempCap = Chapter.fromData(
+      AndrewChapter tempCap = AndrewChapter.fromData(
         id: data["id"],
         icon: Icons.ac_unit,
         title: data["title"],
