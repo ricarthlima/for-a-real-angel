@@ -31,20 +31,26 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
   @override
   void afterFirstLayout(BuildContext context) {
     _versionVerification(context);
+    if (Localizations.localeOf(context).languageCode == "en") {
+      setState(() {
+        this.wallpaper = "assets/wallpaper-def-en.png";
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
           SwipeDetector(
             onSwipeLeft: () {
-              _inverterWallpaper();
+              _inverterWallpaper(context);
             },
             onSwipeRight: () {
-              _normalizarWallpaper();
+              _normalizarWallpaper(context);
             },
             child: Center(
               child: Image.asset(
@@ -65,16 +71,22 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
     );
   }
 
-  void _inverterWallpaper() {
+  void _inverterWallpaper(BuildContext context) {
     setState(() {
       this.wallpaper = "assets/wallpaper-inv.png";
+      if (Localizations.localeOf(context).languageCode == "en") {
+        this.wallpaper = "assets/wallpaper-inv-en.png";
+      }
     });
     this.widget.soundPlayer.playGetHintSound();
   }
 
-  void _normalizarWallpaper() {
+  void _normalizarWallpaper(BuildContext context) {
     setState(() {
       this.wallpaper = "assets/wallpaper-def.png";
+      if (Localizations.localeOf(context).languageCode == "en") {
+        this.wallpaper = "assets/wallpaper-def-en.png";
+      }
     });
   }
 

@@ -180,12 +180,12 @@
         "goodHint": "Você terá que fazer mais de uma conversão de codificação.",
         "niceHint": "B64 -> Bin/ Bin -> ASCII",
         "closeTrys": {
-            "Aproximação": "Eu sentia que \"south\" estava cada vez mais perto de mim.",
-            "B64": "Acredito que seja uma codificação.",
-            "Base 64": "Acredito que seja uma codificação.",
-            "Base64": "Acredito que seja uma codificação.",
-            "QR Code": "Existe mais de uma mensagem codificada.Acredito que seja uma codificação.",
-            "QRCode": "Existe mais de uma mensagem codificada.Acredito que seja uma codificação.",
+            "aproximação": "Eu sentia que \"south\" estava cada vez mais perto de mim.",
+            "b64": "Acredito que seja uma codificação.",
+            "base 64": "Acredito que seja uma codificação.",
+            "base64": "Acredito que seja uma codificação.",
+            "qr code": "Existe mais de uma mensagem codificada.Acredito que seja uma codificação.",
+            "qrcode": "Existe mais de uma mensagem codificada.Acredito que seja uma codificação.",
             "south": "Algo ou alguém tinha me mandado mais uma mensagem, agora de uma forma visual."
         }
     },
@@ -199,8 +199,8 @@
         "goodHint": "Consiga as credenciais do Coronel Luther.",
         "niceHint": "Provavelmente aconteceu alguma falha de segurança durante as comunicações com o Coronel Luther.",
         "closeTrys": {
-            "Coronel Luther": "Se você ainda não sabe quem ele é, ainda não chegou a hora.",
-            "Detetive Connor": "É seu nome."
+            "coronel luther": "Se você ainda não sabe quem ele é, ainda não chegou a hora.",
+            "detetive connor": "É seu nome."
         }
     },
     "11": {
