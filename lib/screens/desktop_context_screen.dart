@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:after_layout/after_layout.dart';
-import 'package:firebase_admob/firebase_admob.dart';
-import 'package:for_a_real_angel_demo/helper/customDialog.dart';
-import 'package:for_a_real_angel_demo/helper/sound_player.dart';
-import 'package:for_a_real_angel_demo/screens/desktop_screen.dart';
-import 'package:for_a_real_angel_demo/values/ad_values.dart';
-import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
-import 'package:for_a_real_angel_demo/partials/taskbar.dart';
+import 'package:for_a_real_angel/helper/custom_dialog.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
+import 'package:for_a_real_angel/screens/desktop_screen.dart';
+import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:for_a_real_angel/partials/taskbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
@@ -23,15 +22,10 @@ class DesktopContextScreen extends StatefulWidget {
 class _DesktopContextScreenState extends State<DesktopContextScreen>
     with AfterLayoutMixin<DesktopContextScreen> {
   String wallpaper = "assets/wallpaper-def.png";
-  BannerAd myBanner;
 
   @override
   void initState() {
     super.initState();
-    FirebaseAdMob.instance.initialize(appId: AdValues.app);
-
-    startBanner();
-    displayBanner();
   }
 
   @override
@@ -39,64 +33,34 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
     _versionVerification(context);
   }
 
-  void startBanner() {
-    myBanner = BannerAd(
-      adUnitId: AdValues.banner,
-      size: AdSize.smartBanner,
-      targetingInfo: AdValues.targetingInfo,
-      listener: (MobileAdEvent event) {
-        if (event == MobileAdEvent.opened) {
-          // MobileAdEvent.opened
-          // MobileAdEvent.clicked
-          // MobileAdEvent.closed
-          // MobileAdEvent.failedToLoad
-          // MobileAdEvent.impression
-          // MobileAdEvent.leftApplication
-        }
-      },
-    );
-  }
-
-  void displayBanner() {
-    myBanner
-      ..load()
-      ..show(
-        anchorOffset: 0.0,
-        anchorType: AnchorType.bottom,
-      );
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(bottom: 50),
-        child: Stack(
-          children: <Widget>[
-            SwipeDetector(
-              onSwipeLeft: () {
-                _inverterWallpaper();
-              },
-              onSwipeRight: () {
-                _normalizarWallpaper();
-              },
-              child: Center(
-                child: Image.asset(
-                  this.wallpaper,
-                  height: size.height,
-                  fit: BoxFit.none,
-                ),
+      body: Stack(
+        children: <Widget>[
+          SwipeDetector(
+            onSwipeLeft: () {
+              _inverterWallpaper();
+            },
+            onSwipeRight: () {
+              _normalizarWallpaper();
+            },
+            child: Center(
+              child: Image.asset(
+                this.wallpaper,
+                height: size.height,
+                fit: BoxFit.none,
               ),
             ),
-            DesktopScreen(
-              soundPlayer: widget.soundPlayer,
-            ),
-            TaskBar(
-              soundPlayer: widget.soundPlayer,
-            ),
-          ],
-        ),
+          ),
+          DesktopScreen(
+            soundPlayer: widget.soundPlayer,
+          ),
+          TaskBar(
+            soundPlayer: widget.soundPlayer,
+          ),
+        ],
       ),
     );
   }
@@ -134,11 +98,11 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
           FlatButton(
             onPressed: () {
               _launchURL(
-                "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel_demo",
+                "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel",
               );
             },
             child: Text(
-              "Atualizar",
+              AppLocalizations.of(context).update,
               style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,

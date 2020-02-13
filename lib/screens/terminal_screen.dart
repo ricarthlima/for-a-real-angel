@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel_demo/helper/customDialog.dart';
-import 'package:for_a_real_angel_demo/helper/launch_url.dart';
-import 'package:for_a_real_angel_demo/helper/sound_player.dart';
-import 'package:for_a_real_angel_demo/values/icons_values.dart';
-import 'package:for_a_real_angel_demo/values/my_colors.dart';
-import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
-import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
+import 'package:for_a_real_angel/screens/ranking_screen.dart';
+import 'package:for_a_real_angel/values/icons_values.dart';
+import 'package:for_a_real_angel/values/my_colors.dart';
+import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:for_a_real_angel/partials/menu_bar.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class TerminalScreen extends StatefulWidget {
+class Terminal extends StatefulWidget {
   SoundPlayer soundPlayer;
-  TerminalScreen({this.soundPlayer});
+  Terminal({this.soundPlayer});
   @override
-  _TerminalScreenState createState() => _TerminalScreenState();
+  _TerminalState createState() => _TerminalState();
 }
 
-class _TerminalScreenState extends State<TerminalScreen> {
+class _TerminalState extends State<Terminal> {
   TextEditingController _inputController = new TextEditingController();
 
   String version = "0.3.1";
@@ -136,34 +136,21 @@ class _TerminalScreenState extends State<TerminalScreen> {
         }
       case "ranking":
         {
-          showMyCustomDialog(
-              context: context,
-              title: Text("Acesso negado!"),
-              content: Text(
-                  "O acesso ao ranking mundial está disponível apenas na versão completa."),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    "Quero comprar!",
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  onPressed: () {
-                    launchURL(
-                      "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel",
-                    );
-                  },
-                ),
-              ]);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      RankingScreen(soundPlayer: widget.soundPlayer)));
+          break;
         }
-        break;
       default:
         {
           setState(() {
             log.add("'" +
                 cmd +
-                "' não foi reconhecido como um comando do terminal.\n");
+                "' " +
+                AppLocalizations.of(context).notRecognizedCommand +
+                "\n");
           });
         }
     }

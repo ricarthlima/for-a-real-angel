@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel_demo/helper/sound_player.dart';
-import 'package:for_a_real_angel_demo/values/icons_values.dart';
-import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
+import 'package:for_a_real_angel/partials/start_menu.dart';
+import 'package:for_a_real_angel/values/icons_values.dart';
+import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskBar extends StatefulWidget {
@@ -46,9 +48,13 @@ class _TaskBarState extends State<TaskBar> {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    widget.soundPlayer.playExitSound();
+                    widget.soundPlayer.playClickSound();
+                    showStartMenu(context);
                   },
-                  child: TaskBarButton(null, "Start"),
+                  child: TaskBarButton(
+                    null,
+                    AppLocalizations.of(context).start,
+                  ),
                 ),
                 Padding(padding: EdgeInsets.only(right: 2)),
                 // Text(

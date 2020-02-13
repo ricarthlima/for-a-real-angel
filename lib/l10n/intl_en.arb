@@ -1,0 +1,200 @@
+{
+  "@@last_modified": "2020-02-12T23:58:54.245508",
+  "@@locale": "en",
+  "title": "F(or) A Real Angel",
+  "@title": {
+    "description": "The application title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHints": "Check this hints out!",
+  "@starterHints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintGiveUp": "If you easy give up, FARA isn't for you.",
+  "@starterHintGiveUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintSounds": "Sound are important in FARA. Try to play with headphones.",
+  "@starterHintSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintInfos": "You are dealing with secret, confidential and encrypted files and information. Nothing is as it seems, use all the tools to manipulate the investigated files.",
+  "@starterHintInfos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintTools": "Use all possible information to solve the puzzles. Do not hesitate to research and learn about any new theme.",
+  "@starterHintTools": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "starterHintCaps": "Answers should always be given in your language. Don't worry about special characters, spaces or capital letters.",
+  "@starterHintCaps": {
+    "type": "text",
+    "placeholders": {}
+  },  
+  "starterHintCheckbox": "Got it, don't show it again.",
+  "@starterHintCheckbox": {
+    "type": "text",
+    "placeholders": {}
+  },  
+  "continuar": "Continue",
+  "@continuar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "episode": "Episode",
+  "@episode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loading": "Loading",
+  "@loading": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "restore": "Restore",
+  "@restore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hint": "Hint",
+  "@hint": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memoryRestored": "Memory Restored Successfully",
+  "@memoryRestored": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remebering": "I'm remembering",
+  "@remebering": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "error": "Error",
+  "@error": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectRestaurationCode": "Restore Code Wrong!",
+  "@incorrectRestaurationCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDataPoints": "I don't have enough Data Points to help you.",
+  "@noDataPoints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recycleBin": "Recycle\nBin",
+  "@recycleBin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dataPoints": "Data Points",
+  "@dataPoints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHave": "You have",
+  "@youHave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dataPointsExplanation": "Data Points are sectors recovered after defragmentation. You can use DPs to facilitate the data restoration process. They also count towards your ranking.",
+  "@dataPointsExplanation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "okay": "OK",
+  "@okay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "betaDisclaimer": "Beta Disclaimer",
+  "@betaDisclaimer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "betaDisclaimerText": "If you are seeing this disclaimer, you are playing a beta version of FARA. As the game is under construction you may run into errors or bugs. These can influence your experience.\n\nIf you find something wrong, let me know: playfaragame@gmail.com.",
+  "@betaDisclaimerText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "documents": "Documents",
+  "@documents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "update": "Update",
+  "@update": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notSignUp": "You have not yet registered.",
+  "@notSignUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "putUsername": "Enter your nickname",
+  "@putUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usernameDisclaimer": "Think about it, this nickname cannot be changed.",
+  "@usernameDisclaimer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "Sign up",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usernameTaked": "The username is in use.",
+  "@usernameTaked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notRecognizedCommand": "it was not recognized as a terminal command.",
+  "@notRecognizedCommand": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visitOur": "Visit our",
+  "@visitOur": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madeWith": "Made with love and #Flutter, by Ricarth Lima.",
+  "@madeWith": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "Start",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seeHints": "See hints",
+  "@seeHints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "buyHint": "Buy hint",
+  "@buyHint": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noneHint": "No hints unlocked.",
+  "@noneHint": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

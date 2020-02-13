@@ -1,16 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel_demo/helper/sound_player.dart';
-import 'package:for_a_real_angel_demo/screens/chapter_splash.dart';
-import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/localizations.dart';
+import 'package:for_a_real_angel/screens/chapter_splash.dart';
+import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class StarterScreen extends StatefulWidget {
+class Starter extends StatefulWidget {
   @override
-  _StarterScreenState createState() => _StarterScreenState();
+  _StarterState createState() => _StarterState();
 }
 
-class _StarterScreenState extends State<StarterScreen> {
+class _StarterState extends State<Starter> {
   SoundPlayer soundPlayer = SoundPlayer();
   bool _selectSkip = false;
 
@@ -32,7 +33,7 @@ class _StarterScreenState extends State<StarterScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text("Dicas sobre F(or) A Real Angel"),
+          Text(AppLocalizations.of(context).starterHints),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +62,7 @@ class _StarterScreenState extends State<StarterScreen> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            "Se você desiste fácil, FARA não é um jogo para você.",
+                            AppLocalizations.of(context).starterHintGiveUp,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -78,7 +79,7 @@ class _StarterScreenState extends State<StarterScreen> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            "Os sons são importantes em FARA. Se possível, jogue com fones de ouvido.",
+                            AppLocalizations.of(context).starterHintSounds,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -95,7 +96,7 @@ class _StarterScreenState extends State<StarterScreen> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            "Você está lidando com arquivos e informações secretas, sigilosas e criptografadas. Nada é o que parece, use todas as ferramentas para manipular os arquivos investigados.",
+                            AppLocalizations.of(context).starterHintInfos,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -112,7 +113,7 @@ class _StarterScreenState extends State<StarterScreen> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            "Use todas as informações possíveis para resolver os enigmas. Não hesite em pesquisar e aprender sobre algum assunto novo.",
+                            AppLocalizations.of(context).starterHintTools,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -129,7 +130,7 @@ class _StarterScreenState extends State<StarterScreen> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            "As respostas devem sempre ser dadas na sua língua. Não se preocupe com acentos, caracteres especiais, espaços ou letras maiúsculas.",
+                            AppLocalizations.of(context).starterHintCaps,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -155,7 +156,7 @@ class _StarterScreenState extends State<StarterScreen> {
                       });
                     },
                   ),
-                  Text("Entendi, não mostrar novamente."),
+                  Text(AppLocalizations.of(context).starterHintCheckbox),
                 ],
               ),
               GestureDetector(
@@ -179,7 +180,7 @@ class _StarterScreenState extends State<StarterScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "Continuar",
+                        AppLocalizations.of(context).continuar,
                         style: TextStyle(
                           color: Colors.white,
                         ),

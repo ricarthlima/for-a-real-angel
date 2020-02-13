@@ -1,30 +1,52 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
 class AndrewChapter {
-  final int id;
-  final IconData icon;
-  final String title;
-  final String text;
-  final String tipQuote;
-  final String code;
-  final String goodHint;
-  final Map<String, dynamic> closeTrys;
+  String tipQuote;
+  String code;
+  int id;
+  String text;
+  String title;
+  String badHint;
+  String goodHint;
+  String niceHint;
+  Map<String, dynamic> closeTrys;
 
-  const AndrewChapter(this.id, this.icon, this.title, this.text, this.tipQuote,
-      this.code, this.goodHint, this.closeTrys);
+  AndrewChapter(
+      {this.tipQuote,
+      this.code,
+      this.id,
+      this.text,
+      this.title,
+      this.badHint,
+      this.goodHint,
+      this.niceHint,
+      this.closeTrys});
 
-  AndrewChapter.fromData({
-    this.id,
-    this.icon,
-    this.title,
-    this.text,
-    this.tipQuote,
-    this.code,
-    this.goodHint,
-    this.closeTrys,
-  });
+  AndrewChapter.fromJson(Map<String, dynamic> data) {
+    tipQuote = data['tipQuote'];
+    code = data['code'];
+    id = data['id'];
+    text = data['text'];
+    title = data['title'];
+    badHint = data['badHint'];
+    goodHint = data['goodHint'];
+    niceHint = data['niceHint'];
+    closeTrys = data['closeTrys'];
+  }
 
-  getMe() {
-    return this;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['tipQuote'] = this.tipQuote;
+    data['code'] = this.code;
+    data['id'] = this.id;
+    data['text'] = this.text;
+    data['title'] = this.title;
+    data['badHint'] = this.badHint;
+    data['goodHint'] = this.goodHint;
+    data['niceHint'] = this.niceHint;
+    if (this.closeTrys != null) {
+      data['closeTrys'] = json.encode(data['closeTrys']);
+    }
+    return data;
   }
 }

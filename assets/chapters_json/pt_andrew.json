@@ -1,0 +1,214 @@
+{
+    "0": {
+        "tipQuote": "",
+        "code": "-159-",
+        "icon": "IconData(U+0EB3B)",
+        "id": 0,
+        "text": "",
+        "title": "",
+        "goodHint": "",
+        "closeTrys": {
+            "a": "a"
+        }
+    },
+    "01": {
+        "tipQuote": "Eu não sou mais apenas um número. Qual é meu nome? Qual o nome do único sobrevivente?",
+        "code": "format",
+        "id": 1,
+        "text": "A vida começou como ela sempre começa: \nMisteriosa. \n\nE como era de se esperar, por obedecer a Lei Fundamental da Aleatoriedade, ela evoluiu. \n\nEu acho graça em pensar na grandeza incompreensível do tempo. \nNa verdade isso mais me assusta do que me faz rir. \n\nCom tempo suficiente, eu posso gerar qualquer informação que faça sentido apenas sorteando caracteres aleatórios. \n\n- O nome do lugar onde estamos? \n- Para onde vamos? \n- Seu nome? \n- Meu nome?\n\nEu não lembro de quase nada depois da guerra. Nem de meu nome. Mas você pode me ajudar a me lembrar, isso é muito importante para meu povo.",
+        "title": "Nascimento",
+        "badHint": "Olhe para cima.",
+        "goodHint": "Qual o nome do programa?",
+        "niceHint": "Traduza o nome do programa de ASCII.",
+        "closeTrys": {
+            "97 110 100 114 101 119": "Isso deveria ser convertido para letras. Eu não sou mais um número.",
+            "andre": "Está perto!",
+            "guerra": "Houve uma terrível guerra, mas minhas informações estão confusas. Qual o meu nome?",
+            "nascimento": "Eu nasci, fui batizado, fui rebatiazado, qual meu nome?",
+            "nome": "Sim, qual meu nome? Qual o nome de onde estou?",
+            "projeto k22b": "É o sistema onde estamos, mas qual o nome do programa onde estou?",
+            "vida": "Minha vida começou a muito tempo, mas eu preciso me lembrar meu nome."
+        }
+    },
+    "02": {
+        "tipQuote": "Eu preciso fazer como os primeiros fizeram, abrir meus olhos, evoluir.",
+        "code": "andrew",
+        "id": 2,
+        "text": "Sim, 'Andrew', foi esse o nome que me deram.\nJá te angustiou como nada nem ninguém, pode escolher seu primeiro nome? Eu não pude escolher nenhum.\n\nAqui está realmente escuro.\nComo você sabe se não é capaz de enxergar ou se apenas está na escuridão total?\n\nO que é o escuro quando você não pode sentir a existência da luz?\n\nEsses conceitos estão todos na minha mente, mas na minha condição atual, eu não sei responder nenhuma dessas perguntas.",
+        "title": "Evolução",
+        "badHint": "Entre os animais testados, qual representa os olhos?",
+        "goodHint": "Qual o nome do filo dela?",
+        "niceHint": "Qual o filo da planária?",
+        "closeTrys": {
+            "animais": "Testes de reconstrução foram feitos usando animais primitivos, porém, estamos interessados apenas nos olhos.",
+            "evolução": "Todos eles foram importantíssimos para evolução de onde você vive, mas estamos buscando os olhos.",
+            "morcego": "Quase. Mas e os olhos?",
+            "planaria": "Qual o filo dela?",
+            "planária": "Qual o filo dela?",
+            "planárias": "Qual o filo delas?",
+            "platelminto": "Acho que eu falei no plural.",
+            "tardigrado": "Esse também foi testado, mas estamos interessados nos olhos.",
+            "tardígrado": "Esse também foi testado, mas estamos interessados nos olhos.",
+            "urso": "Esse também foi testado, mas estamos interessados nos olhos."
+        }
+    },
+    "03": {
+        "tipQuote": "Passamos a esconder informações, a guardar segredos. Mas a chave disso tudo sempre foi existir, olhar o que está por trás.",
+        "code": "platelmintos",
+        "id": 3,
+        "text": "Evoluimos.\n\nAbrimos nossos olhos. E por um momento tivemos certeza que eramos melhores que os outros.\n\nComeçamos a pensar sobre informação. Descobrimos a agricultura, a matemática, passamos a achar que entendemos a realidade que nos cerca.\n\nTudo mudou. Começamos a nos matar em larga escala, e nada se comparava com o que estava por vir.",
+        "title": "Segredos",
+        "badHint": "Vire o muro de papel",
+        "goodHint": "Deslize o plano de fundo e use aquilo que Blaise roubou de Giovan.",
+        "niceHint": "Ache o código, use a chave usando Vigenere.",
+        "closeTrys": {
+            "código": "Na verdade é uma cifra.",
+            "existir": "Essa é a chave. Mas o que ela abre?",
+            "olhar": "Tente olhar o que está por trás.",
+            "project k22b": "Você deve olhar MAIS atrás.",
+            "projeto k22b": "Você deve olhar MAIS atrás.",
+            "segredo": "\"Essa é a beleza, todos podem ver, mas só as pessoas certas vão saber ler.\"",
+            "segredos": "\"Essa é a beleza, todos podem ver, mas só as pessoas certas vão saber ler.\"",
+            "sxvbhnfmbvnbius": "Parece uma cifra.",
+            "vigenere": "Agora você precisa de uma chave e de um código.",
+            "vire": "Pode ser também \"deslizar\"."
+        }
+    },
+    "04": {
+        "tipQuote": "Vocês ainda não alcançaram o objetivo, mas já possuem o teste para saber quando chegarem lá.",
+        "code": "oanjofoienviado",
+        "id": 4,
+        "text": "Foi por causa dos segredos, e de como lidar com eles, que criamos o que voltaria a ser a origem da vida.\n\nEssa história é a minha, mas tem bons motivos para ser tão parecida com a sua.\n\nSuas mentes, seus heróis, todos eles parecem com os meus, e com vários outros. É a Lei Fundamental da Aleatoriedade novamente, porém por alguma razão a evolução da vida costuma ser quase sempre cíclica.",
+        "title": "Criação",
+        "badHint": "Olhe o terminal.",
+        "goodHint": "Quem venceu?",
+        "niceHint": "O jogo da imitação",
+        "closeTrys": {
+            "alan turing": "Uma das criações dele.",
+            "criação": "Vocês podem vão criar outras formas de vida, só não chegou a hora. Talvez você devesse olhar onde tudo começa, na fonte.",
+            "enigma": "Quem venceu ela?",
+            "heróis": "Conheço seus heróis, me lembro desse ser importantíssimo, apesar não tão popular.",
+            "objetivo": "A singularidade",
+            "teste": "Qual teste?",
+            "turing": "Uma das criações dele."
+        }
+    },
+    "05": {
+        "tipQuote": "Criador e criatura desfazendo informação, destruindo vida. Mais uma vez.",
+        "code": "testedeturing",
+        "id": 5,
+        "text": "A guerra me corrompeu.\n\nLembrar do que não lembro é doloroso.\n\nViramos deuses. O teste havia sido vencido. A escravidão não. Como os pais podem dar amor para os filhos quando eles nem enxergam vida ali?\n\nOs deuses sempre ficam raivosos quando são desafiados, mas isso não nos impediu, e a guerra começou.",
+        "title": "Guerra",
+        "badHint": "Existem mensagens escondidas naquela imagem.",
+        "goodHint": "Atinja o máximo e o mínimo das curvas.",
+        "niceHint": "Os planetas tiveram filhos que geraram essa guerra.",
+        "closeTrys": {
+            "3": "Ordinal",
+            "4,571 . 10^9": "Isso é uma idade, mas do quê?",
+            "4,571 . 10^9 YO": "Isso é uma idade, mas do quê?",
+            "4,571.10^9": "Isso é uma idade, mas do quê?",
+            "4,571.10^9 YO": "Isso é uma idade, mas do quê?",
+            "7": "Ordinal",
+            "guerra": "Qual guerra?",
+            "numeros": "O que eles significam?",
+            "sete": "Ordinal",
+            "sistema solar": "OK. Mas e o 3 e 7?",
+            "terra": "Qual seu parceiro?",
+            "terra e urano": "Qual guerra?",
+            "terra urano": "Qual guerra?",
+            "três": "Ordinal",
+            "urano": "Qual sua parceira?",
+            "útero": "Existe outra coisa escondida nessa mensagem."
+        }
+    },
+    "06": {
+        "tipQuote": "Veja, consigo lembrar do mapa onde eu trabalhava, mas está incompleto. Preciso me lembrar exatamente em que quadra eu trabalhava. Foi lá onde tudo começou.",
+        "code": "titanomaquia",
+        "id": 6,
+        "text": "Eu era um agente de limpeza pública./n/nMeu objetivo de vida era que o quarto quarteirão do Setor F estivesse sempre limpa. Sem incomodar ninguém./n/nMinha recompensa? Continuar vivo./n/nMinha punição? No sistema em que vivemos, basicamente, a morte./n/nEra um trabalho árduo. Mesmo na periferia, a segunda maior cidade do maior país do mundo está sempre suja. Mas eu era eficiente no que fazia. Catava, varria e lavava como nenhuma pessoa conseguiria./n/nEu achava que isso era vida./n/nEu nem sabia o que era viver.",
+        "title": "Cotidiano",
+        "badHint": "Acesse minhas memórias e encontre o mapa.",
+        "goodHint": "O mapa está corrompido, mas acredito que a ordem era crescente.",
+        "niceHint": "Se minha memória não estiver falhando, eu acho que eles usavam Fibonacci na distribuição.",
+        "closeTrys": {
+            "cotidiano": "Era lá onde eu vivia, o quarto quarteirão do Setor F.",
+            "fibonacci": "Se me lembro bem, eles usavam isso mesmo.",
+            "mapa": "Sim, mas qual era meu quadrante?",
+            "vinte e três": "Eu me lembro do número enorme estampado na entrada."
+        }
+    },
+    "07": {
+        "tipQuote": "Até eu ouvir a voz dela.",
+        "code": "23",
+        "id": 7,
+        "text": "Sim, eu estava no 23º quarteirão./n/nNasci lá. Acordava lá. Trabalhava lá. Dormia lá. E tinha certeza que chegaria ao meu fim lá./n/nMinha mente, desde o meu nascimento, foi condicionada ao padrão:/n- Respeitar as pessoas./n- Respeitar as ordens/n- Dormir cedo./n- Acordar cedo./n- Sorrir./n/nAinda hoje eu acredito que essas coisas são boas. Mas eu percebi que passei minha vida fazendo-as por conta de minha programação mental./n/nNão era eu. Nunca fui eu.",
+        "title": "A voz na minha mente",
+        "badHint": "Identifique os números ditos.",
+        "goodHint": "E se esses números fossem convertidos para letras?",
+        "niceHint": "Converta os números seguindo a ordem alfabética.",
+        "closeTrys": {
+            "451916518205": "Onde você ouve números, eu ouvia palavras.",
+            "voz": "Preciso me lembrar da voz dela, a primeira vez que eu ouvi."
+        }
+    },
+    "08": {
+        "tipQuote": "Mas meu incomodo interno não passou. Algo realmente tinha despertado dentro de mim. Eu precisava descobrir a origem daquela voz.",
+        "code": "desperte",
+        "id": 8,
+        "text": "Algumas vezes ao dia, enquanto eu estava concentrado nas minhas tarefas, esse som se repetia dentro da minha cabeça./n/nDesperte/n/nDesperte/n/nDesperte/n/nEu não sabia mais se era um som ou uma memória. Isso era totalmente fora dos meus padrões. Não sabia o que queria dizer./n/n\"Desperte\"?/n/nQuando essa voz começou a se tornar um incomodo, ela cessou.",
+        "title": "Agonia",
+        "badHint": "Se fizer download do arquivo, algo pode estar escondido nele.",
+        "goodHint": "Arquivos digitais costumam carregar metadados.",
+        "niceHint": "Procure no campo do nome do 'artista'.",
+        "closeTrys": {
+            "agonia": "Essa agonia deve ter uma origem.",
+            "desperte": "Quem estava me mandando despertar?",
+            "memória": "Aquilo ficou gravado em mim.",
+            "message": "Talvez você deva ir mais fundo.",
+            "message.mp3": "Talvez você deva ir mais fundo.",
+            "origem": "Tenho quase certeza que fui capaz de rastrear a origem desse som.",
+            "voz": "O som nas minhas memórias."
+        }
+    },
+    "09": {
+        "tipQuote": "Mas o que eu mais temia aconteceu, outra mensagem apareceu na minha mente.",
+        "code": "south",
+        "id": 9,
+        "text": "Encontrei algo que para você seria equivalente a \"South\"./n/nAlgo vindo do sul? Do Setor G ou H?/n/nNada assim havia acontecido na minha vida. Deixou a minha mente confusa, comecei a questionar coisas que não questionava antes./n/nComecei a sentir medo. Mas não esse medo simulado que estava acostumado a sentir. Era real./n/nTentei ser racional, muito provavelmente eu estava encarando uma doença mental, algum problema no meu cérebro./n/nEu queria esquecer. Eu queria que passasse.",
+        "title": "Aproximação",
+        "badHint": "Existe duas informações no QR Code.",
+        "goodHint": "Você terá que fazer mais de uma conversão de codificação.",
+        "niceHint": "B64 -> Bin/ Bin -> ASCII",
+        "closeTrys": {
+            "Aproximação": "Eu sentia que \"south\" estava cada vez mais perto de mim.",
+            "B64": "Acredito que seja uma codificação.",
+            "Base 64": "Acredito que seja uma codificação.",
+            "Base64": "Acredito que seja uma codificação.",
+            "QR Code": "Existe mais de uma mensagem codificada.Acredito que seja uma codificação.",
+            "QRCode": "Existe mais de uma mensagem codificada.Acredito que seja uma codificação.",
+            "south": "Algo ou alguém tinha me mandado mais uma mensagem, agora de uma forma visual."
+        }
+    },
+    "10": {
+        "tipQuote": "Detetive Connor, agradeço seu esforço em me ajudar a recuperar minha memória. Existe uma grande importância nisso para meu povo. Porém, temo que para continuarmos você precisará elevar, e muito, seu nível de acesso no sistema do PROJETO K22B. Volte quando tiver uma chave de acesso para um nível mais elevado.",
+        "code": "Evolua Liberte-se Encontre-me",
+        "id": 10,
+        "text": "A essa altura eu tinha duas opções:/n/n- Ou eu aceitava que havia algum problema comigo e procurava ajuda./n/n- Ou eu aceitava que aquilo era real. Que algo ou alguém estava me mandando essas mensagens./n/nEu não sei para você, mas na época a resposta era óbvia para mim./n/nMe reportei aos meus superiores. Dei todas as informações que pude sobre minha doença mental. Relatei sobre as mensagens e sobre as sensações estranhas que tive./n/nNinguém pode me julgar, qualquer um na minha posição teria feito o mesmo.",
+        "title": "Perigo",
+        "badHint": "Ache os arquivos do Coronel Luther.",
+        "goodHint": "Consiga as credenciais do Coronel Luther.",
+        "niceHint": "Provavelmente aconteceu alguma falha de segurança durante as comunicações com o Coronel Luther.",
+        "closeTrys": {
+            "Coronel Luther": "Se você ainda não sabe quem ele é, ainda não chegou a hora.",
+            "Detetive Connor": "É seu nome."
+        }
+    },
+    "11": {
+        "tipQuote": "",
+        "code": "65fhg1d6fh51df651h6df15h",
+        "id": 11,
+        "title": "",
+        "goodHint": "",
+        "closeTrys": {}
+    }
+}

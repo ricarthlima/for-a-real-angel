@@ -24,12 +24,14 @@ class DesktopScreen extends StatefulWidget {
 class _DesktopScreenState extends State<DesktopScreen> {
   int dataPoints = 0;
   int chapterId = 1;
+  bool isShowGiveCoinDialog = false;
 
   @override
   void initState() {
     this.dataPoints = 0;
     this.chapterId = 1;
     _readChapterId();
+    _giveCoinsVerification();
     _readPreferences();
     super.initState();
 
@@ -64,7 +66,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.recycle_bin_empty,
-                  text: "Recycle \nBin",
+                  text: AppLocalizations.of(context).recycleBin,
                 ),
               ),
               Container(),
@@ -74,54 +76,39 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 onTap: () {
                   widget.soundPlayer.playClickSound();
                   showMyCustomDialog(
-                    context: context,
-                    title: Text("Data Points"),
-                    content: Text(
-                      "Você tem " +
-                          this.dataPoints.toString() +
-                          " Data Points\n\n" +
-                          "Data Points são setores recuperados após uma desfragmentação. Você pode usar DPs para facilitar o processo de restauração dos dados. Eles também contam para seu ranking.",
-                      textAlign: TextAlign.justify,
-                    ),
-                    actions: <Widget>[
-                      FlatButton(
-                        onPressed: () {
-                          RewardedVideoAd.instance.show().then((e) {
-                            _giveFiveDP(context);
-                          }).catchError((onError) {
-                            showMyCustomDialog(
-                                context: context,
-                                title: Text("ERRO!"),
-                                content: Text(
-                                    "Você ainda não possui anúncios disponíveis."),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      "OK",
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  )
-                                ]);
-                          });
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          "Ganhe 5 DP de graça!",
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
+                      context: context,
+                      title: Text(
+                        AppLocalizations.of(context).dataPoints,
+                      ),
+                      content: Text(
+                        AppLocalizations.of(context).youHave +
+                            " " +
+                            this.dataPoints.toString() +
+                            " " +
+                            AppLocalizations.of(context).dataPoints +
+                            ".\n\n" +
+                            AppLocalizations.of(context).dataPointsExplanation,
+                        textAlign: TextAlign.justify,
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            AppLocalizations.of(context).okay,
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  );
+                        )
+                      ]);
                 },
                 child: DesktopIcon(
                     icon: IconsValues.data_points,
-                    text: this.dataPoints.toString() + "\nData Points"),
+                    text: this.dataPoints.toString() +
+                        "\n" +
+                        AppLocalizations.of(context).dataPoints),
               ),
             ]),
             TableRow(children: [
@@ -150,12 +137,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   widget.soundPlayer.playClickSound();
                   showMyCustomDialog(
                       context: context,
-                      title: Text("Beta Disclaimer"),
+                      title: Text(AppLocalizations.of(context).betaDisclaimer),
                       content: Text(
-                        "Se você está vendo esse aviso, você está jogando uma versão beta de FARA. " +
-                            "Como o jogo está em construção você pode se deparar com erros ou bugs. " +
-                            "Esses podem influenciar na sua experiência.\n\n" +
-                            "Se achar algo de errado, me avisa: ricarth1@gmail.com.",
+                        AppLocalizations.of(context).betaDisclaimerText,
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
@@ -164,7 +148,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            "OK",
+                            AppLocalizations.of(context).okay,
                             style: TextStyle(
                               color: Colors.grey,
                             ),
@@ -174,7 +158,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.warning,
-                  text: "Beta Disclaimer",
+                  text: AppLocalizations.of(context).betaDisclaimer,
                 ),
               ),
             ]),
@@ -194,7 +178,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.directory_closed,
-                  text: "Documents",
+                  text: AppLocalizations.of(context).documents,
                 ),
               ),
               Container(),

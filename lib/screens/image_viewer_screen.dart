@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel_demo/helper/sound_player.dart';
-import 'package:for_a_real_angel_demo/model/mfile.dart';
-import 'package:for_a_real_angel_demo/values/icons_values.dart';
-import 'package:for_a_real_angel_demo/values/my_colors.dart';
-import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
+import 'package:for_a_real_angel/helper/sound_player.dart';
+import 'package:for_a_real_angel/model/mfile.dart';
+import 'package:for_a_real_angel/values/icons_values.dart';
+import 'package:for_a_real_angel/values/my_colors.dart';
+import 'package:for_a_real_angel/partials/menu_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ImageViewerScreen extends StatefulWidget {
+class ImageViewer extends StatefulWidget {
   final MFile file;
   SoundPlayer soundPlayer;
-  ImageViewerScreen({@required this.file, this.soundPlayer});
+  ImageViewer({@required this.file, this.soundPlayer});
 
   @override
-  _ImageViewerScreenState createState() => _ImageViewerScreenState();
+  _ImageViewerState createState() => _ImageViewerState();
 }
 
-class _ImageViewerScreenState extends State<ImageViewerScreen> {
+class _ImageViewerState extends State<ImageViewer> {
   _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
