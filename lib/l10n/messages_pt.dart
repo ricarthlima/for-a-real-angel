@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hint" : MessageLookupByLibrary.simpleMessage("Dica"),
     "incorrectRestaurationCode" : MessageLookupByLibrary.simpleMessage("Código de Restauração Incorreto!"),
     "loading" : MessageLookupByLibrary.simpleMessage("Carregando"),
+    "madeWith" : MessageLookupByLibrary.simpleMessage("Feito com amor e #Flutter, por Ricarth Lima."),
     "memoryRestored" : MessageLookupByLibrary.simpleMessage("Memória Restaurada"),
     "noDataPoints" : MessageLookupByLibrary.simpleMessage("Eu não tenho Pontos de Dados suficientes para te ajudar."),
     "notRecognizedCommand" : MessageLookupByLibrary.simpleMessage("não foi reconhecido como um comando do terminal."),
@@ -42,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "remebering" : MessageLookupByLibrary.simpleMessage("Estou me lembrando"),
     "restore" : MessageLookupByLibrary.simpleMessage("Restaurar"),
     "signUp" : MessageLookupByLibrary.simpleMessage("Cadastrar"),
+    "start" : MessageLookupByLibrary.simpleMessage("Iniciar"),
     "starterHintCaps" : MessageLookupByLibrary.simpleMessage("Não se preocupe com acentos, caracteres especiais, espaços ou letras maiúsculas."),
     "starterHintCheckbox" : MessageLookupByLibrary.simpleMessage("Entendi, não mostrar novamente."),
     "starterHintGiveUp" : MessageLookupByLibrary.simpleMessage("Se você desiste fácil, FARA não é um jogo para você."),
@@ -53,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "update" : MessageLookupByLibrary.simpleMessage("Atualizar"),
     "usernameDisclaimer" : MessageLookupByLibrary.simpleMessage("Pense bem, esse nickname não pode ser alterado."),
     "usernameTaked" : MessageLookupByLibrary.simpleMessage("Nome de usuário em uso."),
+    "visitOur" : MessageLookupByLibrary.simpleMessage("Visite nosso"),
     "youHave" : MessageLookupByLibrary.simpleMessage("Você tem")
   };
 }

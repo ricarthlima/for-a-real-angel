@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hint" : MessageLookupByLibrary.simpleMessage("Hint"),
     "incorrectRestaurationCode" : MessageLookupByLibrary.simpleMessage("Restore Code Wrong!"),
     "loading" : MessageLookupByLibrary.simpleMessage("Loading"),
+    "madeWith" : MessageLookupByLibrary.simpleMessage("Made with love and #Flutter, by Ricarth Lima."),
     "memoryRestored" : MessageLookupByLibrary.simpleMessage("Memory Restored Successfully"),
     "noDataPoints" : MessageLookupByLibrary.simpleMessage("I don\'t have enough Data Points to help you."),
     "notRecognizedCommand" : MessageLookupByLibrary.simpleMessage("it was not recognized as a terminal command."),
@@ -42,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "remebering" : MessageLookupByLibrary.simpleMessage("I\'m remembering"),
     "restore" : MessageLookupByLibrary.simpleMessage("Restore"),
     "signUp" : MessageLookupByLibrary.simpleMessage("Sign up"),
+    "start" : MessageLookupByLibrary.simpleMessage("Start"),
     "starterHintCaps" : MessageLookupByLibrary.simpleMessage("Answers should always be given in your language. Don\'t worry about special characters, spaces or capital letters."),
     "starterHintCheckbox" : MessageLookupByLibrary.simpleMessage("Got it, don\'t show it again."),
     "starterHintGiveUp" : MessageLookupByLibrary.simpleMessage("If you easy give up, FARA isn\'t for you."),
@@ -53,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "update" : MessageLookupByLibrary.simpleMessage("Update"),
     "usernameDisclaimer" : MessageLookupByLibrary.simpleMessage("Think about it, this nickname cannot be changed."),
     "usernameTaked" : MessageLookupByLibrary.simpleMessage("The username is in use."),
+    "visitOur" : MessageLookupByLibrary.simpleMessage("Visit our"),
     "youHave" : MessageLookupByLibrary.simpleMessage("You have")
   };
 }

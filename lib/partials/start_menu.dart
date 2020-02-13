@@ -11,6 +11,7 @@ showStartMenu(BuildContext context) {
     builder: (context) {
       Size size = MediaQuery.of(context).size;
       return Dialog(
+        shape: Border.all(color: MyColors.topBlue, width: 10),
         elevation: 0,
         backgroundColor: MyColors.windowsGrey,
         child: Container(

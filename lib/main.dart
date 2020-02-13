@@ -7,11 +7,13 @@ import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/starter_screen.dart';
 import 'package:for_a_real_angel/values/internalVersion.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:random_string/random_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
   _loadFirebase();
+  _verifyInternalUserCode();
 }
 
 class MyApp extends StatelessWidget {
@@ -51,5 +53,14 @@ _loadFirebase() async {
   Map<String, dynamic> versionQuery = versionQueryQuery.data;
   if (InternalVersion.version < versionQuery["pubCode"]) {
     prefs.setString(PreferencesKey.newVersion, jsonEncode(versionQuery));
+  }
+}
+
+_verifyInternalUserCode() async {
+  final prefs = await SharedPreferences.getInstance();
+  final userCode = prefs.getString(PreferencesKey.internalUserKey);
+
+  if (userCode == null) {
+    prefs.setString(PreferencesKey.internalUserKey, randomAlphaNumeric(32));
   }
 }

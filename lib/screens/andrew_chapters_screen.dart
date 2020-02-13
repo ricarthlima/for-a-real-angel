@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/custom_dialog.dart';
 import 'package:for_a_real_angel/helper/getAndrewChapterLocale.dart';
 import 'package:for_a_real_angel/helper/next_level_dialog.dart';
+import 'package:for_a_real_angel/helper/save_firebase_internal_info.dart';
 import 'package:for_a_real_angel/helper/show_hint_dialog.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/helper/update_ranking.dart';
@@ -424,6 +425,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.userCoins, this.userCoins);
     updateRanking();
+    saveFirebaseInternalInfo();
   }
 
   _testCode(String value, BuildContext context) async {

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-12T14:42:09.135998",
+  "@@last_modified": "2020-02-12T20:20:00.223687",
   "@@locale": "en",
   "title": "F(or) A Real Angel",
   "@title": {
@@ -164,6 +164,21 @@
   },
   "notRecognizedCommand": "it was not recognized as a terminal command.",
   "@notRecognizedCommand": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visitOur": "Visit our",
+  "@visitOur": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madeWith": "Made with love and #Flutter, by Ricarth Lima.",
+  "@madeWith": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "Start",
+  "@start": {
     "type": "text",
     "placeholders": {}
   }

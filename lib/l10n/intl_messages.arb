@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-12T14:42:09.135998",
+  "@@last_modified": "2020-02-12T20:20:00.223687",
   "title": "F(or) A Real Angel",
   "@title": {
     "description": "The application title",
@@ -163,6 +163,21 @@
   },
   "notRecognizedCommand": "não foi reconhecido como um comando do terminal.",
   "@notRecognizedCommand": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visitOur": "Visite nosso",
+  "@visitOur": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madeWith": "Feito com amor e #Flutter, por Ricarth Lima.",
+  "@madeWith": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "Iniciar",
+  "@start": {
     "type": "text",
     "placeholders": {}
   }

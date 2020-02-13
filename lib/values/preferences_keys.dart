@@ -16,4 +16,6 @@ class PreferencesKey {
   static const String isMusicActive = "is_music_active";
 
   static const String newVersion = "new_version";
+
+  static const String internalUserKey = "internalUserKey";
 }
