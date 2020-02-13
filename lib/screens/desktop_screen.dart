@@ -1,6 +1,7 @@
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:for_a_real_angel_demo/helper/custom_dialog.dart';
+import 'package:for_a_real_angel_demo/localizations.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
-import 'package:for_a_real_angel_demo/helper/customDialog.dart';
 import 'package:for_a_real_angel_demo/helper/launch_url.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/screens/explorer_screen.dart';
@@ -10,7 +11,6 @@ import 'package:for_a_real_angel_demo/values/ad_values.dart';
 import 'package:for_a_real_angel_demo/values/directories.dart';
 import 'package:for_a_real_angel_demo/values/icons_values.dart';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
 import 'package:for_a_real_angel_demo/partials/desktop_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,12 +31,11 @@ class _DesktopScreenState extends State<DesktopScreen> {
     this.dataPoints = 0;
     this.chapterId = 1;
     _readChapterId();
-    _giveCoinsVerification();
     _readPreferences();
     super.initState();
 
     RewardedVideoAd.instance.load(
-      adUnitId: AdValues.premiado, //AdValues.premiado,
+      adUnitId: AdValues.premiado,
       targetingInfo: AdValues.targetingInfo,
     );
   }
@@ -93,12 +92,23 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
+                            RewardedVideoAd.instance.show().then((e) {
+                              _giveFiveDP(context);
+                            }).catchError((onError) {
+                              showErrorDialog(
+                                context: context,
+                                title: AppLocalizations.of(context).error,
+                                content:
+                                    AppLocalizations.of(context).noAdsAvalible,
+                              );
+                            });
                             Navigator.pop(context);
                           },
                           child: Text(
-                            AppLocalizations.of(context).okay,
+                            AppLocalizations.of(context).getFiveDP,
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         )
@@ -188,20 +198,15 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 onTap: () {
                   showMyCustomDialog(
                       context: context,
-                      title: Text("Compre FARA!"),
+                      title: Text(AppLocalizations.of(context).buyFARA),
                       content: Text(
-                        "Chegou no nível 10? Compre a versão completa de FARA para ter acesso a continuação dessa história.\nBenefícios:\n" +
-                            "\n- Sem anúncios." +
-                            "\n- Dicas gratúitas por aproximação (Andrew te avisa se você chegar perto)." +
-                            "\n- Novos níveis chegam semanalmente." +
-                            "\n- Correção em tempo real de erros e bugs." +
-                            "\n- Participação no ranking mundial.",
+                        AppLocalizations.of(context).buyFARAText,
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
-                            "Quero comprar!",
+                            AppLocalizations.of(context).purchase,
                             style: TextStyle(
                               color: Colors.grey,
                             ),
@@ -216,7 +221,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.fara,
-                  text: "Compre FARA!",
+                  text: AppLocalizations.of(context).buyFARA,
                 ),
               ),
             ]),

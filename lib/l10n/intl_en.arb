@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-12T23:58:54.245508",
+  "@@last_modified": "2020-02-13T02:37:56.115028",
   "@@locale": "en",
   "title": "F(or) A Real Angel",
   "@title": {
@@ -194,6 +194,31 @@
   },
   "noneHint": "No hints unlocked.",
   "@noneHint": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "buyFARA": "Buy FARA!",
+  "@buyFARA": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchase": "Purchase!",
+  "@purchase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "buyFARAText": "Did you reach level 10? Buy the full version of FARA to have access to the continuation of this story. \nBenefits: \n\n- No ads. \n- 100 DPs free \n- Free tips for approaching (Andrew warns you if you get close). \n- New levels arrive weekly. \n- Real-time correction of errors and bugs. \n- Participation in the world ranking.",
+  "@buyFARAText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getFiveDP": "Get 5 DPs for free!",
+  "@getFiveDP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noAdsAvalible": "You have no ads available yet.",
+  "@noAdsAvalible": {
     "type": "text",
     "placeholders": {}
   }

@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/file_opener.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/model/mfile.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
-import 'package:for_a_real_angel/values/my_colors.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/partials/explorer_list_file.dart';
-import 'package:for_a_real_angel/partials/explorer_list_folder.dart';
-import 'package:for_a_real_angel/partials/menu_bar.dart';
+import 'package:for_a_real_angel_demo/helper/file_opener.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/model/mfile.dart';
+import 'package:for_a_real_angel_demo/values/icons_values.dart';
+import 'package:for_a_real_angel_demo/values/my_colors.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/partials/explorer_list_file.dart';
+import 'package:for_a_real_angel_demo/partials/explorer_list_folder.dart';
+import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Explorer extends StatefulWidget {
+class ExplorerScreen extends StatefulWidget {
   MFolder folder;
   List<MFolder> roots = [];
   SoundPlayer soundPlayer;
-  Explorer({@required this.folder, this.soundPlayer});
+  ExplorerScreen({@required this.folder, this.soundPlayer});
 
   @override
-  _ExplorerState createState() => _ExplorerState();
+  _ExplorerScreenState createState() => _ExplorerScreenState();
 }
 
-class _ExplorerState extends State<Explorer> {
+class _ExplorerScreenState extends State<ExplorerScreen> {
   int idChapter;
 
   @override

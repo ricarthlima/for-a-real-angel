@@ -1,8 +1,8 @@
 name: for_a_real_angel_demo
-description: Version demo from F(or) A Real Angel.
+description: Demo version from F(or) A Real Angel.
 
 # MUDA TAMBÉM EM "values/internalVersion" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-version: 0.2.1+3
+version: 0.3.0+4
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -28,6 +28,8 @@ dependencies:
   random_string: ^2.0.1
 
   # Firebase for Ads  
+  firebase_core: ^0.4.0
+  cloud_firestore: ^0.13.0+1
   firebase_admob: ^0.9.0+10
 
 dev_dependencies:

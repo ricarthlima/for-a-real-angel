@@ -294,6 +294,41 @@ class AppLocalizations {
       name: "noneHint",
     );
   }
+
+  String get buyFARA {
+    return Intl.message(
+      "Compre FARA!",
+      name: "buyFARA",
+    );
+  }
+
+  String get purchase {
+    return Intl.message(
+      "Comprar!",
+      name: "purchase",
+    );
+  }
+
+  String get buyFARAText {
+    return Intl.message(
+      "Chegou no nível 10? Compre a versão completa de FARA para ter acesso a continuação dessa história.\nBenefícios:\n\n- Sem anúncios. \n- Ganhe 100 DPs de graça! \n- Dicas gratúitas por aproximação (Andrew te avisa se você chegar perto).\n- Novos níveis chegam semanalmente.\n- Correção em tempo real de erros e bugs.\n- Participação no ranking mundial.",
+      name: "buyFARAText",
+    );
+  }
+
+  String get getFiveDP {
+    return Intl.message(
+      "Ganhe 5 DP de graça!",
+      name: "getFiveDP",
+    );
+  }
+
+  String get noAdsAvalible {
+    return Intl.message(
+      "Você ainda não possui anúncios disponíveis.",
+      name: "noAdsAvalible",
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

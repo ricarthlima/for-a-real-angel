@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:for_a_real_angel_demo/screens/desktop_context_screen.dart';
 import 'package:for_a_real_angel_demo/helper/sound_player.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
-import 'package:for_a_real_angel/localizations.dart';
+import 'package:for_a_real_angel_demo/localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChapterSplash extends StatefulWidget {

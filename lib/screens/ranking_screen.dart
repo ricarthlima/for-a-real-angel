@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/custom_dialog.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/localizations.dart';
-import 'package:for_a_real_angel/model/ranking.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
-import 'package:for_a_real_angel/values/my_colors.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/partials/menu_bar.dart';
+import 'package:for_a_real_angel_demo/helper/custom_dialog.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/localizations.dart';
+import 'package:for_a_real_angel_demo/model/ranking.dart';
+import 'package:for_a_real_angel_demo/values/icons_values.dart';
+import 'package:for_a_real_angel_demo/values/my_colors.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RankingScreen extends StatefulWidget {

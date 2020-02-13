@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/localizations.dart';
-import 'package:for_a_real_angel/screens/ranking_screen.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
-import 'package:for_a_real_angel/values/my_colors.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/partials/menu_bar.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/localizations.dart';
+import 'package:for_a_real_angel_demo/screens/ranking_screen.dart';
+import 'package:for_a_real_angel_demo/values/icons_values.dart';
+import 'package:for_a_real_angel_demo/values/my_colors.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Terminal extends StatefulWidget {
+class TerminalScreen extends StatefulWidget {
   SoundPlayer soundPlayer;
-  Terminal({this.soundPlayer});
+  TerminalScreen({this.soundPlayer});
   @override
-  _TerminalState createState() => _TerminalState();
+  _TerminalScreenState createState() => _TerminalScreenState();
 }
 
-class _TerminalState extends State<Terminal> {
+class _TerminalScreenState extends State<TerminalScreen> {
   TextEditingController _inputController = new TextEditingController();
 
   String version = "0.3.1";

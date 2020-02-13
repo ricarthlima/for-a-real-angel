@@ -1,17 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/localizations.dart';
-import 'package:for_a_real_angel/screens/chapter_splash.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/localizations.dart';
+import 'package:for_a_real_angel_demo/screens/chapter_splash.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Starter extends StatefulWidget {
+class StarterScreen extends StatefulWidget {
   @override
-  _StarterState createState() => _StarterState();
+  _StarterScreenState createState() => _StarterScreenState();
 }
 
-class _StarterState extends State<Starter> {
+class _StarterScreenState extends State<StarterScreen> {
   SoundPlayer soundPlayer = SoundPlayer();
   bool _selectSkip = false;
 

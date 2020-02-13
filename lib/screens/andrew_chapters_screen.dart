@@ -1,19 +1,19 @@
 import 'dart:convert';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/custom_dialog.dart';
-import 'package:for_a_real_angel/helper/getAndrewChapterLocale.dart';
-import 'package:for_a_real_angel/helper/next_level_dialog.dart';
-import 'package:for_a_real_angel/helper/save_firebase_internal_info.dart';
-import 'package:for_a_real_angel/helper/show_hint_dialog.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
-import 'package:for_a_real_angel/helper/update_ranking.dart';
-import 'package:for_a_real_angel/localizations.dart';
-import 'package:for_a_real_angel/model/chapter.dart';
-import 'package:for_a_real_angel/screens/chapter_splash.dart';
-import 'package:for_a_real_angel/values/icons_values.dart';
-import 'package:for_a_real_angel/values/my_colors.dart';
-import 'package:for_a_real_angel/values/preferences_keys.dart';
-import 'package:for_a_real_angel/partials/menu_bar.dart';
+import 'package:for_a_real_angel_demo/helper/custom_dialog.dart';
+import 'package:for_a_real_angel_demo/helper/getAndrewChapterLocale.dart';
+import 'package:for_a_real_angel_demo/helper/next_level_dialog.dart';
+import 'package:for_a_real_angel_demo/helper/save_firebase_internal_info.dart';
+import 'package:for_a_real_angel_demo/helper/sound_player.dart';
+import 'package:for_a_real_angel_demo/localizations.dart';
+import 'package:for_a_real_angel_demo/model/chapter.dart';
+import 'package:for_a_real_angel_demo/screens/chapter_splash.dart';
+import 'package:for_a_real_angel_demo/values/ad_values.dart';
+import 'package:for_a_real_angel_demo/values/icons_values.dart';
+import 'package:for_a_real_angel_demo/values/my_colors.dart';
+import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
+import 'package:for_a_real_angel_demo/partials/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipedetector/swipedetector.dart';
 
@@ -41,6 +41,24 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   //User Coins
   int userCoins;
+
+  //Errors
+  int _errors = 0;
+  InterstitialAd myInterstitial;
+
+  InterstitialAd buildInterstitial() {
+    return InterstitialAd(
+        adUnitId: AdValues.tela,
+        targetingInfo: AdValues.targetingInfo,
+        listener: (MobileAdEvent event) {
+          if (event == MobileAdEvent.loaded) {
+            myInterstitial?.show();
+          }
+          if (event == MobileAdEvent.clicked || event == MobileAdEvent.closed) {
+            myInterstitial.dispose();
+          }
+        });
+  }
 
   @override
   void initState() {
@@ -459,7 +477,6 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   Future _saveUserCoins() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.userCoins, this.userCoins);
-    updateRanking();
     saveFirebaseInternalInfo();
   }
 
@@ -525,24 +542,22 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
         showNextLevelDialog(context, listChapters[i].id);
       }
     } else {
-      if (listChapters[this.idChapter]
-          .closeTrys
-          .keys
-          .contains(value.toLowerCase())) {
-        this.widget.soundPlayer.playCloseTrySound();
-        String hint = listChapters[this.idChapter]
-            .closeTrys[value.toLowerCase()]
-            .toString();
-        showHintDialog(context, hint);
-      } else {
-        showErrorDialog(
-          context: context,
-          title: AppLocalizations.of(context).error,
-          content: AppLocalizations.of(context).incorrectRestaurationCode,
-        );
-        //Play fail sound
-        widget.soundPlayer.playErrorSound();
+      setState(() {
+        this._errors += 1;
+      });
+      if (this._errors >= 5) {
+        this._errors = 0;
+        this.myInterstitial = buildInterstitial()
+          ..load()
+          ..show();
       }
+      showErrorDialog(
+        context: context,
+        title: AppLocalizations.of(context).error,
+        content: AppLocalizations.of(context).incorrectRestaurationCode,
+      );
+      //Play fail sound
+      widget.soundPlayer.playErrorSound();
       //Show fail dialog
 
     }
@@ -551,7 +566,6 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   _saveChapterId(int chapterId) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(PreferencesKey.chapterId, chapterId);
-    updateRanking();
   }
 
   _saveHintsChange() async {

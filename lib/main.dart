@@ -1,19 +1,19 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:for_a_real_angel/localizations.dart';
+import 'package:for_a_real_angel_demo/localizations.dart';
 import 'package:for_a_real_angel_demo/screens/starter_screen.dart';
 import 'package:for_a_real_angel_demo/values/internalVersion.dart';
-import 'package:for_a_real_angel_demo/values/local_chapters.dart';
 import 'package:for_a_real_angel_demo/values/preferences_keys.dart';
 import 'package:random_string/random_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
-  _loadData();
+  _verifyVersion();
   _verifyInternalUserCode();
 }
 
@@ -36,18 +36,23 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black,
         fontFamily: "JosefinSans",
       ),
-      home: Scaffold(
-        body: StarterScreen(),
-      ),
+      home: Scaffold(body: StarterScreen()),
     );
   }
 }
 
-_loadData() async {
+_verifyVersion() async {
+  Firestore db = Firestore.instance;
   final prefs = await SharedPreferences.getInstance();
-  if (InternalVersion.isDemo) {
-    prefs.setString(PreferencesKey.chaptersList, LocalChapters.demoData);
-  } else {}
+
+  prefs.setString(PreferencesKey.newVersion, null);
+
+  DocumentSnapshot versionQueryQuery =
+      await db.collection("version").document("version").get();
+  Map<String, dynamic> versionQuery = versionQueryQuery.data;
+  if (InternalVersion.version < versionQuery["pubCode"]) {
+    prefs.setString(PreferencesKey.newVersion, jsonEncode(versionQuery));
+  }
 }
 
 _verifyInternalUserCode() async {
