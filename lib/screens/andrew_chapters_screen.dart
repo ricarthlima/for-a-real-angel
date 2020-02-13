@@ -36,7 +36,8 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   List<AndrewChapter> listChapters = List<AndrewChapter>();
 
   //Hints Unlocked
-  bool isUnlockedHint = false;
+  //bool isUnlockedHint = false;
+  int unlockedHints = 0;
 
   //User Coins
   int userCoins;
@@ -213,85 +214,119 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                     Padding(
                                       padding: EdgeInsets.only(bottom: 10),
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                          onTap: () {
-                                            _testCode(
-                                                _controllerCode.text, context);
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.all(10),
-                                            width: 150,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              border: Border.all(
-                                                  color: Colors.grey, width: 2),
-                                            ),
-                                            child: Text(
-                                              AppLocalizations.of(context)
-                                                  .restore
-                                                  .toUpperCase(),
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: "CourierPrime",
-                                              ),
-                                            ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        _testCode(
+                                            _controllerCode.text, context);
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          border: Border.all(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        child: Text(
+                                          AppLocalizations.of(context)
+                                              .restore
+                                              .toUpperCase(),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: "CourierPrime",
                                           ),
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            _showHint(context);
-                                          },
-                                          child: Container(
-                                              padding: EdgeInsets.all(10),
-                                              decoration: BoxDecoration(
-                                                color: Colors.black,
-                                                border: Border.all(
-                                                    color: Colors.grey,
-                                                    width: 2),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: <Widget>[
-                                                  Text(
-                                                    AppLocalizations.of(context)
-                                                        .hint,
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontFamily:
-                                                          "CourierPrime",
-                                                    ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: 5),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        (this.unlockedHints < 3)
+                                            ? GestureDetector(
+                                                onTap: () {
+                                                  _buyHint(context);
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black,
+                                                    border: Border.all(
+                                                        color: Colors.grey,
+                                                        width: 2),
                                                   ),
-                                                  (!this.isUnlockedHint)
-                                                      ? Row(
-                                                          children: <Widget>[
-                                                            Text(" (10"),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      right: 2),
-                                                            ),
-                                                            Image.asset(
-                                                              IconsValues
-                                                                  .data_points,
-                                                              width: 15,
-                                                              height: 15,
-                                                            ),
-                                                            Text(")"),
-                                                          ],
-                                                        )
-                                                      : Container()
-                                                ],
-                                              )),
-                                        )
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                                context)
+                                                            .buyHint,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontFamily:
+                                                              "CourierPrime",
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Text(" (10"),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 2),
+                                                          ),
+                                                          Image.asset(
+                                                            IconsValues
+                                                                .data_points,
+                                                            width: 15,
+                                                            height: 15,
+                                                          ),
+                                                          Text(")"),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+                                        (this.unlockedHints > 0 &&
+                                                this.unlockedHints < 3)
+                                            ? Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 10),
+                                              )
+                                            : Container(),
+                                        (this.unlockedHints > 0)
+                                            ? GestureDetector(
+                                                onTap: () {
+                                                  _showHint(context);
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black,
+                                                    border: Border.all(
+                                                        color: Colors.grey,
+                                                        width: 2),
+                                                  ),
+                                                  child: Text(
+                                                      AppLocalizations.of(
+                                                              context)
+                                                          .seeHints),
+                                                ),
+                                              )
+                                            : Container()
                                       ],
                                     ),
                                   ],
@@ -386,16 +421,16 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     if (prePrefs == "null") {
       prefs = await SharedPreferences.getInstance();
     }
-    final hints = prefs.getBool(PreferencesKey.isUnlockedHint);
+    final hints = prefs.getInt(PreferencesKey.unlockedHints);
 
     //Hints
     if (hints != null) {
       setState(() {
-        this.isUnlockedHint = hints;
+        this.unlockedHints = hints;
       });
     } else {
       setState(() {
-        this.isUnlockedHint = false;
+        this.unlockedHints = 0;
       });
       _saveHintsChange();
     }
@@ -471,7 +506,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
       //Lock next hint
       setState(() {
-        isUnlockedHint = false;
+        this.unlockedHints = 0;
       });
       _saveHintsChange();
 
@@ -521,7 +556,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   _saveHintsChange() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setBool(PreferencesKey.isUnlockedHint, this.isUnlockedHint);
+    prefs.setInt(PreferencesKey.unlockedHints, this.unlockedHints);
   }
 
   _navigateBack() {
@@ -540,9 +575,22 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   _navigateError() {}
 
+  String _getTextHints(AndrewChapter cap, int un) {
+    String retorno = "";
+    if (un > 0) {
+      retorno += cap.badHint;
+      if (un > 1) {
+        retorno = retorno + "\n\n-----------\n\n" + cap.goodHint;
+        if (un > 2) {
+          retorno = retorno + "\n\n-----------\n\n" + cap.niceHint;
+        }
+      }
+    }
+    return retorno;
+  }
+
   _showHint(BuildContext context) async {
-    if (this.isUnlockedHint) {
-      this.widget.soundPlayer.playGetHintSound();
+    if (this.unlockedHints > 0) {
       showDialog(
         context: context,
         builder: (context) {
@@ -551,7 +599,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
             child: Container(
               padding: EdgeInsets.all(15),
               child: Text(
-                listChapters[idChapter].goodHint,
+                _getTextHints(listChapters[idChapter], this.unlockedHints),
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -563,23 +611,32 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
         },
       );
     } else {
-      if (this.userCoins >= 10) {
-        this.widget.soundPlayer.playGetHintSound();
-        setState(() {
-          userCoins -= 10;
-          this.isUnlockedHint = true;
-        });
-        _saveUserCoins();
-        _saveHintsChange();
-        _showHint(context);
-      } else {
-        //Play fail sound
-        widget.soundPlayer.playErrorSound();
-        showErrorDialog(
-            context: context,
-            title: AppLocalizations.of(context).error,
-            content: AppLocalizations.of(context).noDataPoints);
-      }
+      //Play fail sound
+      widget.soundPlayer.playErrorSound();
+      showErrorDialog(
+          context: context,
+          title: AppLocalizations.of(context).error,
+          content: AppLocalizations.of(context).noneHint);
+    }
+  }
+
+  _buyHint(BuildContext context) {
+    if (this.userCoins >= 10 && this.unlockedHints < 3) {
+      this.widget.soundPlayer.playGetHintSound();
+      setState(() {
+        userCoins -= 10;
+        this.unlockedHints += 1;
+      });
+      _saveUserCoins();
+      _saveHintsChange();
+      _showHint(context);
+    } else {
+      //Play fail sound
+      widget.soundPlayer.playErrorSound();
+      showErrorDialog(
+          context: context,
+          title: AppLocalizations.of(context).error,
+          content: AppLocalizations.of(context).noDataPoints);
     }
   }
 

@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "betaDisclaimer" : MessageLookupByLibrary.simpleMessage("Beta Disclaimer"),
     "betaDisclaimerText" : MessageLookupByLibrary.simpleMessage("If you are seeing this disclaimer, you are playing a beta version of FARA. As the game is under construction you may run into errors or bugs. These can influence your experience.\n\nIf you find something wrong, let me know: playfaragame@gmail.com."),
+    "buyHint" : MessageLookupByLibrary.simpleMessage("Buy hint"),
     "continuar" : MessageLookupByLibrary.simpleMessage("Continue"),
     "dataPoints" : MessageLookupByLibrary.simpleMessage("Data Points"),
     "dataPointsExplanation" : MessageLookupByLibrary.simpleMessage("Data Points are sectors recovered after defragmentation. You can use DPs to facilitate the data restoration process. They also count towards your ranking."),
@@ -35,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "madeWith" : MessageLookupByLibrary.simpleMessage("Made with love and #Flutter, by Ricarth Lima."),
     "memoryRestored" : MessageLookupByLibrary.simpleMessage("Memory Restored Successfully"),
     "noDataPoints" : MessageLookupByLibrary.simpleMessage("I don\'t have enough Data Points to help you."),
+    "noneHint" : MessageLookupByLibrary.simpleMessage("No hints unlocked."),
     "notRecognizedCommand" : MessageLookupByLibrary.simpleMessage("it was not recognized as a terminal command."),
     "notSignUp" : MessageLookupByLibrary.simpleMessage("You have not yet registered."),
     "okay" : MessageLookupByLibrary.simpleMessage("OK"),
@@ -42,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "recycleBin" : MessageLookupByLibrary.simpleMessage("Recycle\nBin"),
     "remebering" : MessageLookupByLibrary.simpleMessage("I\'m remembering"),
     "restore" : MessageLookupByLibrary.simpleMessage("Restore"),
+    "seeHints" : MessageLookupByLibrary.simpleMessage("See hints"),
     "signUp" : MessageLookupByLibrary.simpleMessage("Sign up"),
     "start" : MessageLookupByLibrary.simpleMessage("Start"),
     "starterHintCaps" : MessageLookupByLibrary.simpleMessage("Answers should always be given in your language. Don\'t worry about special characters, spaces or capital letters."),

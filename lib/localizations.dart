@@ -273,6 +273,27 @@ class AppLocalizations {
       name: "start",
     );
   }
+
+  String get seeHints {
+    return Intl.message(
+      "Ver dicas",
+      name: "seeHints",
+    );
+  }
+
+  String get buyHint {
+    return Intl.message(
+      "Comprar dica",
+      name: "buyHint",
+    );
+  }
+
+  String get noneHint {
+    return Intl.message(
+      "Nenhuma dica desbloqueada.",
+      name: "noneHint",
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

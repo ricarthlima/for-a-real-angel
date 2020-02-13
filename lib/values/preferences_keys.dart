@@ -7,7 +7,8 @@ class PreferencesKey {
   static const String giveCoins = "give_coins";
 
   //Chapter's Hints Unlocked
-  static const String isUnlockedHint = "is_unlocked_hint";
+  //static const String isUnlockedHint = "is_unlocked_hint";
+  static const String unlockedHints = "unlocked_hints";
 
   static const String username = "username";
   static const String firebaseIdUser = "firebase_id_user";

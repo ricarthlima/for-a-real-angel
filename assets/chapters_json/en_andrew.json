@@ -96,7 +96,7 @@
         "title": "War",
         "badHint": "There are messages hidden in that image.",
         "goodHint": "Reach the maximum and minimum curves.",
-        "niceHint": "The planets had children that generated this war.",
+        "niceHint": "Titans.",
         "closeTrys": {
             "3": "Ordinal",
             "4,571. 10 ^ 9": "This is an age, but from what?",
@@ -108,9 +108,9 @@
             "numbers": "What do they mean?",
             "seven": "Ordinal",
             "solar system": "OK. But what about 3 and 7?",
-            "terra": "What is your partner?",
-            "land and uranus": "What war?",
-            "uranus land": "What war?",
+            "earth": "What is your partner?",
+            "earth and uranus": "What war?",
+            "uranus earth": "What war?",
             "three": "Ordinal",
             "uranus": "What is your partner?",
             "uterus": "There is something else hidden in that message."

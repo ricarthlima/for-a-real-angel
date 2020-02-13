@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-12T20:20:00.223687",
+  "@@last_modified": "2020-02-12T23:58:54.245508",
   "title": "F(or) A Real Angel",
   "@title": {
     "description": "The application title",
@@ -176,8 +176,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "start": "Iniciar",
+  "start": "Start",
   "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seeHints": "Ver dicas",
+  "@seeHints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "buyHint": "Comprar dica",
+  "@buyHint": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noneHint": "Nenhuma dica desbloqueada.",
+  "@noneHint": {
     "type": "text",
     "placeholders": {}
   }
