@@ -11,10 +11,10 @@ updateRanking() async {
     final chapter = prefs.getInt(PreferencesKey.chapterId);
     final coins = prefs.getInt(PreferencesKey.userCoins);
 
-    Firestore db = Firestore.instance;
+    FirebaseFirestore db = FirebaseFirestore.instance;
     db
         .collection("users")
-        .document(idFirebase)
-        .setData({"username": name, "chapter": chapter, "coins": coins});
+        .doc(idFirebase)
+        .set({"username": name, "chapter": chapter, "coins": coins});
   }
 }

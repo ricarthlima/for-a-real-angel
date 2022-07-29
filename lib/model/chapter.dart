@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 class AndrewChapter {
-  String tipQuote;
-  String code;
-  int id;
-  String text;
-  String title;
-  String badHint;
-  String goodHint;
-  String niceHint;
-  Map<String, dynamic> closeTrys;
+  String? tipQuote;
+  String? code;
+  int? id;
+  String? text;
+  String? title;
+  String? badHint;
+  String? goodHint;
+  String? niceHint;
+  Map<String, dynamic>? closeTrys;
 
   AndrewChapter(
       {this.tipQuote,

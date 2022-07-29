@@ -59,19 +59,19 @@ List<StartMenuItemLink> getStartMenuItemLinks(BuildContext context) {
   return [
     StartMenuItemLink(
         icon: IconsValues.reddit,
-        title: AppLocalizations.of(context).visitOur + " Reddit",
+        title: AppLocalizations.of(context)!.visitOur + " Reddit",
         link: "https://www.reddit.com/r/FaraRiddles/"),
     StartMenuItemLink(
         icon: IconsValues.twitter,
-        title: AppLocalizations.of(context).visitOur + " Twitter",
+        title: AppLocalizations.of(context)!.visitOur + " Twitter",
         link: "https://twitter.com/FaraRiddles"),
     StartMenuItemLink(
         icon: IconsValues.instagram,
-        title: AppLocalizations.of(context).visitOur + " Instagram",
+        title: AppLocalizations.of(context)!.visitOur + " Instagram",
         link: "https://www.instagram.com/fara.game/"),
     StartMenuItemLink(
         icon: IconsValues.code,
-        title: AppLocalizations.of(context).madeWith,
+        title: AppLocalizations.of(context)!.madeWith,
         link: "http://www.ricarth.me/"),
   ];
 }
@@ -82,7 +82,7 @@ class StartMenuItemLink {
   String link;
 
   StartMenuItemLink(
-      {@required this.icon, @required this.title, @required this.link});
+      {required this.icon, required this.title, required this.link});
 }
 
 _launchURL(String url) async {

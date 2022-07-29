@@ -19,7 +19,7 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pt';
 
-  final messages = _notInlinedMessages(_notInlinedMessages);
+  final Map<String, dynamic> messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "betaDisclaimer" : MessageLookupByLibrary.simpleMessage("Aviso de versão Beta"),
     "betaDisclaimerText" : MessageLookupByLibrary.simpleMessage("Se você está vendo esse aviso, você está jogando uma versão beta de FARA. Como o jogo está em construção você pode se deparar com erros ou bugs. Esses podem influenciar na sua experiência.\n\nSe achar algo de errado, me avisa: playfaragame@gmail.com."),

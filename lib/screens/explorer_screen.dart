@@ -8,20 +8,21 @@ import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/partials/explorer_list_file.dart';
 import 'package:for_a_real_angel/partials/explorer_list_folder.dart';
 import 'package:for_a_real_angel/partials/menu_bar.dart';
+import 'package:for_a_real_angel/values/sounds.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Explorer extends StatefulWidget {
   MFolder folder;
   List<MFolder> roots = [];
-  SoundPlayer soundPlayer;
-  Explorer({@required this.folder, this.soundPlayer});
+  Explorer({required this.folder});
 
   @override
   _ExplorerState createState() => _ExplorerState();
 }
 
 class _ExplorerState extends State<Explorer> {
-  int idChapter;
+  int idChapter = 1;
 
   @override
   void initState() {
@@ -38,7 +39,6 @@ class _ExplorerState extends State<Explorer> {
         context: context,
         title: widget.folder.title,
         icon: IconsValues.directory,
-        soundPlayer: widget.soundPlayer,
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -61,7 +61,7 @@ class _ExplorerState extends State<Explorer> {
                         setState(() {
                           widget.folder = pai;
                         });
-                        widget.soundPlayer.playFolderSound();
+                        context.read<SoundPlayer>().playSFX(Sounds.idFolder);
                       },
                       child: ExplorerListFolder(
                         folder: MFolder(
@@ -80,7 +80,7 @@ class _ExplorerState extends State<Explorer> {
                             widget.roots.add(widget.folder);
                             widget.folder = pasta;
                           });
-                          widget.soundPlayer.playFolderSound();
+                          context.read<SoundPlayer>().playSFX(Sounds.idFolder);
                         },
                         child: ExplorerListFolder(
                           folder: pasta,
@@ -94,9 +94,8 @@ class _ExplorerState extends State<Explorer> {
                           routerFileType(
                             file: arquivo,
                             context: context,
-                            soundPlayer: widget.soundPlayer,
                           );
-                          widget.soundPlayer.playClickSound();
+                          context.read<SoundPlayer>().playSFX(Sounds.idClick);
                         },
                         child: ExplorerListFile(
                           file: arquivo,

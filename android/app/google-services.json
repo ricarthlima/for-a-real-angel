@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "274526408897-dv4o6bs6uif6aihqd79ttbhnsnqd37vm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ricarthlima.for_a_real_angel",
+            "certificate_hash": "7aa9c1239a4e0834448e9767c56ebccf23a96bd5"
+          }
+        },
+        {
           "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -30,6 +38,57 @@
             {
               "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "274526408897-7rfal3327uij7e0tti2vu3ue4lh0rqgm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ricarthlima.forARealAngel"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274526408897:android:d056f6a5c55973efc08440",
+        "android_client_info": {
+          "package_name": "com.ricarthlima.ixi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274526408897-u3ifsm0gcld0v0ngoa5om33g315h7lug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ricarthlima.ixi",
+            "certificate_hash": "7aa9c1239a4e0834448e9767c56ebccf23a96bd5"
+          }
+        },
+        {
+          "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgy9mFC0cYGs1SkqGYVcRBctPoUByjxa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274526408897-qk393rpjlmisi38kc1h3ra4919ubfuqe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "274526408897-7rfal3327uij7e0tti2vu3ue4lh0rqgm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ricarthlima.forARealAngel"
+              }
             }
           ]
         }

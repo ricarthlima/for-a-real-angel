@@ -9,11 +9,13 @@ import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/partials/desktop_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../values/sounds.dart';
+
 class DesktopScreen extends StatefulWidget {
-  SoundPlayer soundPlayer;
-  DesktopScreen({this.soundPlayer});
+  DesktopScreen();
   @override
   _DesktopScreenState createState() => _DesktopScreenState();
 }
@@ -45,20 +47,19 @@ class _DesktopScreenState extends State<DesktopScreen> {
             TableRow(children: [
               GestureDetector(
                 onTap: () {
-                  widget.soundPlayer.playClickSound();
+                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => Explorer(
                         folder: Directories.recycleBin,
-                        soundPlayer: widget.soundPlayer,
                       ),
                     ),
                   );
                 },
                 child: DesktopIcon(
                   icon: IconsValues.recycle_bin_empty,
-                  text: AppLocalizations.of(context).recycleBin,
+                  text: AppLocalizations.of(context)!.recycleBin,
                 ),
               ),
               Container(),
@@ -66,20 +67,20 @@ class _DesktopScreenState extends State<DesktopScreen> {
               Container(),
               GestureDetector(
                 onTap: () {
-                  widget.soundPlayer.playClickSound();
+                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
                   showMyCustomDialog(
                       context: context,
                       title: Text(
-                        AppLocalizations.of(context).dataPoints,
+                        AppLocalizations.of(context)!.dataPoints,
                       ),
                       content: Text(
-                        AppLocalizations.of(context).youHave +
+                        AppLocalizations.of(context)!.youHave +
                             " " +
                             this.dataPoints.toString() +
                             " " +
-                            AppLocalizations.of(context).dataPoints +
+                            AppLocalizations.of(context)!.dataPoints +
                             ".\n\n" +
-                            AppLocalizations.of(context).dataPointsExplanation,
+                            AppLocalizations.of(context)!.dataPointsExplanation,
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
@@ -88,7 +89,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            AppLocalizations.of(context).okay,
+                            AppLocalizations.of(context)!.okay,
                             style: TextStyle(
                               color: Colors.black,
                             ),
@@ -100,19 +101,17 @@ class _DesktopScreenState extends State<DesktopScreen> {
                     icon: IconsValues.data_points,
                     text: this.dataPoints.toString() +
                         "\n" +
-                        AppLocalizations.of(context).dataPoints),
+                        AppLocalizations.of(context)!.dataPoints),
               ),
             ]),
             TableRow(children: [
               GestureDetector(
                 onTap: () {
-                  widget.soundPlayer.playClickSound();
+                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AndrewChaptersScreen(
-                        soundPlayer: widget.soundPlayer,
-                      ),
+                      builder: (context) => AndrewChaptersScreen(),
                     ),
                   );
                 },
@@ -126,12 +125,12 @@ class _DesktopScreenState extends State<DesktopScreen> {
               Container(),
               GestureDetector(
                 onTap: () {
-                  widget.soundPlayer.playClickSound();
+                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
                   showMyCustomDialog(
                       context: context,
-                      title: Text(AppLocalizations.of(context).betaDisclaimer),
+                      title: Text(AppLocalizations.of(context)!.betaDisclaimer),
                       content: Text(
-                        AppLocalizations.of(context).betaDisclaimerText,
+                        AppLocalizations.of(context)!.betaDisclaimerText,
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
@@ -140,7 +139,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            AppLocalizations.of(context).okay,
+                            AppLocalizations.of(context)!.okay,
                             style: TextStyle(
                               color: Colors.grey,
                             ),
@@ -150,27 +149,26 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                   icon: IconsValues.warning,
-                  text: AppLocalizations.of(context).betaDisclaimer,
+                  text: AppLocalizations.of(context)!.betaDisclaimer,
                 ),
               ),
             ]),
             TableRow(children: [
               GestureDetector(
                 onTap: () {
-                  widget.soundPlayer.playClickSound();
+                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => Explorer(
                         folder: Directories.documents,
-                        soundPlayer: widget.soundPlayer,
                       ),
                     ),
                   );
                 },
                 child: DesktopIcon(
                   icon: IconsValues.directory_closed,
-                  text: AppLocalizations.of(context).documents,
+                  text: AppLocalizations.of(context)!.documents,
                 ),
               ),
               Container(),
@@ -181,13 +179,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
             TableRow(children: [
               GestureDetector(
                 onTap: () {
-                  widget.soundPlayer.playClickSound();
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Terminal(
-                                soundPlayer: widget.soundPlayer,
-                              )));
+                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Terminal()));
                 },
                 child: DesktopIcon(
                   icon: IconsValues.console,

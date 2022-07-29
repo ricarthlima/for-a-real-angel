@@ -6,8 +6,7 @@ import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChapterSplash extends StatefulWidget {
-  SoundPlayer soundPlayer;
-  ChapterSplash({this.soundPlayer});
+  ChapterSplash();
 
   @override
   _ChapterSplashState createState() => _ChapterSplashState();
@@ -29,7 +28,7 @@ class _ChapterSplashState extends State<ChapterSplash> {
       this.idEpisode = (idChapter ~/ 5.1) + 1;
     });
 
-    widget.soundPlayer.playSuccessSound();
+    //widget.soundPlayer!.playSuccessSound();
     _justWait(numberOfSeconds: 4);
     return Scaffold(
       body: Container(
@@ -41,14 +40,16 @@ class _ChapterSplashState extends State<ChapterSplash> {
             Icon(
               (this.idEpisode == 1)
                   ? Icons.ac_unit
-                  : (this.idEpisode == 2) ? Icons.leak_remove : Icons.lens,
+                  : (this.idEpisode == 2)
+                      ? Icons.leak_remove
+                      : Icons.lens,
               size: 45,
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 10),
             ),
             Text(
-              AppLocalizations.of(context).episode +
+              AppLocalizations.of(context)!.episode +
                   " " +
                   ((idChapter ~/ 5.1) + 1).toString(),
               textAlign: TextAlign.center,
@@ -75,14 +76,12 @@ class _ChapterSplashState extends State<ChapterSplash> {
     }
   }
 
-  void _justWait({@required int numberOfSeconds}) async {
+  void _justWait({required int numberOfSeconds}) async {
     await Future.delayed(Duration(seconds: numberOfSeconds));
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => DesktopContextScreen(
-          soundPlayer: widget.soundPlayer,
-        ),
+        builder: (context) => DesktopContextScreen(),
       ),
     );
   }

@@ -11,14 +11,14 @@ import 'package:for_a_real_angel/partials/menu_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RankingScreen extends StatefulWidget {
-  SoundPlayer soundPlayer;
-  RankingScreen({this.soundPlayer});
+  const RankingScreen({Key? key}) : super(key: key);
+
   @override
   _RankingScreenState createState() => _RankingScreenState();
 }
 
 class _RankingScreenState extends State<RankingScreen> {
-  Firestore db = Firestore.instance;
+  FirebaseFirestore db = FirebaseFirestore.instance;
   String username = "";
   bool logado = false;
   int coins = 0;
@@ -48,7 +48,6 @@ class _RankingScreenState extends State<RankingScreen> {
         context: context,
         icon: IconsValues.console,
         title: "ranking",
-        soundPlayer: widget.soundPlayer,
       ),
       body: Container(
         height: size.height,
@@ -92,7 +91,7 @@ class _RankingScreenState extends State<RankingScreen> {
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              this.userRanking.username,
+                              this.userRanking.username!,
                               textAlign: TextAlign.center,
                             ),
                             Text(
@@ -109,7 +108,7 @@ class _RankingScreenState extends State<RankingScreen> {
                     )
                   : Container(),
               (!logado)
-                  ? Text(AppLocalizations.of(context).notSignUp)
+                  ? Text(AppLocalizations.of(context)!.notSignUp)
                   : Container(),
               (!logado)
                   ? TextField(
@@ -123,12 +122,12 @@ class _RankingScreenState extends State<RankingScreen> {
                       maxLines: 1,
                       autocorrect: false,
                       decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context).putUsername,
+                        labelText: AppLocalizations.of(context)!.putUsername,
                         prefixIcon: Icon(
                           Icons.account_circle,
                         ),
                         helperText:
-                            AppLocalizations.of(context).usernameDisclaimer,
+                            AppLocalizations.of(context)!.usernameDisclaimer,
                       ),
                       maxLength: 7,
                     )
@@ -144,7 +143,7 @@ class _RankingScreenState extends State<RankingScreen> {
                             EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                         decoration: BoxDecoration(color: Colors.white),
                         child: Text(
-                          AppLocalizations.of(context).signUp,
+                          AppLocalizations.of(context)!.signUp,
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -200,7 +199,7 @@ class _RankingScreenState extends State<RankingScreen> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        rank.username,
+                        rank.username!,
                         textAlign: TextAlign.center,
                       ),
                       Text(
@@ -257,12 +256,10 @@ class _RankingScreenState extends State<RankingScreen> {
 
   _authenticateUser(BuildContext context, String name) async {
     // Make a query to check username
-    QuerySnapshot query = await db
-        .collection("users")
-        .where("username", isEqualTo: name)
-        .getDocuments();
+    QuerySnapshot query =
+        await db.collection("users").where("username", isEqualTo: name).get();
 
-    if (query.documents.length == 0) {
+    if (query.docs.length == 0) {
       final prefs = await SharedPreferences.getInstance();
 
       // Add to Firebase
@@ -271,7 +268,7 @@ class _RankingScreenState extends State<RankingScreen> {
 
       // Save username and firebaseid
       prefs.setString(PreferencesKey.username, name);
-      prefs.setString(PreferencesKey.firebaseIdUser, ref.documentID);
+      prefs.setString(PreferencesKey.firebaseIdUser, ref.id);
 
       // Update state
       setState(() {
@@ -284,15 +281,15 @@ class _RankingScreenState extends State<RankingScreen> {
     } else {
       showErrorDialog(
         context: context,
-        title: AppLocalizations.of(context).error,
-        content: AppLocalizations.of(context).usernameTaked,
+        title: AppLocalizations.of(context)!.error,
+        content: AppLocalizations.of(context)!.usernameTaked,
       );
     }
   }
 
   _updateRanking() async {
     //Create a temp list
-    List<Ranking> rankingTemp = new List<Ranking>();
+    List<Ranking> rankingTemp = [];
 
     //Add Andrew
     rankingTemp
@@ -304,13 +301,13 @@ class _RankingScreenState extends State<RankingScreen> {
         .orderBy("chapter", descending: true)
         .orderBy("coins", descending: true)
         .limit(100)
-        .getDocuments();
+        .get();
 
     //Make the ranking
     int i = 0;
-    for (var userData in query.documents) {
+    for (var userData in query.docs) {
       i += 1;
-      Map<String, dynamic> data = userData.data;
+      Map<String, dynamic> data = userData.data() as Map<String, dynamic>;
       Ranking temp = Ranking(
         pos: i,
         username: data["username"],

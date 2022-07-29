@@ -8,13 +8,14 @@ import 'package:for_a_real_angel/screens/desktop_screen.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/partials/taskbar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swipedetector/swipedetector.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../values/sounds.dart';
+
 class DesktopContextScreen extends StatefulWidget {
-  SoundPlayer soundPlayer;
-  DesktopContextScreen({this.soundPlayer});
+  DesktopContextScreen();
   @override
   _DesktopContextScreenState createState() => _DesktopContextScreenState();
 }
@@ -45,12 +46,17 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SwipeDetector(
-            onSwipeLeft: () {
-              _inverterWallpaper(context);
-            },
-            onSwipeRight: () {
-              _normalizarWallpaper(context);
+          GestureDetector(
+            onPanUpdate: (details) {
+              // Swiping in right direction.
+              if (details.delta.dx > 0) {
+                _normalizarWallpaper(context);
+              }
+
+              // Swiping in left direction.
+              if (details.delta.dx < 0) {
+                _inverterWallpaper(context);
+              }
             },
             child: Center(
               child: Image.asset(
@@ -60,12 +66,8 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
               ),
             ),
           ),
-          DesktopScreen(
-            soundPlayer: widget.soundPlayer,
-          ),
-          TaskBar(
-            soundPlayer: widget.soundPlayer,
-          ),
+          DesktopScreen(),
+          TaskBar(),
         ],
       ),
     );
@@ -78,7 +80,8 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
         this.wallpaper = "assets/wallpaper-inv-en.png";
       }
     });
-    this.widget.soundPlayer.playGetHintSound();
+
+    context.read<SoundPlayer>().playSFX(Sounds.idGetHint);
   }
 
   void _normalizarWallpaper(BuildContext context) {
@@ -114,7 +117,7 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
               );
             },
             child: Text(
-              AppLocalizations.of(context).update,
+              AppLocalizations.of(context)!.update,
               style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,

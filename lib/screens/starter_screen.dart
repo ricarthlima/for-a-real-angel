@@ -4,6 +4,7 @@ import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/chapter_splash.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Starter extends StatefulWidget {
@@ -12,15 +13,15 @@ class Starter extends StatefulWidget {
 }
 
 class _StarterState extends State<Starter> {
-  SoundPlayer soundPlayer = SoundPlayer();
-  bool _selectSkip = false;
+  bool? _selectSkip = false;
 
   @override
   void initState() {
     _read();
-    _startTheMusic();
+    _startTheMusic().then((value) {
+      super.initState();
+    });
     // _fazerPessoa();
-    super.initState();
   }
 
   @override
@@ -33,7 +34,7 @@ class _StarterState extends State<Starter> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text(AppLocalizations.of(context).starterHints),
+          Text(AppLocalizations.of(context)!.starterHints),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,11 +46,13 @@ class _StarterState extends State<Starter> {
                   color: Colors.black,
                 ),
                 child: CarouselSlider(
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  pauseAutoPlayOnTouch: Duration(seconds: 10),
-                  enlargeCenterPage: true,
-                  viewportFraction: 1.0,
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
+                    pauseAutoPlayOnTouch: true,
+                    enlargeCenterPage: true,
+                    viewportFraction: 1.0,
+                  ),
                   items: <Widget>[
                     Container(
                       child: Column(
@@ -62,7 +65,7 @@ class _StarterState extends State<Starter> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            AppLocalizations.of(context).starterHintGiveUp,
+                            AppLocalizations.of(context)!.starterHintGiveUp,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -79,7 +82,7 @@ class _StarterState extends State<Starter> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            AppLocalizations.of(context).starterHintSounds,
+                            AppLocalizations.of(context)!.starterHintSounds,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -96,7 +99,7 @@ class _StarterState extends State<Starter> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            AppLocalizations.of(context).starterHintInfos,
+                            AppLocalizations.of(context)!.starterHintInfos,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -113,7 +116,7 @@ class _StarterState extends State<Starter> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            AppLocalizations.of(context).starterHintTools,
+                            AppLocalizations.of(context)!.starterHintTools,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -130,7 +133,7 @@ class _StarterState extends State<Starter> {
                             padding: EdgeInsets.only(bottom: 10),
                           ),
                           Text(
-                            AppLocalizations.of(context).starterHintCaps,
+                            AppLocalizations.of(context)!.starterHintCaps,
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -150,26 +153,22 @@ class _StarterState extends State<Starter> {
                     activeColor: Colors.white,
                     checkColor: Colors.black,
                     value: _selectSkip,
-                    onChanged: (bool value) {
+                    onChanged: (bool? value) {
                       setState(() {
                         _selectSkip = value;
                       });
                     },
                   ),
-                  Text(AppLocalizations.of(context).starterHintCheckbox),
+                  Text(AppLocalizations.of(context)!.starterHintCheckbox),
                 ],
               ),
               GestureDetector(
                 onTap: () {
-                  if (_selectSkip) {
+                  if (_selectSkip!) {
                     _saveSkip();
                   }
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ChapterSplash(
-                                soundPlayer: this.soundPlayer,
-                              )));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => ChapterSplash()));
                 },
                 child: Center(
                   child: Container(
@@ -180,7 +179,7 @@ class _StarterState extends State<Starter> {
                     ),
                     child: Center(
                       child: Text(
-                        AppLocalizations.of(context).continuar,
+                        AppLocalizations.of(context)!.continuar,
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -205,9 +204,7 @@ class _StarterState extends State<Starter> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => ChapterSplash(
-            soundPlayer: this.soundPlayer,
-          ),
+          builder: (context) => ChapterSplash(),
         ),
       );
     }
@@ -220,17 +217,17 @@ class _StarterState extends State<Starter> {
     prefs.setBool(key, value);
   }
 
-  void _startTheMusic() async {
+  Future<void> _startTheMusic() async {
     final prefs = await SharedPreferences.getInstance();
     final isMusicOn = prefs.getBool(PreferencesKey.isMusicActive);
 
     if (isMusicOn != null) {
       if (isMusicOn) {
-        soundPlayer.playBGM();
+        context.read<SoundPlayer>().playBGM();
       }
     } else {
       prefs.setBool(PreferencesKey.isMusicActive, true);
-      soundPlayer.playBGM();
+      context.read<SoundPlayer>().playBGM();
     }
   }
 }

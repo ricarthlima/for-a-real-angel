@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
+import 'package:provider/provider.dart';
+
+import '../values/sounds.dart';
 
 AppBar getMenuBar({
-  @required BuildContext context,
-  @required title,
-  @required icon,
-  @required SoundPlayer soundPlayer,
+  required BuildContext context,
+  required title,
+  required icon,
 }) {
   return AppBar(
     leading: Container(
@@ -32,7 +34,7 @@ AppBar getMenuBar({
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
-          soundPlayer.playExitSound();
+          context.read<SoundPlayer>().playSFX(Sounds.idExit);
           Navigator.pop(context);
         },
       )

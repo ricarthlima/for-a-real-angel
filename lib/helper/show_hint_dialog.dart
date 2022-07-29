@@ -8,7 +8,7 @@ showHintDialog(BuildContext context, String hint) {
     builder: (context) {
       return AlertDialog(
         backgroundColor: Colors.white,
-        title: Text(AppLocalizations.of(context).remebering + "..."),
+        title: Text(AppLocalizations.of(context)!.remebering + "..."),
         titleTextStyle: TextStyle(
             color: MyColors.topBlue, fontWeight: FontWeight.bold, fontSize: 18),
         contentTextStyle: TextStyle(color: Colors.black),

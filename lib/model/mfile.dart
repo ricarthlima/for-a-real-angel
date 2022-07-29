@@ -7,17 +7,17 @@ class MFile {
   final String title;
   final String type;
 
-  final String downlink;
-  final String filePath;
+  final String? downlink;
+  final String? filePath;
 
-  final String description;
-  final String size;
+  final String? description;
+  final String? size;
 
   const MFile(
-      {@required this.chapter,
-      @required this.icon,
-      @required this.title,
-      @required this.type,
+      {required this.chapter,
+      required this.icon,
+      required this.title,
+      required this.type,
       this.filePath,
       this.downlink,
       this.description,
@@ -38,8 +38,8 @@ class MFolder {
   final List<MFolder> listFolders;
 
   const MFolder(
-      {@required this.chapter,
-      @required this.title,
-      @required this.listFiles,
-      @required this.listFolders});
+      {required this.chapter,
+      required this.title,
+      required this.listFiles,
+      required this.listFolders});
 }

@@ -6,12 +6,12 @@ import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/partials/menu_bar.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Terminal extends StatefulWidget {
-  SoundPlayer soundPlayer;
-  Terminal({this.soundPlayer});
+  const Terminal({Key? key}) : super(key: key);
+
   @override
   _TerminalState createState() => _TerminalState();
 }
@@ -39,7 +39,6 @@ class _TerminalState extends State<Terminal> {
         icon: IconsValues.console,
         title: "Terminal",
         context: context,
-        soundPlayer: widget.soundPlayer,
       ),
       body: Container(
         padding: EdgeInsets.all(10),
@@ -136,11 +135,8 @@ class _TerminalState extends State<Terminal> {
         }
       case "ranking":
         {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      RankingScreen(soundPlayer: widget.soundPlayer)));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => RankingScreen()));
           break;
         }
       default:
@@ -149,7 +145,7 @@ class _TerminalState extends State<Terminal> {
             log.add("'" +
                 cmd +
                 "' " +
-                AppLocalizations.of(context).notRecognizedCommand +
+                AppLocalizations.of(context)!.notRecognizedCommand +
                 "\n");
           });
         }

@@ -3,7 +3,7 @@ import 'package:for_a_real_angel/model/mfile.dart';
 
 class ExplorerListFile extends StatefulWidget {
   final MFile file;
-  ExplorerListFile({@required this.file});
+  ExplorerListFile({required this.file});
 
   @override
   _ExplorerListFileState createState() => _ExplorerListFileState();

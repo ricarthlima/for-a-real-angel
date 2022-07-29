@@ -4,11 +4,13 @@ import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/partials/start_menu.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
+import 'package:for_a_real_angel/values/sounds.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskBar extends StatefulWidget {
-  SoundPlayer soundPlayer;
-  TaskBar({this.soundPlayer});
+  const TaskBar({Key? key}) : super(key: key);
+
   @override
   _TaskBarState createState() => _TaskBarState();
 }
@@ -48,12 +50,12 @@ class _TaskBarState extends State<TaskBar> {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    widget.soundPlayer.playClickSound();
+                    context.read<SoundPlayer>().playSFX(Sounds.idClick);
                     showStartMenu(context);
                   },
                   child: TaskBarButton(
                     null,
-                    AppLocalizations.of(context).start,
+                    AppLocalizations.of(context)!.start,
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(right: 2)),
@@ -166,7 +168,7 @@ class _TaskBarState extends State<TaskBar> {
     prefs.setBool(PreferencesKey.isSoundActive, this.isSoundActive);
 
     if (this.isSoundActive) {
-      widget.soundPlayer.playExitSound();
+      context.read<SoundPlayer>().playSFX(Sounds.idExit);
     }
   }
 
@@ -179,9 +181,9 @@ class _TaskBarState extends State<TaskBar> {
     prefs.setBool(PreferencesKey.isMusicActive, this.isMusicActive);
 
     if (this.isMusicActive) {
-      widget.soundPlayer.playBGM();
+      context.read<SoundPlayer>().playBGM();
     } else {
-      widget.soundPlayer.stopBGM();
+      context.read<SoundPlayer>().stopBGM();
     }
   }
 
@@ -197,7 +199,7 @@ class _TaskBarState extends State<TaskBar> {
 }
 
 class TaskBarButton extends StatefulWidget {
-  final String icon;
+  final String? icon;
   final String text;
 
   TaskBarButton(this.icon, this.text);
@@ -224,7 +226,7 @@ class _TaskBarButtonState extends State<TaskBarButton> {
         children: <Widget>[
           (widget.icon != null)
               ? Image.asset(
-                  widget.icon,
+                  widget.icon!,
                   height: 20,
                 )
               : Container(),

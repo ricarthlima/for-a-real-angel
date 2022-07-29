@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 
 showMyCustomDialog({
-  BuildContext context,
-  Widget title,
-  Widget content,
-  List<Widget> actions,
+  required BuildContext context,
+  Widget? title,
+  Widget? content,
+  List<Widget>? actions,
 }) {
   showDialog(
       context: context,
@@ -28,17 +28,18 @@ showMyCustomDialog({
       });
 }
 
-showErrorDialog({BuildContext context, String title, String content}) {
+showErrorDialog(
+    {required BuildContext context, String? title, String? content}) {
   showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          title: Text(title),
+          title: Text(title!),
           titleTextStyle: TextStyle(
               color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
           contentTextStyle: TextStyle(color: Colors.black),
-          content: Text(content),
+          content: Text(content!),
           actions: <Widget>[
             FlatButton(
               onPressed: () {

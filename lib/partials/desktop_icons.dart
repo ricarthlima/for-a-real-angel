@@ -4,7 +4,7 @@ class DesktopIcon extends StatelessWidget {
   final String icon;
   final String text;
 
-  DesktopIcon({@required this.icon, @required this.text});
+  DesktopIcon({required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {

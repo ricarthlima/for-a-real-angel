@@ -8,12 +8,12 @@ import 'is_debug.dart';
 saveFirebaseInternalInfo() async {
   if (!isInDebugMode()) {
     final prefs = await SharedPreferences.getInstance();
-    Firestore db = Firestore.instance;
+    FirebaseFirestore db = FirebaseFirestore.instance;
 
     final userInternalKey = prefs.getString(PreferencesKey.internalUserKey);
     final lvl = prefs.getInt(PreferencesKey.chapterId);
 
-    db.collection("userProgressData").document(userInternalKey).setData({
+    db.collection("userProgressData").doc(userInternalKey).set({
       "level": lvl.toString(),
       "timestamp": DateTime.now().toString(),
       "version": InternalVersion.version

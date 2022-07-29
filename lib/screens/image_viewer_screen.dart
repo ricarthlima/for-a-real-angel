@@ -8,8 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ImageViewer extends StatefulWidget {
   final MFile file;
-  SoundPlayer soundPlayer;
-  ImageViewer({@required this.file, this.soundPlayer});
+  ImageViewer({required this.file});
 
   @override
   _ImageViewerState createState() => _ImageViewerState();
@@ -32,11 +31,10 @@ class _ImageViewerState extends State<ImageViewer> {
         icon: IconsValues.image,
         title: widget.file.title,
         context: context,
-        soundPlayer: widget.soundPlayer,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _launchURL(widget.file.downlink);
+          _launchURL(widget.file.downlink!);
         },
         backgroundColor: Colors.white,
         child: Icon(
@@ -54,7 +52,7 @@ class _ImageViewerState extends State<ImageViewer> {
           border: Border.all(color: MyColors.topBlue, width: 5),
         ),
         child: Image.asset(
-          "assets/files/" + widget.file.filePath,
+          "assets/files/" + widget.file.filePath!,
         ),
       ),
     );

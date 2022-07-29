@@ -14,12 +14,14 @@ import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:for_a_real_angel/partials/menu_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swipedetector/swipedetector.dart';
+
+import '../values/sounds.dart';
 
 class AndrewChaptersScreen extends StatefulWidget {
-  final SoundPlayer soundPlayer;
-  AndrewChaptersScreen({this.soundPlayer});
+  const AndrewChaptersScreen({Key? key}) : super(key: key);
+
   @override
   _AndrewChaptersScreenState createState() => _AndrewChaptersScreenState();
 }
@@ -33,14 +35,14 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   ScrollController _controllerScroll = ScrollController();
   TextEditingController _controllerCode = TextEditingController();
 
-  List<AndrewChapter> listChapters = List<AndrewChapter>();
+  List<AndrewChapter> listChapters = [];
 
   //Hints Unlocked
   //bool isUnlockedHint = false;
   int unlockedHints = 0;
 
   //User Coins
-  int userCoins;
+  late int userCoins;
 
   @override
   void initState() {
@@ -60,30 +62,29 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
     return Scaffold(
       appBar: getMenuBar(
-        context: context,
-        icon: IconsValues.soul,
-        title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew",
-        soundPlayer: widget.soundPlayer,
-      ),
+          context: context,
+          icon: IconsValues.soul,
+          title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew"),
       body: (this.listChapters.isEmpty)
           ? Container(
               color: Colors.black,
               alignment: Alignment.center,
-              child: Text(AppLocalizations.of(context).loading + "..."),
+              child: Text(AppLocalizations.of(context)!.loading + "..."),
             )
-          : SwipeDetector(
-              swipeConfiguration: SwipeConfiguration(
-                horizontalSwipeMinVelocity: 100.0,
-                horizontalSwipeMinDisplacement: 10.0,
-              ),
-              onSwipeLeft: () {
-                if (this.idChapter < this.idLastUnlockedChapter) {
-                  _navigateFoward();
+          : GestureDetector(
+              onPanUpdate: (details) {
+                //Right
+                if (details.delta.dx > 0) {
+                  if (this.idChapter > 1) {
+                    _navigateBack();
+                  }
                 }
-              },
-              onSwipeRight: () {
-                if (this.idChapter > 1) {
-                  _navigateBack();
+
+                //Left
+                if (details.delta.dx < 0) {
+                  if (this.idChapter < this.idLastUnlockedChapter) {
+                    _navigateFoward();
+                  }
                 }
               },
               child: GestureDetector(
@@ -139,7 +140,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                 ),
                                 Text(actualChapter.id.toString() +
                                     " - " +
-                                    actualChapter.title),
+                                    actualChapter.title!),
                               ],
                             ),
                             GestureDetector(
@@ -171,7 +172,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                           padding: EdgeInsets.only(top: 10),
                         ),
                         Text(
-                          actualChapter.text.replaceAll("/n", "\n"),
+                          actualChapter.text!.replaceAll("/n", "\n"),
                           style: TextStyle(color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.justify,
                         ),
@@ -192,7 +193,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                       CrossAxisAlignment.stretch,
                                   children: <Widget>[
                                     Text(
-                                      actualChapter.tipQuote,
+                                      actualChapter.tipQuote!,
                                       style: TextStyle(
                                         color: Colors.red,
                                         fontWeight: FontWeight.bold,
@@ -227,7 +228,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                               color: Colors.grey, width: 2),
                                         ),
                                         child: Text(
-                                          AppLocalizations.of(context)
+                                          AppLocalizations.of(context)!
                                               .restore
                                               .toUpperCase(),
                                           textAlign: TextAlign.center,
@@ -268,7 +269,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                     children: <Widget>[
                                                       Text(
                                                         AppLocalizations.of(
-                                                                context)
+                                                                context)!
                                                             .buyHint,
                                                         textAlign:
                                                             TextAlign.center,
@@ -322,7 +323,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                   ),
                                                   child: Text(
                                                       AppLocalizations.of(
-                                                              context)
+                                                              context)!
                                                           .seeHints),
                                                 ),
                                               )
@@ -336,7 +337,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                 child: Column(
                                 children: <Widget>[
                                   Text(
-                                    listChapters[idChapter].tipQuote,
+                                    listChapters[idChapter].tipQuote!,
                                     style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 16,
@@ -352,7 +353,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                 .listChapters[this.idChapter]
                                                 .goodHint !=
                                             "last")
-                                        ? listChapters[idChapter + 1].code
+                                        ? listChapters[idChapter + 1].code!
                                         : "",
                                     textAlign: TextAlign.center,
                                   ),
@@ -393,7 +394,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   _readChapterList(prefs) async {
     // List to get chapters
-    List<AndrewChapter> tempList = new List<AndrewChapter>();
+    List<AndrewChapter> tempList = [];
 
     String chapters = await getAndrewChapterLocale(context);
 
@@ -407,7 +408,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
     // Sort list by ID
     tempList.sort((a, b) {
-      return a.id.compareTo(b.id);
+      return a.id!.compareTo(b.id!);
     });
 
     // Update real list chapters
@@ -467,13 +468,13 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     bool correct = false;
     int i = this.idChapter + 1;
     if (value.toLowerCase().replaceAll(" ", "") ==
-        listChapters[i].code.toLowerCase().replaceAll(" ", "")) {
+        listChapters[i].code!.toLowerCase().replaceAll(" ", "")) {
       correct = true;
     }
 
     if (correct) {
       //Play Success SFX
-      widget.soundPlayer.playSuccessSound();
+      context.read<SoundPlayer>().playSFX(Sounds.idSuccess);
 
       //Scroll screen to top
       _controllerScroll.jumpTo(0.0);
@@ -485,12 +486,12 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
       }
 
       //Save unlocked stage
-      _saveChapterId(listChapters[i].id);
+      _saveChapterId(listChapters[i].id!);
 
       //Change the screen
       setState(() {
-        idChapter = listChapters[i].id;
-        idLastUnlockedChapter = listChapters[i].id;
+        idChapter = listChapters[i].id!;
+        idLastUnlockedChapter = listChapters[i].id!;
       });
 
       //Add Data Points
@@ -514,34 +515,30 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
       _especialSounds();
 
       //Show success dialog
-      if (listChapters[i].id % 5 == 1) {
+      if (listChapters[i].id! % 5 == 1) {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ChapterSplash(
-                      soundPlayer: widget.soundPlayer,
-                    )));
+            context, MaterialPageRoute(builder: (context) => ChapterSplash()));
       } else {
         showNextLevelDialog(context, listChapters[i].id);
       }
     } else {
       if (listChapters[this.idChapter]
-          .closeTrys
+          .closeTrys!
           .keys
           .contains(value.toLowerCase())) {
-        this.widget.soundPlayer.playCloseTrySound();
+        context.read<SoundPlayer>().playSFX(Sounds.idCloseTry);
         String hint = listChapters[this.idChapter]
-            .closeTrys[value.toLowerCase()]
+            .closeTrys![value.toLowerCase()]
             .toString();
         showHintDialog(context, hint);
       } else {
         showErrorDialog(
           context: context,
-          title: AppLocalizations.of(context).error,
-          content: AppLocalizations.of(context).incorrectRestaurationCode,
+          title: AppLocalizations.of(context)!.error,
+          content: AppLocalizations.of(context)!.incorrectRestaurationCode,
         );
         //Play fail sound
-        widget.soundPlayer.playErrorSound();
+        context.read<SoundPlayer>().playSFX(Sounds.idError);
       }
       //Show fail dialog
 
@@ -560,14 +557,14 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   }
 
   _navigateBack() {
-    widget.soundPlayer.playPageSound();
+    context.read<SoundPlayer>().playSFX(Sounds.idPage);
     setState(() {
       this.idChapter -= 1;
     });
   }
 
   _navigateFoward() {
-    widget.soundPlayer.playPageSound();
+    context.read<SoundPlayer>().playSFX(Sounds.idPage);
     setState(() {
       this.idChapter += 1;
     });
@@ -578,11 +575,11 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   String _getTextHints(AndrewChapter cap, int un) {
     String retorno = "";
     if (un > 0) {
-      retorno += cap.badHint;
+      retorno += cap.badHint!;
       if (un > 1) {
-        retorno = retorno + "\n\n-----------\n\n" + cap.goodHint;
+        retorno = retorno + "\n\n-----------\n\n" + cap.goodHint!;
         if (un > 2) {
-          retorno = retorno + "\n\n-----------\n\n" + cap.niceHint;
+          retorno = retorno + "\n\n-----------\n\n" + cap.niceHint!;
         }
       }
     }
@@ -612,17 +609,17 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
       );
     } else {
       //Play fail sound
-      widget.soundPlayer.playErrorSound();
+      context.read<SoundPlayer>().playSFX(Sounds.idError);
       showErrorDialog(
           context: context,
-          title: AppLocalizations.of(context).error,
-          content: AppLocalizations.of(context).noneHint);
+          title: AppLocalizations.of(context)!.error,
+          content: AppLocalizations.of(context)!.noneHint);
     }
   }
 
   _buyHint(BuildContext context) {
     if (this.userCoins >= 10 && this.unlockedHints < 3) {
-      this.widget.soundPlayer.playGetHintSound();
+      context.read<SoundPlayer>().playSFX(Sounds.idGetHint);
       setState(() {
         userCoins -= 10;
         this.unlockedHints += 1;
@@ -632,18 +629,18 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
       _showHint(context);
     } else {
       //Play fail sound
-      widget.soundPlayer.playErrorSound();
+      context.read<SoundPlayer>().playSFX(Sounds.idError);
       showErrorDialog(
           context: context,
-          title: AppLocalizations.of(context).error,
-          content: AppLocalizations.of(context).noDataPoints);
+          title: AppLocalizations.of(context)!.error,
+          content: AppLocalizations.of(context)!.noDataPoints);
     }
   }
 
   _especialSounds() {
     //Play sound of Chapter 7
     if (this.idChapter == 7) {
-      widget.soundPlayer.playMusic("files/message.mp3");
+      context.read<SoundPlayer>().playMusic("files/message.mp3");
     }
   }
 }

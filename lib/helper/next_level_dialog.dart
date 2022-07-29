@@ -3,7 +3,7 @@ import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-showNextLevelDialog(BuildContext context, int id) {
+showNextLevelDialog(BuildContext context, int? id) {
   showDialog(
     context: context,
     builder: (context) {
@@ -15,7 +15,7 @@ showNextLevelDialog(BuildContext context, int id) {
             padding: EdgeInsets.all(5),
             color: MyColors.topBlue,
             child: Text(
-              AppLocalizations.of(context).memoryRestored,
+              AppLocalizations.of(context)!.memoryRestored,
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: Colors.white,
@@ -36,7 +36,7 @@ showNextLevelDialog(BuildContext context, int id) {
                   lineHeight: 18,
                   animation: true,
                   animationDuration: 1250,
-                  percent: id / 50,
+                  percent: id! / 50,
                   center: Text(
                     (id * 2).toString() + "%",
                     style: TextStyle(
@@ -51,7 +51,7 @@ showNextLevelDialog(BuildContext context, int id) {
                   padding: EdgeInsets.only(bottom: 10),
                 ),
                 Text(
-                  "+ 5 " + AppLocalizations.of(context).dataPoints,
+                  "+ 5 " + AppLocalizations.of(context)!.dataPoints,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 12,
