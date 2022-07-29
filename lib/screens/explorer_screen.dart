@@ -35,7 +35,7 @@ class _ExplorerState extends State<Explorer> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: getMenuBar(
+      appBar: getAppBar(
         context: context,
         title: widget.folder.title,
         icon: IconsValues.directory,

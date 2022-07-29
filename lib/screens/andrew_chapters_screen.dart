@@ -61,7 +61,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     }
 
     return Scaffold(
-      appBar: getMenuBar(
+      appBar: getAppBar(
           context: context,
           icon: IconsValues.soul,
           title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew"),

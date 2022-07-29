@@ -34,7 +34,7 @@ class _TerminalState extends State<Terminal> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: getMenuBar(
+      appBar: getAppBar(
         icon: IconsValues.console,
         title: "Terminal",
         context: context,

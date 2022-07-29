@@ -21,7 +21,7 @@ class _ImageViewerState extends State<ImageViewer> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: getMenuBar(
+      appBar: getAppBar(
         icon: IconsValues.image,
         title: widget.file.title,
         context: context,

@@ -5,14 +5,14 @@ import 'package:provider/provider.dart';
 
 import '../values/sounds.dart';
 
-AppBar getMenuBar({
+AppBar getAppBar({
   required BuildContext context,
   required title,
   required icon,
 }) {
   return AppBar(
     leading: Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Image.asset(
         icon,
         width: 20,
@@ -21,7 +21,7 @@ AppBar getMenuBar({
     ),
     title: Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 20,
         fontFamily: "CourierPrime",
         letterSpacing: -2,
@@ -32,7 +32,7 @@ AppBar getMenuBar({
     backgroundColor: MyColors.topBlue,
     actions: <Widget>[
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           context.read<SoundPlayer>().playSFX(Sounds.idExit);
           Navigator.pop(context);

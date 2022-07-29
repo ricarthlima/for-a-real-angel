@@ -117,35 +117,36 @@ class _DesktopScreenState extends State<DesktopScreen> {
               Container(),
               Container(),
               Container(),
-              GestureDetector(
-                onTap: () {
-                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                  showMyCustomDialog(
-                      context: context,
-                      title: Text(AppLocalizations.of(context)!.betaDisclaimer),
-                      content: Text(
-                        AppLocalizations.of(context)!.betaDisclaimerText,
-                        textAlign: TextAlign.justify,
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.okay,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        )
-                      ]);
-                },
-                child: DesktopIcon(
-                  icon: IconsValues.warning,
-                  text: AppLocalizations.of(context)!.betaDisclaimer,
-                ),
-              ),
+              Container(),
+              // GestureDetector(
+              //   onTap: () {
+              //     context.read<SoundPlayer>().playSFX(Sounds.idClick);
+              //     showMyCustomDialog(
+              //         context: context,
+              //         title: Text(AppLocalizations.of(context)!.betaDisclaimer),
+              //         content: Text(
+              //           AppLocalizations.of(context)!.betaDisclaimerText,
+              //           textAlign: TextAlign.justify,
+              //         ),
+              //         actions: <Widget>[
+              //           FlatButton(
+              //             onPressed: () {
+              //               Navigator.pop(context);
+              //             },
+              //             child: Text(
+              //               AppLocalizations.of(context)!.okay,
+              //               style: const TextStyle(
+              //                 color: Colors.grey,
+              //               ),
+              //             ),
+              //           )
+              //         ]);
+              //   },
+              //   child: DesktopIcon(
+              //     icon: IconsValues.warning,
+              //     text: AppLocalizations.of(context)!.betaDisclaimer,
+              //   ),
+              // ),
             ]),
             TableRow(children: [
               GestureDetector(
