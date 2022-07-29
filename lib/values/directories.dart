@@ -17,32 +17,32 @@ class Directories {
           icon: IconsValues.image,
           title: "wing.jpg",
           type: MFileTypes.image,
-          filePath: "n2/wing.jpg",
-          downlink: "https://projeto-k22b.herokuapp.com/files/n2/wing.jpg",
+          filePath: "wing.jpg",
+          downlink: "wing.jpg",
         ),
         MFile(
           chapter: 0,
           icon: IconsValues.image,
           title: "mouth.jpg",
           type: MFileTypes.image,
-          filePath: "n2/mouth.jpg",
-          downlink: "https://projeto-k22b.herokuapp.com/files/n2/mouth.jpg",
+          filePath: "mouth.jpg",
+          downlink: "mouth.jpg",
         ),
         MFile(
           chapter: 0,
           icon: IconsValues.image,
           title: "fur.jpg",
           type: MFileTypes.image,
-          filePath: "n2/fur.jpg",
-          downlink: "https://projeto-k22b.herokuapp.com/files/n2/fur.jpg",
+          filePath: "fur.jpg",
+          downlink: "fur.jpg",
         ),
         MFile(
           chapter: 0,
           icon: IconsValues.image,
           title: "eyes.jpg",
           type: MFileTypes.image,
-          filePath: "n2/eyes.jpg",
-          downlink: "https://projeto-k22b.herokuapp.com/files/n2/eyes.jpg",
+          filePath: "eyes.jpg",
+          downlink: "eyes.jpg",
         ),
       ],
     ),
@@ -54,7 +54,7 @@ class Directories {
           icon: IconsValues.image,
           type: MFileTypes.image,
           filePath: "map.png",
-          downlink: "https://projeto-k22b.herokuapp.com/files/map.png",
+          downlink: "map.png",
         ),
         MFile(
           chapter: 7,
@@ -62,7 +62,7 @@ class Directories {
           icon: IconsValues.musicOn,
           type: MFileTypes.audio,
           filePath: "files/message.mp3",
-          downlink: "https://projeto-k22b.herokuapp.com/files/message.mp3",
+          downlink: "message.mp3",
         ),
         MFile(
           chapter: 8,
@@ -70,7 +70,7 @@ class Directories {
           icon: IconsValues.image,
           type: MFileTypes.image,
           filePath: "message2.jpg",
-          downlink: "https://projeto-k22b.herokuapp.com/files/message2.jpg",
+          downlink: "message2.jpg",
         ),
       ], listFolders: [])
     ]),
@@ -81,6 +81,6 @@ class Directories {
         title: "unknow.jpg",
         type: MFileTypes.image,
         filePath: "unknow.jpg",
-        downlink: "https://projeto-k22b.herokuapp.com/files/unknow.jpg")
+        downlink: "unknow.jpg")
   ]);
 }

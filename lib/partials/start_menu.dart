@@ -4,6 +4,8 @@ import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../helper/laucher_url.dart';
+
 showStartMenu(BuildContext context) {
   List<StartMenuItemLink> listLinks = getStartMenuItemLinks(context);
   showDialog(
@@ -25,7 +27,7 @@ showStartMenu(BuildContext context) {
                     children: <Widget>[
                       ListTile(
                         onTap: () {
-                          _launchURL(item.link);
+                          getFromStorage(context, item.link);
                         },
                         leading: Image.asset(
                           item.icon,
@@ -83,12 +85,4 @@ class StartMenuItemLink {
 
   StartMenuItemLink(
       {required this.icon, required this.title, required this.link});
-}
-
-_launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
 }

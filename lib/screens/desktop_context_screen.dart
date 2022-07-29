@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../helper/laucher_url.dart';
 import '../values/sounds.dart';
 
 class DesktopContextScreen extends StatefulWidget {
@@ -112,7 +113,8 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
         actions: <Widget>[
           FlatButton(
             onPressed: () {
-              _launchURL(
+              getFromStorage(
+                context,
                 "https://play.google.com/store/apps/details?id=com.ricarthlima.for_a_real_angel",
               );
             },
@@ -125,13 +127,5 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
             ),
           )
         ]);
-  }
-
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

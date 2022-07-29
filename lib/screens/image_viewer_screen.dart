@@ -6,6 +6,8 @@ import 'package:for_a_real_angel/values/my_colors.dart';
 import 'package:for_a_real_angel/partials/menu_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../helper/laucher_url.dart';
+
 class ImageViewer extends StatefulWidget {
   final MFile file;
   ImageViewer({required this.file});
@@ -15,14 +17,6 @@ class ImageViewer extends StatefulWidget {
 }
 
 class _ImageViewerState extends State<ImageViewer> {
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,7 +28,7 @@ class _ImageViewerState extends State<ImageViewer> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _launchURL(widget.file.downlink!);
+          getFromStorage(context, widget.file.downlink!);
         },
         backgroundColor: Colors.white,
         child: Icon(

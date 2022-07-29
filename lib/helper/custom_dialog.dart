@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
 
 showMyCustomDialog({
@@ -35,7 +36,8 @@ showErrorDialog(
     builder: (context) {
       return AlertDialog(
         backgroundColor: Colors.white,
-        title: Text(title!),
+        title:
+            Text((title != null) ? title : AppLocalizations.of(context)!.error),
         titleTextStyle: const TextStyle(
             color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
         contentTextStyle: const TextStyle(color: Colors.black),

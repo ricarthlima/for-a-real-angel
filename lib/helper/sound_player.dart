@@ -7,6 +7,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'laucher_url.dart';
+
 class SoundPlayer extends ChangeNotifier {
   final AudioPlayer _playerBGM = AudioPlayer();
   final AudioPlayer _playerSFX = AudioPlayer();
@@ -116,7 +118,7 @@ class SoundPlayer extends ChangeNotifier {
                     ),
                     TextButton(
                       onPressed: () {
-                        _launchURL(file.downlink!);
+                        getFromStorage(context, file.downlink!);
                       },
                       child: const Icon(Icons.cloud_download),
                     ),
@@ -128,13 +130,5 @@ class SoundPlayer extends ChangeNotifier {
         );
       },
     );
-  }
-}
-
-_launchURL(String url) async {
-  if (await canLaunchUrl(Uri.parse(url))) {
-    await launchUrl(Uri.parse(url));
-  } else {
-    throw 'Could not launch $url';
   }
 }

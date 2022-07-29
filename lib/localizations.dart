@@ -294,6 +294,13 @@ class AppLocalizations {
       name: "noneHint",
     );
   }
+
+  String get downloadError {
+    return Intl.message(
+      "Não foi possível fazer download do arquivo",
+      name: "dowloadError",
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
