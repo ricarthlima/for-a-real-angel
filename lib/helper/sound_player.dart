@@ -129,6 +129,8 @@ class SoundPlayer extends ChangeNotifier {
           },
         );
       },
-    );
+    ).then((value) {
+      tempPlayer.stop();
+    });
   }
 }

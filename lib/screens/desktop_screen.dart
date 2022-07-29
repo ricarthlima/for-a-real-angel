@@ -15,9 +15,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../values/sounds.dart';
 
 class DesktopScreen extends StatefulWidget {
-  DesktopScreen();
+  const DesktopScreen({Key? key}) : super(key: key);
+
   @override
-  _DesktopScreenState createState() => _DesktopScreenState();
+  State<DesktopScreen> createState() => _DesktopScreenState();
 }
 
 class _DesktopScreenState extends State<DesktopScreen> {
@@ -27,8 +28,8 @@ class _DesktopScreenState extends State<DesktopScreen> {
 
   @override
   void initState() {
-    this.dataPoints = 0;
-    this.chapterId = 1;
+    dataPoints = 0;
+    chapterId = 1;
     _readChapterId();
     _giveCoinsVerification();
     _readPreferences();
@@ -39,7 +40,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
   Widget build(BuildContext context) {
     _readPreferences();
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: GestureDetector(
         onTap: () {},
         child: Table(
@@ -74,13 +75,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         AppLocalizations.of(context)!.dataPoints,
                       ),
                       content: Text(
-                        AppLocalizations.of(context)!.youHave +
-                            " " +
-                            this.dataPoints.toString() +
-                            " " +
-                            AppLocalizations.of(context)!.dataPoints +
-                            ".\n\n" +
-                            AppLocalizations.of(context)!.dataPointsExplanation,
+                        "${AppLocalizations.of(context)!.youHave} $dataPoints ${AppLocalizations.of(context)!.dataPoints}.\n\n${AppLocalizations.of(context)!.dataPointsExplanation}",
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
@@ -90,7 +85,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                           },
                           child: Text(
                             AppLocalizations.of(context)!.okay,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                             ),
                           ),
@@ -99,9 +94,8 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 },
                 child: DesktopIcon(
                     icon: IconsValues.dataPoints,
-                    text: this.dataPoints.toString() +
-                        "\n" +
-                        AppLocalizations.of(context)!.dataPoints),
+                    text:
+                        "$dataPoints\n${AppLocalizations.of(context)!.dataPoints}"),
               ),
             ]),
             TableRow(children: [
@@ -111,7 +105,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AndrewChaptersScreen(),
+                      builder: (context) => const AndrewChaptersScreen(),
                     ),
                   );
                 },
@@ -140,7 +134,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                           },
                           child: Text(
                             AppLocalizations.of(context)!.okay,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.grey,
                             ),
                           ),
@@ -180,8 +174,10 @@ class _DesktopScreenState extends State<DesktopScreen> {
               GestureDetector(
                 onTap: () {
                   context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Terminal()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Terminal()));
                 },
                 child: DesktopIcon(
                   icon: IconsValues.console,
@@ -205,11 +201,11 @@ class _DesktopScreenState extends State<DesktopScreen> {
 
     if (coins != null) {
       setState(() {
-        this.dataPoints = coins;
+        dataPoints = coins;
       });
     } else {
       setState(() {
-        this.dataPoints = 0;
+        dataPoints = 0;
       });
       prefs.setInt(PreferencesKey.userCoins, 0);
     }
@@ -221,11 +217,11 @@ class _DesktopScreenState extends State<DesktopScreen> {
 
     if (capId != null) {
       setState(() {
-        this.chapterId = capId;
+        chapterId = capId;
       });
     } else {
       setState(() {
-        this.chapterId = 1;
+        chapterId = 1;
       });
     }
   }
@@ -240,7 +236,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
       prefs.setBool(PreferencesKey.giveCoins, false);
       setState(
         () {
-          this.dataPoints = 100;
+          dataPoints = 100;
         },
       );
     }

@@ -65,8 +65,8 @@ class Directories {
           downlink: "message.mp3",
         ),
         MFile(
-          chapter: 8,
-          title: "message2.jpg",
+          chapter: 9,
+          title: "call.jpg",
           icon: IconsValues.image,
           type: MFileTypes.image,
           filePath: "message2.jpg",

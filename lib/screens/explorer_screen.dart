@@ -18,7 +18,7 @@ class Explorer extends StatefulWidget {
   Explorer({required this.folder});
 
   @override
-  _ExplorerState createState() => _ExplorerState();
+  State<Explorer> createState() => _ExplorerState();
 }
 
 class _ExplorerState extends State<Explorer> {
@@ -42,7 +42,7 @@ class _ExplorerState extends State<Explorer> {
       ),
       backgroundColor: Colors.white,
       body: Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         height: size.height,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -54,7 +54,7 @@ class _ExplorerState extends State<Explorer> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              ((widget.roots != null) && (widget.roots.length > 0))
+              ((widget.roots.isNotEmpty))
                   ? GestureDetector(
                       onTap: () {
                         MFolder pai = widget.roots.removeLast();
@@ -64,7 +64,7 @@ class _ExplorerState extends State<Explorer> {
                         context.read<SoundPlayer>().playSFX(Sounds.idFolder);
                       },
                       child: ExplorerListFolder(
-                        folder: MFolder(
+                        folder: const MFolder(
                             chapter: 0,
                             title: "...",
                             listFiles: [],
@@ -111,16 +111,16 @@ class _ExplorerState extends State<Explorer> {
 
   Future _readChapter() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.chapterId;
+    const key = PreferencesKey.chapterId;
     final value = prefs.getInt(key);
 
     if (value != null) {
       setState(() {
-        this.idChapter = value;
+        idChapter = value;
       });
     } else {
       setState(() {
-        this.idChapter = 1;
+        idChapter = 1;
       });
     }
   }

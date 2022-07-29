@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: const [Locale("en"), Locale("pt")],
+      locale: const Locale("pt"),
       title: 'F(or) a Real Angel',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

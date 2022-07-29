@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../helper/laucher_url.dart';
 
 showStartMenu(BuildContext context) {
@@ -18,7 +16,7 @@ showStartMenu(BuildContext context) {
         backgroundColor: MyColors.windowsGrey,
         child: Container(
           height: size.height / 2,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: ListView(
             children: <Widget>[
               for (StartMenuItemLink item in listLinks)
@@ -27,7 +25,7 @@ showStartMenu(BuildContext context) {
                     children: <Widget>[
                       ListTile(
                         onTap: () {
-                          getFromStorage(context, item.link);
+                          launchURL(context, item.link);
                         },
                         leading: Image.asset(
                           item.icon,
@@ -36,13 +34,13 @@ showStartMenu(BuildContext context) {
                         ),
                         title: Text(
                           item.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 12,
                           ),
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         color: Colors.grey,
                         height: 0,
                       ),
@@ -61,16 +59,16 @@ List<StartMenuItemLink> getStartMenuItemLinks(BuildContext context) {
   return [
     StartMenuItemLink(
         icon: IconsValues.reddit,
-        title: AppLocalizations.of(context)!.visitOur + " Reddit",
+        title: "${AppLocalizations.of(context)!.visitOur} Reddit",
         link: "https://www.reddit.com/r/FaraRiddles/"),
     StartMenuItemLink(
         icon: IconsValues.twitter,
-        title: AppLocalizations.of(context)!.visitOur + " Twitter",
-        link: "https://twitter.com/FaraRiddles"),
+        title: "${AppLocalizations.of(context)!.visitOur} Twitter",
+        link: "https://twitter.com/ricarthlima"),
     StartMenuItemLink(
         icon: IconsValues.instagram,
-        title: AppLocalizations.of(context)!.visitOur + " Instagram",
-        link: "https://www.instagram.com/fara.game/"),
+        title: "${AppLocalizations.of(context)!.visitOur} Instagram",
+        link: "https://www.instagram.com/ricarthlima"),
     StartMenuItemLink(
         icon: IconsValues.code,
         title: AppLocalizations.of(context)!.madeWith,

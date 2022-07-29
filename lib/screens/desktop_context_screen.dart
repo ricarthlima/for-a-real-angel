@@ -35,7 +35,7 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
     _versionVerification(context);
     if (Localizations.localeOf(context).languageCode == "en") {
       setState(() {
-        this.wallpaper = "assets/wallpaper-def-en.png";
+        wallpaper = "assets/wallpaper-def-en.png";
       });
     }
   }
@@ -61,37 +61,49 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
             },
             child: Center(
               child: Image.asset(
-                this.wallpaper,
+                wallpaper,
                 height: size.height,
                 fit: BoxFit.none,
               ),
             ),
           ),
-          DesktopScreen(),
-          TaskBar(),
+          const DesktopScreen(),
+          const TaskBar(),
         ],
       ),
     );
   }
 
   void _inverterWallpaper(BuildContext context) {
-    setState(() {
-      this.wallpaper = "assets/wallpaper-inv.png";
-      if (Localizations.localeOf(context).languageCode == "en") {
-        this.wallpaper = "assets/wallpaper-inv-en.png";
-      }
-    });
+    setState(
+      () {
+        switch (Localizations.localeOf(context).languageCode) {
+          case "en":
+            wallpaper = "assets/wallpaper-inv-en.png";
+            break;
+          case "pt":
+            wallpaper = "assets/wallpaper-inv.png";
+            break;
+        }
+      },
+    );
 
     context.read<SoundPlayer>().playSFX(Sounds.idGetHint);
   }
 
   void _normalizarWallpaper(BuildContext context) {
-    setState(() {
-      this.wallpaper = "assets/wallpaper-def.png";
-      if (Localizations.localeOf(context).languageCode == "en") {
-        this.wallpaper = "assets/wallpaper-def-en.png";
-      }
-    });
+    setState(
+      () {
+        switch (Localizations.localeOf(context).languageCode) {
+          case "en":
+            wallpaper = "assets/wallpaper-def-en.png";
+            break;
+          case "pt":
+            wallpaper = "assets/wallpaper-def.png";
+            break;
+        }
+      },
+    );
   }
 
   void _versionVerification(BuildContext context) async {
@@ -103,7 +115,6 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
   }
 
   void _showVersionDialog(BuildContext context, String versionPrefs) async {
-    print(versionPrefs.toString());
     Map<String, dynamic> versionQuery = jsonDecode(versionPrefs);
     showMyCustomDialog(
         context: context,
@@ -111,7 +122,7 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
         content:
             Text(versionQuery["message"].toString().replaceAll("/n", "\n")),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {
               getFromStorage(
                 context,
@@ -120,7 +131,7 @@ class _DesktopContextScreenState extends State<DesktopContextScreen>
             },
             child: Text(
               AppLocalizations.of(context)!.update,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,
               ),
