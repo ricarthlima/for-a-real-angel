@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/custom_dialog.dart';
-import 'package:for_a_real_angel/helper/getAndrewChapterLocale.dart';
+import 'package:for_a_real_angel/helper/get_chapter_by_locale.dart';
 import 'package:for_a_real_angel/helper/next_level_dialog.dart';
 import 'package:for_a_real_angel/helper/save_firebase_internal_info.dart';
 import 'package:for_a_real_angel/helper/show_hint_dialog.dart';
@@ -391,7 +391,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     // List to get chapters
     List<AndrewChapter> tempList = [];
 
-    String chapters = await getAndrewChapterLocale(context);
+    String chapters = await getChapterByLocale(context);
 
     Map jsonData = jsonDecode(chapters);
 
