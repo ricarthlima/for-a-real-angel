@@ -12,13 +12,13 @@ showMyCustomDialog({
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          titleTextStyle: TextStyle(
+          titleTextStyle: const TextStyle(
             color: MyColors.topBlue,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
           title: title,
-          contentTextStyle: TextStyle(
+          contentTextStyle: const TextStyle(
             color: Colors.black,
             fontSize: 12,
           ),
@@ -31,26 +31,27 @@ showMyCustomDialog({
 showErrorDialog(
     {required BuildContext context, String? title, String? content}) {
   showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          title: Text(title!),
-          titleTextStyle: TextStyle(
-              color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
-          contentTextStyle: TextStyle(color: Colors.black),
-          content: Text(content!),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                "OK",
-                style: TextStyle(color: Colors.black),
-              ),
-            )
-          ],
-        );
-      });
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        backgroundColor: Colors.white,
+        title: Text(title!),
+        titleTextStyle: const TextStyle(
+            color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18),
+        contentTextStyle: const TextStyle(color: Colors.black),
+        content: Text(content!),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "OK",
+              style: TextStyle(color: Colors.black),
+            ),
+          )
+        ],
+      );
+    },
+  );
 }

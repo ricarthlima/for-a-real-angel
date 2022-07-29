@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/model/mfile.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
@@ -11,7 +13,9 @@ class SoundPlayer extends ChangeNotifier {
 
   playBGM() async {
     _playerBGM.setUrl("asset:///assets/music/mainbgm.mp3").then((value) {
-      _playerBGM.play();
+      _playerBGM.setLoopMode(LoopMode.all).then((value) {
+        _playerBGM.play();
+      });
     });
   }
 
@@ -37,7 +41,7 @@ class SoundPlayer extends ChangeNotifier {
 
   playMusic(String path) {
     final tempPlayer = AudioPlayer();
-    tempPlayer.setUrl(path);
+    tempPlayer.setUrl("asset:///assets/$path");
     tempPlayer.play();
   }
 
@@ -45,74 +49,91 @@ class SoundPlayer extends ChangeNotifier {
     required BuildContext context,
     required MFile file,
   }) async {
-    String path = "files/${file.filePath!}";
+    String path = "asset:///assets/${file.filePath!}";
+
     final tempPlayer = AudioPlayer();
-    tempPlayer.setUrl(path);
+    await tempPlayer.setUrl(path);
     tempPlayer.play();
-    int duration = 0;
-    int position = 0;
+
+    Duration duration = tempPlayer.duration!;
+    Duration position = duration;
 
     showDialog(
       context: context,
       builder: (context) {
-        return StatefulBuilder(builder: (content, setState) {
-          tempPlayer.bufferedPositionStream.listen((Duration d) {
-            setState(() => duration = d.inMilliseconds);
-          });
-          tempPlayer.bufferedPositionStream.listen((Duration p) {
-            setState(() => position = p.inMilliseconds);
-          });
-          return AlertDialog(
-            title: Text(path.split("/").removeLast()),
-            content: Container(
-              height: 50,
-              child: Slider(
-                onChanged: (time) {},
-                min: -5,
-                max: (duration / 1) + 5,
-                value: position / 1,
+        return StatefulBuilder(
+          builder: (content, setState) {
+            tempPlayer.positionStream.listen((Duration d) {
+              setState(
+                () {
+                  position = d;
+                },
+              );
+            });
+            return AlertDialog(
+              title: Text(path.split("/").removeLast()),
+              content: SizedBox(
+                height: 50,
+                child: Slider(
+                  onChanged: (v) {
+                    tempPlayer.seek(
+                      Duration(
+                        microseconds: (duration.inMicroseconds * v).floor(),
+                      ),
+                    );
+                  },
+                  value:
+                      min(1, position.inMicroseconds / duration.inMicroseconds),
+                ),
               ),
-            ),
-            actions: <Widget>[
-              Row(
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      tempPlayer.play();
-                    },
-                    child: Icon(Icons.play_arrow),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      tempPlayer.pause();
-                    },
-                    child: Icon(Icons.pause),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      tempPlayer.stop();
-                    },
-                    child: Icon(Icons.stop),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      _launchURL(file.downlink!);
-                    },
-                    child: Icon(Icons.cloud_download),
-                  ),
-                ],
-              )
-            ],
-          );
-        });
+              actions: <Widget>[
+                Row(
+                  children: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        if (tempPlayer.playing) {
+                          tempPlayer.pause();
+                        } else {
+                          tempPlayer.play();
+                        }
+                      },
+                      child: (tempPlayer.playing)
+                          ? const Icon(Icons.pause)
+                          : const Icon(Icons.play_arrow),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        tempPlayer.stop();
+                      },
+                      child: const Icon(Icons.stop),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        tempPlayer.seek(Duration.zero);
+                        tempPlayer.play();
+                      },
+                      child: const Icon(Icons.replay),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        _launchURL(file.downlink!);
+                      },
+                      child: const Icon(Icons.cloud_download),
+                    ),
+                  ],
+                )
+              ],
+            );
+          },
+        );
       },
     );
   }
 }
 
 _launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
+  if (await canLaunchUrl(Uri.parse(url))) {
+    await launchUrl(Uri.parse(url));
   } else {
     throw 'Could not launch $url';
   }

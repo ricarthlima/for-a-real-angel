@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/custom_dialog.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/model/ranking.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
@@ -14,7 +13,7 @@ class RankingScreen extends StatefulWidget {
   const RankingScreen({Key? key}) : super(key: key);
 
   @override
-  _RankingScreenState createState() => _RankingScreenState();
+  State<RankingScreen> createState() => _RankingScreenState();
 }
 
 class _RankingScreenState extends State<RankingScreen> {
@@ -24,7 +23,7 @@ class _RankingScreenState extends State<RankingScreen> {
   int coins = 0;
   int chapterId = 0;
 
-  TextEditingController _controllerCode = TextEditingController();
+  final TextEditingController _controllerCode = TextEditingController();
 
   List<Ranking> listRanking = [
     Ranking(pos: 0, username: "andrew", chapter: 999, coins: 999)
@@ -51,7 +50,7 @@ class _RankingScreenState extends State<RankingScreen> {
       ),
       body: Container(
         height: size.height,
-        padding: EdgeInsets.all(25),
+        padding: const EdgeInsets.all(25),
         decoration: BoxDecoration(
           border: Border.all(color: MyColors.topBlue, width: 5),
           color: Colors.black,
@@ -62,7 +61,7 @@ class _RankingScreenState extends State<RankingScreen> {
               (logado)
                   ? Table(
                       children: [
-                        TableRow(children: [
+                        const TableRow(children: [
                           Text(
                             "POS",
                             style: TextStyle(fontSize: 10),
@@ -87,19 +86,19 @@ class _RankingScreenState extends State<RankingScreen> {
                         TableRow(
                           children: <Widget>[
                             Text(
-                              this.userRanking.pos.toString(),
+                              userRanking.pos.toString(),
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              this.userRanking.username!,
+                              userRanking.username!,
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              this.userRanking.chapter.toString(),
+                              userRanking.chapter.toString(),
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              this.userRanking.coins.toString(),
+                              userRanking.coins.toString(),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -113,7 +112,7 @@ class _RankingScreenState extends State<RankingScreen> {
               (!logado)
                   ? TextField(
                       controller: _controllerCode,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontFamily: "CourierPrime",
                       ),
@@ -123,7 +122,7 @@ class _RankingScreenState extends State<RankingScreen> {
                       autocorrect: false,
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context)!.putUsername,
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.account_circle,
                         ),
                         helperText:
@@ -138,39 +137,39 @@ class _RankingScreenState extends State<RankingScreen> {
                         _authenticateUser(context, _controllerCode.text);
                       },
                       child: Container(
-                        margin: EdgeInsets.only(top: 15),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                        decoration: BoxDecoration(color: Colors.white),
+                        margin: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 30),
+                        decoration: const BoxDecoration(color: Colors.white),
                         child: Text(
                           AppLocalizations.of(context)!.signUp,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                           ),
                         ),
                       ),
                     )
                   : Container(),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 10),
               ),
-              Divider(
+              const Divider(
                 color: Colors.white,
                 thickness: 2.0,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 10),
               ),
-              Text(
+              const Text(
                 "RANKING MUNDIAL",
                 style: TextStyle(color: Colors.yellow),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 10),
               ),
               Table(
                 children: [
-                  TableRow(children: [
+                  const TableRow(children: [
                     Text(
                       "POS",
                       style: TextStyle(fontSize: 10),
@@ -192,7 +191,7 @@ class _RankingScreenState extends State<RankingScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ]),
-                  for (var rank in this.listRanking)
+                  for (var rank in listRanking)
                     TableRow(children: [
                       Text(
                         rank.pos.toString(),
@@ -247,9 +246,9 @@ class _RankingScreenState extends State<RankingScreen> {
       }
 
       if (capId != null) {
-        this.chapterId = capId;
+        chapterId = capId;
       } else {
-        this.chapterId = 1;
+        chapterId = 1;
       }
     });
   }
@@ -259,12 +258,13 @@ class _RankingScreenState extends State<RankingScreen> {
     QuerySnapshot query =
         await db.collection("users").where("username", isEqualTo: name).get();
 
-    if (query.docs.length == 0) {
+    if (query.docs.isEmpty) {
       final prefs = await SharedPreferences.getInstance();
 
       // Add to Firebase
-      DocumentReference ref = await db.collection("users").add(
-          {"username": name, "chapter": this.chapterId, "coins": this.coins});
+      DocumentReference ref = await db
+          .collection("users")
+          .add({"username": name, "chapter": chapterId, "coins": coins});
 
       // Save username and firebaseid
       prefs.setString(PreferencesKey.username, name);
@@ -272,8 +272,8 @@ class _RankingScreenState extends State<RankingScreen> {
 
       // Update state
       setState(() {
-        this.logado = true;
-        this.username = name;
+        logado = true;
+        username = name;
       });
 
       //Update ranking
@@ -318,9 +318,9 @@ class _RankingScreenState extends State<RankingScreen> {
 
       //Find user ranking
       if (logado) {
-        if (temp.username == this.username) {
+        if (temp.username == username) {
           setState(() {
-            this.userRanking = temp;
+            userRanking = temp;
           });
         }
       }
@@ -328,7 +328,7 @@ class _RankingScreenState extends State<RankingScreen> {
 
     //Refresh state
     setState(() {
-      this.listRanking = rankingTemp;
+      listRanking = rankingTemp;
     });
   }
 }

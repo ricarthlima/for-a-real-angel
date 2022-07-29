@@ -32,8 +32,8 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   int idLastUnlockedChapter = 0;
 
   // Controllers
-  ScrollController _controllerScroll = ScrollController();
-  TextEditingController _controllerCode = TextEditingController();
+  final ScrollController _controllerScroll = ScrollController();
+  final TextEditingController _controllerCode = TextEditingController();
 
   List<AndrewChapter> listChapters = [];
 
@@ -65,24 +65,24 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
           context: context,
           icon: IconsValues.soul,
           title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew"),
-      body: (this.listChapters.isEmpty)
+      body: (listChapters.isEmpty)
           ? Container(
               color: Colors.black,
               alignment: Alignment.center,
-              child: Text(AppLocalizations.of(context)!.loading + "..."),
+              child: Text("${AppLocalizations.of(context)!.loading} ..."),
             )
           : GestureDetector(
               onPanUpdate: (details) {
                 //Right
                 if (details.delta.dx > 0) {
-                  if (this.idChapter > 1) {
+                  if (idChapter > 1) {
                     _navigateBack();
                   }
                 }
 
                 //Left
                 if (details.delta.dx < 0) {
-                  if (this.idChapter < this.idLastUnlockedChapter) {
+                  if (idChapter < idLastUnlockedChapter) {
                     _navigateFoward();
                   }
                 }
@@ -104,7 +104,8 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                       width: 5,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: SingleChildScrollView(
                     controller: _controllerScroll,
                     child: Column(
@@ -113,77 +114,74 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GestureDetector(
-                              child: Icon(
-                                Icons.navigate_before,
-                                color: (this.idLastUnlockedChapter < 2 ||
-                                        this.idChapter < 2)
-                                    ? Colors.grey
-                                    : Colors.white,
-                              ),
-                              onTap: (this.idLastUnlockedChapter < 2 ||
-                                      this.idChapter < 2)
-                                  ? () {
-                                      _navigateError();
-                                    }
-                                  : () {
-                                      _navigateBack();
-                                    },
-                            ),
-                            Column(
-                              children: <Widget>[
-                                Icon(
-                                  (this.idChapter <= 5)
-                                      ? Icons.ac_unit
-                                      : (this.idChapter <= 10)
-                                          ? Icons.leak_remove
-                                          : Icons.radio_button_unchecked,
-                                ),
-                                Text(actualChapter.id.toString() +
-                                    " - " +
-                                    actualChapter.title!),
-                              ],
-                            ),
-                            GestureDetector(
-                              child: Icon(
-                                Icons.navigate_next,
-                                color: (this.idChapter >=
-                                        this.idLastUnlockedChapter)
-                                    ? Colors.grey
-                                    : Colors.white,
-                              ),
                               onTap:
-                                  (this.idChapter >= this.idLastUnlockedChapter)
+                                  (idLastUnlockedChapter < 2 || idChapter < 2)
                                       ? () {
                                           _navigateError();
                                         }
                                       : () {
-                                          _navigateFoward();
+                                          _navigateBack();
                                         },
+                              child: Icon(
+                                Icons.navigate_before,
+                                color:
+                                    (idLastUnlockedChapter < 2 || idChapter < 2)
+                                        ? Colors.grey
+                                        : Colors.white,
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Icon(
+                                  (idChapter <= 5)
+                                      ? Icons.ac_unit
+                                      : (idChapter <= 10)
+                                          ? Icons.leak_remove
+                                          : Icons.radio_button_unchecked,
+                                ),
+                                Text(
+                                    "${actualChapter.id} - ${actualChapter.title!}"),
+                              ],
+                            ),
+                            GestureDetector(
+                              onTap: (idChapter >= idLastUnlockedChapter)
+                                  ? () {
+                                      _navigateError();
+                                    }
+                                  : () {
+                                      _navigateFoward();
+                                    },
+                              child: Icon(
+                                Icons.navigate_next,
+                                color: (idChapter >= idLastUnlockedChapter)
+                                    ? Colors.grey
+                                    : Colors.white,
+                              ),
                             ),
                           ],
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(top: 10),
                         ),
-                        Divider(
+                        const Divider(
                           color: Colors.white,
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(top: 10),
                         ),
                         Text(
                           actualChapter.text!.replaceAll("/n", "\n"),
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.justify,
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(top: 35),
                         ),
-                        ((this.idChapter == this.idLastUnlockedChapter) &&
-                                (this.listChapters[this.idChapter].goodHint !=
-                                    "last"))
+                        ((idChapter == idLastUnlockedChapter) &&
+                                (listChapters[idChapter].goodHint != "last"))
                             ? Container(
-                                padding: EdgeInsets.all(7),
+                                padding: const EdgeInsets.all(7),
                                 decoration: BoxDecoration(
                                   border:
                                       Border.all(color: Colors.red, width: 3),
@@ -194,25 +192,25 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                   children: <Widget>[
                                     Text(
                                       actualChapter.tipQuote!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.red,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.only(top: 12),
                                     ),
                                     TextField(
                                       controller: _controllerCode,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontFamily: "CourierPrime",
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.only(bottom: 10),
                                     ),
                                     GestureDetector(
@@ -221,7 +219,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                             _controllerCode.text, context);
                                       },
                                       child: Container(
-                                        padding: EdgeInsets.all(10),
+                                        padding: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           border: Border.all(
@@ -232,27 +230,28 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                               .restore
                                               .toUpperCase(),
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.black,
                                             fontFamily: "CourierPrime",
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.only(bottom: 5),
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                        (this.unlockedHints < 3)
+                                        (unlockedHints < 3)
                                             ? GestureDetector(
                                                 onTap: () {
                                                   _buyHint(context);
                                                 },
                                                 child: Container(
-                                                  padding: EdgeInsets.all(10),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
                                                   decoration: BoxDecoration(
                                                     color: Colors.black,
                                                     border: Border.all(
@@ -273,7 +272,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                             .buyHint,
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Colors.white,
                                                           fontFamily:
                                                               "CourierPrime",
@@ -281,19 +280,19 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                       ),
                                                       Row(
                                                         children: <Widget>[
-                                                          Text(" (10"),
-                                                          Padding(
+                                                          const Text(" (10"),
+                                                          const Padding(
                                                             padding:
                                                                 EdgeInsets.only(
                                                                     right: 2),
                                                           ),
                                                           Image.asset(
                                                             IconsValues
-                                                                .data_points,
+                                                                .dataPoints,
                                                             width: 15,
                                                             height: 15,
                                                           ),
-                                                          Text(")"),
+                                                          const Text(")"),
                                                         ],
                                                       )
                                                     ],
@@ -301,20 +300,20 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                                 ),
                                               )
                                             : Container(),
-                                        (this.unlockedHints > 0 &&
-                                                this.unlockedHints < 3)
-                                            ? Padding(
+                                        (unlockedHints > 0 && unlockedHints < 3)
+                                            ? const Padding(
                                                 padding:
                                                     EdgeInsets.only(right: 10),
                                               )
                                             : Container(),
-                                        (this.unlockedHints > 0)
+                                        (unlockedHints > 0)
                                             ? GestureDetector(
                                                 onTap: () {
                                                   _showHint(context);
                                                 },
                                                 child: Container(
-                                                  padding: EdgeInsets.all(10),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
                                                   decoration: BoxDecoration(
                                                     color: Colors.black,
                                                     border: Border.all(
@@ -333,32 +332,28 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
                                   ],
                                 ),
                               )
-                            : Container(
-                                child: Column(
+                            : Column(
                                 children: <Widget>[
                                   Text(
                                     listChapters[idChapter].tipQuote!,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.red,
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(bottom: 5),
                                   ),
                                   Text(
-                                    (this
-                                                .listChapters[this.idChapter]
-                                                .goodHint !=
-                                            "last")
+                                    (listChapters[idChapter].goodHint != "last")
                                         ? listChapters[idChapter + 1].code!
                                         : "",
                                     textAlign: TextAlign.center,
                                   ),
                                 ],
-                              )),
+                              ),
                       ],
                     ),
                   ),
@@ -375,13 +370,13 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     //Chapter ID
     if (value != null) {
       setState(() {
-        this.idChapter = value;
-        this.idLastUnlockedChapter = value;
+        idChapter = value;
+        idLastUnlockedChapter = value;
       });
     } else {
       setState(() {
-        this.idChapter = 1;
-        this.idLastUnlockedChapter = 1;
+        idChapter = 1;
+        idLastUnlockedChapter = 1;
       });
     }
 
@@ -413,7 +408,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
     // Update real list chapters
     setState(() {
-      this.listChapters = tempList;
+      listChapters = tempList;
     });
   }
 
@@ -427,11 +422,11 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     //Hints
     if (hints != null) {
       setState(() {
-        this.unlockedHints = hints;
+        unlockedHints = hints;
       });
     } else {
       setState(() {
-        this.unlockedHints = 0;
+        unlockedHints = 0;
       });
       _saveHintsChange();
     }
@@ -447,11 +442,11 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
     if (coins != null) {
       setState(() {
-        this.userCoins = coins;
+        userCoins = coins;
       });
     } else {
       setState(() {
-        this.userCoins = 0;
+        userCoins = 0;
       });
       _saveUserCoins();
     }
@@ -459,14 +454,14 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   Future _saveUserCoins() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt(PreferencesKey.userCoins, this.userCoins);
+    prefs.setInt(PreferencesKey.userCoins, userCoins);
     updateRanking();
     saveFirebaseInternalInfo();
   }
 
   _testCode(String value, BuildContext context) async {
     bool correct = false;
-    int i = this.idChapter + 1;
+    int i = idChapter + 1;
     if (value.toLowerCase().replaceAll(" ", "") ==
         listChapters[i].code!.toLowerCase().replaceAll(" ", "")) {
       correct = true;
@@ -507,7 +502,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
       //Lock next hint
       setState(() {
-        this.unlockedHints = 0;
+        unlockedHints = 0;
       });
       _saveHintsChange();
 
@@ -522,14 +517,13 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
         showNextLevelDialog(context, listChapters[i].id);
       }
     } else {
-      if (listChapters[this.idChapter]
+      if (listChapters[idChapter]
           .closeTrys!
           .keys
           .contains(value.toLowerCase())) {
         context.read<SoundPlayer>().playSFX(Sounds.idCloseTry);
-        String hint = listChapters[this.idChapter]
-            .closeTrys![value.toLowerCase()]
-            .toString();
+        String hint =
+            listChapters[idChapter].closeTrys![value.toLowerCase()].toString();
         showHintDialog(context, hint);
       } else {
         showErrorDialog(
@@ -553,20 +547,20 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   _saveHintsChange() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt(PreferencesKey.unlockedHints, this.unlockedHints);
+    prefs.setInt(PreferencesKey.unlockedHints, unlockedHints);
   }
 
   _navigateBack() {
     context.read<SoundPlayer>().playSFX(Sounds.idPage);
     setState(() {
-      this.idChapter -= 1;
+      idChapter -= 1;
     });
   }
 
   _navigateFoward() {
     context.read<SoundPlayer>().playSFX(Sounds.idPage);
     setState(() {
-      this.idChapter += 1;
+      idChapter += 1;
     });
   }
 
@@ -577,9 +571,9 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
     if (un > 0) {
       retorno += cap.badHint!;
       if (un > 1) {
-        retorno = retorno + "\n\n-----------\n\n" + cap.goodHint!;
+        retorno = "$retorno\n\n-----------\n\n${cap.goodHint!}";
         if (un > 2) {
-          retorno = retorno + "\n\n-----------\n\n" + cap.niceHint!;
+          retorno = "$retorno\n\n-----------\n\n${cap.niceHint!}";
         }
       }
     }
@@ -587,17 +581,17 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   }
 
   _showHint(BuildContext context) async {
-    if (this.unlockedHints > 0) {
+    if (unlockedHints > 0) {
       showDialog(
         context: context,
         builder: (context) {
           return Dialog(
             backgroundColor: Colors.white,
             child: Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
-                _getTextHints(listChapters[idChapter], this.unlockedHints),
-                style: TextStyle(
+                _getTextHints(listChapters[idChapter], unlockedHints),
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                 ),
@@ -618,11 +612,11 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
   }
 
   _buyHint(BuildContext context) {
-    if (this.userCoins >= 10 && this.unlockedHints < 3) {
+    if (userCoins >= 10 && unlockedHints < 3) {
       context.read<SoundPlayer>().playSFX(Sounds.idGetHint);
       setState(() {
         userCoins -= 10;
-        this.unlockedHints += 1;
+        unlockedHints += 1;
       });
       _saveUserCoins();
       _saveHintsChange();
@@ -639,7 +633,7 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
   _especialSounds() {
     //Play sound of Chapter 7
-    if (this.idChapter == 7) {
+    if (idChapter == 7) {
       context.read<SoundPlayer>().playMusic("files/message.mp3");
     }
   }

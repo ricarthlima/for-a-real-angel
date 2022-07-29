@@ -13,7 +13,7 @@ class AppLocalizations {
 
     return initializeMessages(localeName).then((bool _) {
       Intl.defaultLocale = localeName;
-      return new AppLocalizations();
+      return AppLocalizations();
     });
   }
 

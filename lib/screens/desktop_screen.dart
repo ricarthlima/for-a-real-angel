@@ -58,7 +58,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   );
                 },
                 child: DesktopIcon(
-                  icon: IconsValues.recycle_bin_empty,
+                  icon: IconsValues.recycleBinEmpty,
                   text: AppLocalizations.of(context)!.recycleBin,
                 ),
               ),
@@ -98,7 +98,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       ]);
                 },
                 child: DesktopIcon(
-                    icon: IconsValues.data_points,
+                    icon: IconsValues.dataPoints,
                     text: this.dataPoints.toString() +
                         "\n" +
                         AppLocalizations.of(context)!.dataPoints),
@@ -167,7 +167,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   );
                 },
                 child: DesktopIcon(
-                  icon: IconsValues.directory_closed,
+                  icon: IconsValues.directoryClosed,
                   text: AppLocalizations.of(context)!.documents,
                 ),
               ),

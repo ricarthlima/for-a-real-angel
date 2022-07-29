@@ -12,7 +12,7 @@ class TaskBar extends StatefulWidget {
   const TaskBar({Key? key}) : super(key: key);
 
   @override
-  _TaskBarState createState() => _TaskBarState();
+  State<TaskBar> createState() => _TaskBarState();
 }
 
 class _TaskBarState extends State<TaskBar> {
@@ -33,10 +33,10 @@ class _TaskBarState extends State<TaskBar> {
     return Positioned(
       bottom: 0,
       child: Container(
-        padding: EdgeInsets.all(3),
+        padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 1),
-          color: Color.fromARGB(255, 192, 192, 192),
+          color: const Color.fromARGB(255, 192, 192, 192),
         ),
         height: 40,
         width: size.width,
@@ -58,7 +58,7 @@ class _TaskBarState extends State<TaskBar> {
                     AppLocalizations.of(context)!.start,
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(right: 2)),
+                const Padding(padding: EdgeInsets.only(right: 2)),
                 // Text(
                 //   "|",
                 //   style: TextStyle(color: Colors.grey, fontSize: 20),
@@ -79,8 +79,8 @@ class _TaskBarState extends State<TaskBar> {
             // RELOGIO
             Container(
               height: 30,
-              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+              decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(color: Colors.grey, width: 1),
                   left: BorderSide(color: Colors.grey, width: 1),
@@ -97,12 +97,12 @@ class _TaskBarState extends State<TaskBar> {
                     },
                     child: Image.asset(
                       (isSoundActive)
-                          ? IconsValues.speaker_on
-                          : IconsValues.speaker_off,
+                          ? IconsValues.speakerOn
+                          : IconsValues.speakerOff,
                       height: 20,
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(right: 5),
                   ),
                   GestureDetector(
@@ -111,17 +111,17 @@ class _TaskBarState extends State<TaskBar> {
                     },
                     child: Image.asset(
                       (isMusicActive)
-                          ? IconsValues.music_on
-                          : IconsValues.music_off,
+                          ? IconsValues.musicOn
+                          : IconsValues.musicOff,
                       height: 20,
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(right: 10),
                   ),
                   Text(
                     hour,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black, fontFamily: "CourierPrime"),
                   ),
                 ],
@@ -140,20 +140,20 @@ class _TaskBarState extends State<TaskBar> {
 
     if (isAct != null) {
       setState(() {
-        this.isSoundActive = isAct;
+        isSoundActive = isAct;
       });
     } else {
       setState(() {
-        this.isSoundActive = true;
+        isSoundActive = true;
         prefs.setBool(PreferencesKey.isSoundActive, true);
       });
     }
 
     setState(() {
       if (isMusicAct != null) {
-        this.isMusicActive = isMusicAct;
+        isMusicActive = isMusicAct;
       } else {
-        this.isMusicActive = true;
+        isMusicActive = true;
         prefs.setBool(PreferencesKey.isMusicActive, true);
       }
     });
@@ -161,26 +161,26 @@ class _TaskBarState extends State<TaskBar> {
 
   _switchSoundActive() async {
     setState(() {
-      this.isSoundActive = !this.isSoundActive;
+      isSoundActive = !isSoundActive;
     });
 
     final prefs = await SharedPreferences.getInstance();
-    prefs.setBool(PreferencesKey.isSoundActive, this.isSoundActive);
+    prefs.setBool(PreferencesKey.isSoundActive, isSoundActive);
 
-    if (this.isSoundActive) {
+    if (isSoundActive) {
       context.read<SoundPlayer>().playSFX(Sounds.idExit);
     }
   }
 
   _switchMusicActive() async {
     setState(() {
-      this.isMusicActive = !this.isMusicActive;
+      isMusicActive = !isMusicActive;
     });
 
     final prefs = await SharedPreferences.getInstance();
-    prefs.setBool(PreferencesKey.isMusicActive, this.isMusicActive);
+    prefs.setBool(PreferencesKey.isMusicActive, isMusicActive);
 
-    if (this.isMusicActive) {
+    if (isMusicActive) {
       context.read<SoundPlayer>().playBGM();
     } else {
       context.read<SoundPlayer>().stopBGM();
@@ -189,9 +189,9 @@ class _TaskBarState extends State<TaskBar> {
 
   _getHour() {
     setState(() {
-      hour = DateTime.now().hour.toString() + ":";
+      hour = "${DateTime.now().hour}:";
       if (DateTime.now().minute < 10) {
-        hour = hour + "0";
+        hour = "${hour}0";
       }
       hour = hour + DateTime.now().minute.toString();
     });
@@ -202,18 +202,19 @@ class TaskBarButton extends StatefulWidget {
   final String? icon;
   final String text;
 
-  TaskBarButton(this.icon, this.text);
+  const TaskBarButton(this.icon, this.text, {Key? key}) : super(key: key);
+
   @override
-  _TaskBarButtonState createState() => _TaskBarButtonState();
+  State<TaskBarButton> createState() => _TaskBarButtonState();
 }
 
 class _TaskBarButtonState extends State<TaskBarButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       height: 30,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Colors.black, width: 1),
           right: BorderSide(color: Colors.black, width: 1),
@@ -230,12 +231,12 @@ class _TaskBarButtonState extends State<TaskBarButton> {
                   height: 20,
                 )
               : Container(),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(right: 2),
           ),
           Text(
             widget.text,
-            style: TextStyle(
+            style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: Colors.black,

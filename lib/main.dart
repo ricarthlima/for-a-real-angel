@@ -7,7 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/starter_screen.dart';
-import 'package:for_a_real_angel/values/internalVersion.dart';
+import 'package:for_a_real_angel/values/internal_version.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:provider/provider.dart';
 import 'package:random_string/random_string.dart';
@@ -29,7 +29,7 @@ void main() async {
           create: (context) => SoundPlayer(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
   _loadFirebase();
@@ -37,6 +37,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

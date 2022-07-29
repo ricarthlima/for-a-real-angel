@@ -9,22 +9,22 @@ showNextLevelDialog(BuildContext context, int? id) {
     builder: (context) {
       return AlertDialog(
           shape: Border.all(color: MyColors.topBlue, width: 10),
-          titlePadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          titlePadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           backgroundColor: MyColors.windowsGrey,
           title: Container(
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             color: MyColors.topBlue,
             child: Text(
               AppLocalizations.of(context)!.memoryRestored,
               textAlign: TextAlign.left,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
             ),
           ),
-          contentTextStyle: TextStyle(color: Colors.black),
+          contentTextStyle: const TextStyle(color: Colors.black),
           content: Container(
             color: MyColors.windowsGrey,
             height: 50,
@@ -38,22 +38,22 @@ showNextLevelDialog(BuildContext context, int? id) {
                   animationDuration: 1250,
                   percent: id! / 50,
                   center: Text(
-                    (id * 2).toString() + "%",
-                    style: TextStyle(
+                    "${id * 2}%",
+                    style: const TextStyle(
                       color: Colors.black,
                     ),
                   ),
-                  linearStrokeCap: LinearStrokeCap.butt,
+                  barRadius: const Radius.circular(5),
                   progressColor: Colors.blue,
                   backgroundColor: Colors.white,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 10),
                 ),
                 Text(
-                  "+ 5 " + AppLocalizations.of(context)!.dataPoints,
+                  "+ 5 ${AppLocalizations.of(context)!.dataPoints}",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     color: MyColors.darkGreen,
                   ),
@@ -61,10 +61,10 @@ showNextLevelDialog(BuildContext context, int? id) {
               ],
             ),
           ),
-          contentPadding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+          contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
           actions: [
             Container(
-              padding: EdgeInsets.only(right: 15),
+              padding: const EdgeInsets.only(right: 15),
               alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +79,7 @@ showNextLevelDialog(BuildContext context, int? id) {
                       width: 1,
                     ),
                     color: MyColors.windowsGrey,
-                    child: Text(
+                    child: const Text(
                       "Ok",
                       style: TextStyle(color: Colors.black),
                     ),

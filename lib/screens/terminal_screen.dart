@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/ranking_screen.dart';
 import 'package:for_a_real_angel/values/icons_values.dart';
@@ -13,11 +12,11 @@ class Terminal extends StatefulWidget {
   const Terminal({Key? key}) : super(key: key);
 
   @override
-  _TerminalState createState() => _TerminalState();
+  State<Terminal> createState() => _TerminalState();
 }
 
 class _TerminalState extends State<Terminal> {
-  TextEditingController _inputController = new TextEditingController();
+  final TextEditingController _inputController = TextEditingController();
 
   String version = "0.3.1";
   int idChapter = 1;
@@ -41,7 +40,7 @@ class _TerminalState extends State<Terminal> {
         context: context,
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         height: size.height,
         width: size.width,
         decoration: BoxDecoration(
@@ -57,18 +56,14 @@ class _TerminalState extends State<Terminal> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                "PROJECT K22B [" +
-                    this.version +
-                    "]\n" +
-                    "(org) 1962 USA-URSS EXCEPTION UNION\n" +
-                    "Type 'help' to list the commands.\n",
-                style: TextStyle(
+                "PROJECT K22B [$version]\n(org) 1962 USA-URSS EXCEPTION UNION\nType 'help' to list the commands.\n",
+                style: const TextStyle(
                   fontFamily: "CourierPrime",
                 ),
                 textAlign: TextAlign.start,
               ),
-              (this.idChapter == 4)
-                  ? Text(
+              (idChapter == 4)
+                  ? const Text(
                       "venceu_enigma",
                       style: TextStyle(fontFamily: "CourierPrime"),
                     )
@@ -76,7 +71,7 @@ class _TerminalState extends State<Terminal> {
               for (var text in log)
                 Text(
                   text,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "CourierPrime",
                   ),
                   textAlign: TextAlign.start,
@@ -90,7 +85,7 @@ class _TerminalState extends State<Terminal> {
                     _inputController.text = "";
                   });
                 },
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontFamily: "CourierPrime",
                 ),
@@ -106,22 +101,22 @@ class _TerminalState extends State<Terminal> {
   _readVersion() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     setState(() {
-      this.version = packageInfo.version;
+      version = packageInfo.version;
     });
   }
 
   Future _readChapter() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.chapterId;
+    const key = PreferencesKey.chapterId;
     final value = prefs.getInt(key);
 
     if (value != null) {
       setState(() {
-        this.idChapter = value;
+        idChapter = value;
       });
     } else {
       setState(() {
-        this.idChapter = 1;
+        idChapter = 1;
       });
     }
   }
@@ -136,17 +131,14 @@ class _TerminalState extends State<Terminal> {
       case "ranking":
         {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => RankingScreen()));
+              MaterialPageRoute(builder: (context) => const RankingScreen()));
           break;
         }
       default:
         {
           setState(() {
-            log.add("'" +
-                cmd +
-                "' " +
-                AppLocalizations.of(context)!.notRecognizedCommand +
-                "\n");
+            log.add(
+                "'$cmd' ${AppLocalizations.of(context)!.notRecognizedCommand}\n");
           });
         }
     }

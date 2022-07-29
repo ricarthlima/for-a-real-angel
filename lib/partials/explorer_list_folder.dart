@@ -21,7 +21,7 @@ class _ExplorerListFolderState extends State<ExplorerListFolder> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            IconsValues.directory_open,
+            IconsValues.directoryOpen,
             height: 35,
             width: 35,
           ),

@@ -59,9 +59,9 @@ class Directories {
         MFile(
           chapter: 7,
           title: "message.mp3",
-          icon: IconsValues.music_on,
+          icon: IconsValues.musicOn,
           type: MFileTypes.audio,
-          filePath: "message.mp3",
+          filePath: "files/message.mp3",
           downlink: "https://projeto-k22b.herokuapp.com/files/message.mp3",
         ),
         MFile(
