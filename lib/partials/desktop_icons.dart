@@ -13,8 +13,8 @@ class DesktopIcon extends StatelessWidget {
       children: <Widget>[
         Image.asset(
           icon,
-          width: 45,
-          height: 45,
+          width: 40,
+          // height: 45,
         ),
         const Padding(
           padding: EdgeInsets.only(bottom: 5),
@@ -34,9 +34,6 @@ class DesktopIcon extends StatelessWidget {
               )
             ],
           ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 10),
         ),
       ],
     );

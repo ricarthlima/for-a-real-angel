@@ -44,150 +44,137 @@ class _DesktopScreenState extends State<DesktopScreen> {
       padding: const EdgeInsets.all(10),
       child: GestureDetector(
         onTap: () {},
-        child: Table(
+        child: GridView.count(
+          crossAxisCount: 4,
           children: [
-            TableRow(children: [
-              GestureDetector(
-                onTap: () {
-                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Explorer(
-                        folder: Directories.recycleBin,
-                      ),
+            //(0,0) - Lixeixa
+            GestureDetector(
+              onTap: () {
+                context.read<SoundPlayer>().playSFX(Sounds.idClick);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Explorer(
+                      folder: Directories.recycleBin,
                     ),
-                  );
-                },
-                child: DesktopIcon(
-                  icon: IconsValues.recycleBinEmpty,
-                  text: AppLocalizations.of(context)!.recycleBin,
-                ),
+                  ),
+                );
+              },
+              child: DesktopIcon(
+                icon: IconsValues.recycleBinEmpty,
+                text: AppLocalizations.of(context)!.recycleBin,
               ),
-              Container(),
-              Container(),
-              Container(),
-              GestureDetector(
-                onTap: () {
-                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                  showMyCustomDialog(
-                      context: context,
-                      title: Text(
-                        AppLocalizations.of(context)!.dataPoints,
-                      ),
-                      content: Text(
-                        "${AppLocalizations.of(context)!.youHave} $dataPoints ${AppLocalizations.of(context)!.dataPoints}.\n\n${AppLocalizations.of(context)!.dataPointsExplanation}",
-                        textAlign: TextAlign.justify,
-                      ),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.okay,
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        )
-                      ]);
-                },
-                child: DesktopIcon(
-                    icon: IconsValues.dataPoints,
-                    text:
-                        "$dataPoints\n${AppLocalizations.of(context)!.dataPoints}"),
-              ),
-            ]),
-            TableRow(children: [
-              GestureDetector(
-                onTap: () {
-                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Terminal()));
-                },
-                child: const DesktopIcon(
-                  icon: IconsValues.console,
-                  text: "Terminal",
-                ),
-              ),
-              Container(),
-              Container(),
-              Container(),
-              (isActivatedShortcut)
-                  ? GestureDetector(
-                      onTap: () {
-                        context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AndrewChaptersScreen(),
-                          ),
-                        );
-                      },
-                      child: DesktopIcon(
-                        icon: IconsValues.soul,
-                        text: (chapterId <= 1)
-                            ? "97 110 100 114 101 119"
-                            : "andrew",
-                      ),
-                    )
-                  : Container(),
-              // GestureDetector(
-              //   onTap: () {
-              //     context.read<SoundPlayer>().playSFX(Sounds.idClick);
-              //     showMyCustomDialog(
-              //         context: context,
-              //         title: Text(AppLocalizations.of(context)!.betaDisclaimer),
-              //         content: Text(
-              //           AppLocalizations.of(context)!.betaDisclaimerText,
-              //           textAlign: TextAlign.justify,
-              //         ),
-              //         actions: <Widget>[
-              //           FlatButton(
-              //             onPressed: () {
-              //               Navigator.pop(context);
-              //             },
-              //             child: Text(
-              //               AppLocalizations.of(context)!.okay,
-              //               style: const TextStyle(
-              //                 color: Colors.grey,
-              //               ),
-              //             ),
-              //           )
-              //         ]);
-              //   },
-              //   child: DesktopIcon(
-              //     icon: IconsValues.warning,
-              //     text: AppLocalizations.of(context)!.betaDisclaimer,
-              //   ),
-              // ),
-            ]),
-            TableRow(children: [
-              GestureDetector(
-                onTap: () {
-                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Explorer(
-                        folder: Directories.documents,
-                      ),
+            ),
+
+            //(0,1)
+            Container(),
+
+            //(0,2)
+            Container(),
+
+            //(0,3) - Pontos de dados
+            GestureDetector(
+              onTap: () {
+                context.read<SoundPlayer>().playSFX(Sounds.idClick);
+                showMyCustomDialog(
+                    context: context,
+                    title: Text(
+                      AppLocalizations.of(context)!.dataPoints,
                     ),
-                  );
-                },
-                child: DesktopIcon(
-                  icon: IconsValues.directoryClosed,
-                  text: AppLocalizations.of(context)!.documents,
-                ),
+                    content: Text(
+                      "${AppLocalizations.of(context)!.youHave} $dataPoints ${AppLocalizations.of(context)!.dataPoints}.\n\n${AppLocalizations.of(context)!.dataPointsExplanation}",
+                      textAlign: TextAlign.justify,
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.okay,
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      )
+                    ]);
+              },
+              child: DesktopIcon(
+                  icon: IconsValues.dataPoints,
+                  text:
+                      "$dataPoints\n${AppLocalizations.of(context)!.dataPoints}"),
+            ),
+
+            //(1,0) - Terminal
+            GestureDetector(
+              onTap: () {
+                context.read<SoundPlayer>().playSFX(Sounds.idClick);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Terminal()));
+              },
+              child: const DesktopIcon(
+                icon: IconsValues.console,
+                text: "Terminal",
               ),
-              Container(),
-              Container(),
-              Container(),
-              Container(),
-            ]),
+            ),
+
+            //(1,1)
+            Container(),
+
+            //(1,2)
+            Container(),
+
+            //(1,3)
+            Container(),
+
+            //(2,0) - Documentos
+            GestureDetector(
+              onTap: () {
+                context.read<SoundPlayer>().playSFX(Sounds.idClick);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Explorer(
+                      folder: Directories.documents,
+                    ),
+                  ),
+                );
+              },
+              child: DesktopIcon(
+                icon: IconsValues.directoryClosed,
+                text: AppLocalizations.of(context)!.documents,
+              ),
+            ),
+
+            //(2,1)
+            Container(),
+
+            //(2,2)
+            Container(),
+
+            //(2,3)
+            Container(),
+
+            //(3,0) - Andrew
+            (isActivatedShortcut)
+                ? GestureDetector(
+                    onTap: () {
+                      context.read<SoundPlayer>().playSFX(Sounds.idClick);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AndrewChaptersScreen(),
+                        ),
+                      );
+                    },
+                    child: DesktopIcon(
+                      icon: IconsValues.soul,
+                      text: (chapterId <= 1)
+                          ? "97 110 100 114 101 119"
+                          : "andrew",
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
