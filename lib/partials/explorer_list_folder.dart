@@ -4,10 +4,10 @@ import 'package:for_a_real_angel/values/icons_values.dart';
 
 class ExplorerListFolder extends StatefulWidget {
   final MFolder folder;
-  ExplorerListFolder({required this.folder});
+  const ExplorerListFolder({Key? key, required this.folder}) : super(key: key);
 
   @override
-  _ExplorerListFolderState createState() => _ExplorerListFolderState();
+  State<ExplorerListFolder> createState() => _ExplorerListFolderState();
 }
 
 class _ExplorerListFolderState extends State<ExplorerListFolder> {
@@ -16,7 +16,7 @@ class _ExplorerListFolderState extends State<ExplorerListFolder> {
     MFolder folder = widget.folder;
 
     return Container(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -25,12 +25,12 @@ class _ExplorerListFolderState extends State<ExplorerListFolder> {
             height: 35,
             width: 35,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(right: 7),
           ),
           Text(
             folder.title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontFamily: "CourierPrime",
               fontSize: 18,

@@ -3,10 +3,10 @@ import 'package:for_a_real_angel/model/mfile.dart';
 
 class ExplorerListFile extends StatefulWidget {
   final MFile file;
-  ExplorerListFile({required this.file});
+  const ExplorerListFile({Key? key, required this.file}) : super(key: key);
 
   @override
-  _ExplorerListFileState createState() => _ExplorerListFileState();
+  State<ExplorerListFile> createState() => _ExplorerListFileState();
 }
 
 class _ExplorerListFileState extends State<ExplorerListFile> {
@@ -15,7 +15,7 @@ class _ExplorerListFileState extends State<ExplorerListFile> {
     MFile file = widget.file;
 
     return Container(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -24,12 +24,12 @@ class _ExplorerListFileState extends State<ExplorerListFile> {
             height: 35,
             width: 35,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(right: 7),
           ),
           Text(
             file.title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontFamily: "CourierPrime",
               fontSize: 18,

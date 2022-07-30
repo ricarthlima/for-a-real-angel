@@ -8,8 +8,10 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Starter extends StatefulWidget {
+  const Starter({Key? key}) : super(key: key);
+
   @override
-  _StarterState createState() => _StarterState();
+  State<Starter> createState() => _StarterState();
 }
 
 class _StarterState extends State<Starter> {
@@ -28,7 +30,7 @@ class _StarterState extends State<Starter> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       color: Colors.black,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,104 +42,94 @@ class _StarterState extends State<Starter> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
                 ),
                 child: CarouselSlider(
                   options: CarouselOptions(
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayInterval: const Duration(seconds: 3),
                     pauseAutoPlayOnTouch: true,
                     enlargeCenterPage: true,
                     viewportFraction: 1.0,
                   ),
                   items: <Widget>[
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.sentiment_satisfied,
-                            size: 75,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.starterHintGiveUp,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
+                    Column(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.sentiment_satisfied,
+                          size: 75,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.starterHintGiveUp,
+                          textAlign: TextAlign.center,
+                        )
+                      ],
                     ),
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.headset,
-                            size: 75,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.starterHintSounds,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
+                    Column(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.headset,
+                          size: 75,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.starterHintSounds,
+                          textAlign: TextAlign.center,
+                        )
+                      ],
                     ),
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.open_in_new,
-                            size: 75,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.starterHintInfos,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
+                    Column(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.open_in_new,
+                          size: 75,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.starterHintInfos,
+                          textAlign: TextAlign.center,
+                        )
+                      ],
                     ),
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.public,
-                            size: 75,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.starterHintTools,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
+                    Column(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.public,
+                          size: 75,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.starterHintTools,
+                          textAlign: TextAlign.center,
+                        )
+                      ],
                     ),
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.comment,
-                            size: 75,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.starterHintCaps,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
+                    Column(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.comment,
+                          size: 75,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.starterHintCaps,
+                          textAlign: TextAlign.center,
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -167,12 +159,14 @@ class _StarterState extends State<Starter> {
                   if (_selectSkip!) {
                     _saveSkip();
                   }
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => ChapterSplash()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ChapterSplash()));
                 },
                 child: Center(
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.black,
                       border: Border.all(color: Colors.grey, width: 3),
@@ -180,7 +174,7 @@ class _StarterState extends State<Starter> {
                     child: Center(
                       child: Text(
                         AppLocalizations.of(context)!.continuar,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                         ),
                       ),
@@ -197,14 +191,14 @@ class _StarterState extends State<Starter> {
 
   Future _read() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.skipBasicInfos;
+    const key = PreferencesKey.skipBasicInfos;
     final value = prefs.getBool(key);
 
     if (value != null && value) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => ChapterSplash(),
+          builder: (context) => const ChapterSplash(),
         ),
       );
     }
@@ -212,8 +206,8 @@ class _StarterState extends State<Starter> {
 
   _saveSkip() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.skipBasicInfos;
-    final value = true;
+    const key = PreferencesKey.skipBasicInfos;
+    const value = true;
     prefs.setBool(key, value);
   }
 

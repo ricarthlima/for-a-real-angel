@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/values/my_colors.dart';

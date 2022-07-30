@@ -49,6 +49,11 @@ class Directories {
     MFolder(chapter: 0, title: "Memories", listFiles: [], listFolders: [
       MFolder(chapter: 0, title: "Andrew", listFiles: [
         MFile(
+            chapter: 0,
+            icon: IconsValues.soul,
+            title: "97 110 100 114 101 119",
+            type: MFileTypes.andrew),
+        MFile(
           chapter: 6,
           title: "map.png",
           icon: IconsValues.image,

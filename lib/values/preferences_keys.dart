@@ -19,4 +19,6 @@ class PreferencesKey {
   static const String newVersion = "new_version";
 
   static const String internalUserKey = "internalUserKey";
+
+  static const String isEnableShortcutAndrew = "shortcut_andrew";
 }

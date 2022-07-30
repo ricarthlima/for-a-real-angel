@@ -35,16 +35,16 @@ class AndrewChapter {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tipQuote'] = this.tipQuote;
-    data['code'] = this.code;
-    data['id'] = this.id;
-    data['text'] = this.text;
-    data['title'] = this.title;
-    data['badHint'] = this.badHint;
-    data['goodHint'] = this.goodHint;
-    data['niceHint'] = this.niceHint;
-    if (this.closeTrys != null) {
+    final Map<String, dynamic> data = {};
+    data['tipQuote'] = tipQuote;
+    data['code'] = code;
+    data['id'] = id;
+    data['text'] = text;
+    data['title'] = title;
+    data['badHint'] = badHint;
+    data['goodHint'] = goodHint;
+    data['niceHint'] = niceHint;
+    if (closeTrys != null) {
       data['closeTrys'] = json.encode(data['closeTrys']);
     }
     return data;

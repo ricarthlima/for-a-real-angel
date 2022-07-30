@@ -10,15 +10,14 @@ import 'package:for_a_real_angel/partials/taskbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../helper/laucher_url.dart';
 import '../values/sounds.dart';
 
 class DesktopContextScreen extends StatefulWidget {
-  DesktopContextScreen();
+  const DesktopContextScreen({Key? key}) : super(key: key);
   @override
-  _DesktopContextScreenState createState() => _DesktopContextScreenState();
+  State<DesktopContextScreen> createState() => _DesktopContextScreenState();
 }
 
 class _DesktopContextScreenState extends State<DesktopContextScreen>

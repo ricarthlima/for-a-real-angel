@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:for_a_real_angel/helper/sound_player.dart';
 import 'package:for_a_real_angel/localizations.dart';
 import 'package:for_a_real_angel/screens/desktop_context_screen.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChapterSplash extends StatefulWidget {
-  ChapterSplash();
+  const ChapterSplash({Key? key}) : super(key: key);
 
   @override
-  _ChapterSplashState createState() => _ChapterSplashState();
+  State<ChapterSplash> createState() => _ChapterSplashState();
 }
 
 class _ChapterSplashState extends State<ChapterSplash> {
@@ -25,7 +24,7 @@ class _ChapterSplashState extends State<ChapterSplash> {
   @override
   Widget build(BuildContext context) {
     setState(() {
-      this.idEpisode = (idChapter ~/ 5.1) + 1;
+      idEpisode = (idChapter ~/ 5.1) + 1;
     });
 
     //widget.soundPlayer!.playSuccessSound();
@@ -38,20 +37,18 @@ class _ChapterSplashState extends State<ChapterSplash> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Icon(
-              (this.idEpisode == 1)
+              (idEpisode == 1)
                   ? Icons.ac_unit
-                  : (this.idEpisode == 2)
+                  : (idEpisode == 2)
                       ? Icons.leak_remove
                       : Icons.lens,
               size: 45,
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(bottom: 10),
             ),
             Text(
-              AppLocalizations.of(context)!.episode +
-                  " " +
-                  ((idChapter ~/ 5.1) + 1).toString(),
+              "${AppLocalizations.of(context)!.episode} ${(idChapter ~/ 5.1) + 1}",
               textAlign: TextAlign.center,
             )
           ],
@@ -62,16 +59,16 @@ class _ChapterSplashState extends State<ChapterSplash> {
 
   Future _read() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = PreferencesKey.chapterId;
+    const key = PreferencesKey.chapterId;
     final value = prefs.getInt(key);
 
     if (value != null) {
       setState(() {
-        this.idChapter = value;
+        idChapter = value;
       });
     } else {
       setState(() {
-        this.idChapter = 1;
+        idChapter = 1;
       });
     }
   }
@@ -81,7 +78,7 @@ class _ChapterSplashState extends State<ChapterSplash> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => DesktopContextScreen(),
+        builder: (context) => const DesktopContextScreen(),
       ),
     );
   }

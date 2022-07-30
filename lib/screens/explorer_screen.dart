@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:for_a_real_angel/helper/file_opener.dart';
 import 'package:for_a_real_angel/helper/sound_player.dart';
@@ -15,7 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Explorer extends StatefulWidget {
   MFolder folder;
   List<MFolder> roots = [];
-  Explorer({required this.folder});
+  Explorer({Key? key, required this.folder}) : super(key: key);
 
   @override
   State<Explorer> createState() => _ExplorerState();
@@ -63,8 +65,8 @@ class _ExplorerState extends State<Explorer> {
                         });
                         context.read<SoundPlayer>().playSFX(Sounds.idFolder);
                       },
-                      child: ExplorerListFolder(
-                        folder: const MFolder(
+                      child: const ExplorerListFolder(
+                        folder: MFolder(
                             chapter: 0,
                             title: "...",
                             listFiles: [],
@@ -91,7 +93,7 @@ class _ExplorerState extends State<Explorer> {
                 (arquivo.chapter <= idChapter)
                     ? GestureDetector(
                         onTap: () {
-                          routerFileType(
+                          openFile(
                             file: arquivo,
                             context: context,
                           );

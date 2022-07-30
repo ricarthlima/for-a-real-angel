@@ -8,17 +8,17 @@ showHintDialog(BuildContext context, String hint) {
     builder: (context) {
       return AlertDialog(
         backgroundColor: Colors.white,
-        title: Text(AppLocalizations.of(context)!.remebering + "..."),
-        titleTextStyle: TextStyle(
+        title: Text("${AppLocalizations.of(context)!.remebering}..."),
+        titleTextStyle: const TextStyle(
             color: MyColors.topBlue, fontWeight: FontWeight.bold, fontSize: 18),
-        contentTextStyle: TextStyle(color: Colors.black),
+        contentTextStyle: const TextStyle(color: Colors.black),
         content: Text(hint),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text(
+            child: const Text(
               "OK",
               style: TextStyle(color: Colors.black),
             ),

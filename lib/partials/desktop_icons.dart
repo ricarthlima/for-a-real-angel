@@ -4,24 +4,25 @@ class DesktopIcon extends StatelessWidget {
   final String icon;
   final String text;
 
-  DesktopIcon({required this.icon, required this.text});
+  const DesktopIcon({Key? key, required this.icon, required this.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Image.asset(
-          this.icon,
+          icon,
           width: 45,
           height: 45,
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(bottom: 5),
         ),
         Text(
-          this.text,
+          text,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 11,
             color: Colors.white,
             fontFamily: "CourierPrime",
@@ -34,7 +35,7 @@ class DesktopIcon extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(top: 10),
         ),
       ],

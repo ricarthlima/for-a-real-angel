@@ -3,7 +3,7 @@ class MFile {
 
   final String icon;
   final String title;
-  final String type;
+  final MFileTypes type;
 
   final String? downlink;
   final String? filePath;
@@ -22,11 +22,20 @@ class MFile {
       this.size});
 }
 
-class MFileTypes {
-  static const String text = "TEXT";
-  static const String image = "IMAGE";
-  static const String audio = "AUDIO";
-  static const String other = "OTHER";
+// class MFileTypes {
+//   static const String andrew = "ANDREW";
+//   static const String text = "TEXT";
+//   static const String image = "IMAGE";
+//   static const String audio = "AUDIO";
+//   static const String other = "OTHER";
+// }
+
+enum MFileTypes {
+  andrew,
+  text,
+  image,
+  audio,
+  other,
 }
 
 class MFolder {

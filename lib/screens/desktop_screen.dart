@@ -25,6 +25,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
   int dataPoints = 0;
   int chapterId = 1;
   bool isShowGiveCoinDialog = false;
+  bool isActivatedShortcut = false;
 
   @override
   void initState() {
@@ -79,7 +80,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         textAlign: TextAlign.justify,
                       ),
                       actions: <Widget>[
-                        FlatButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -103,21 +104,37 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 onTap: () {
                   context.read<SoundPlayer>().playSFX(Sounds.idClick);
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AndrewChaptersScreen(),
-                    ),
-                  );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Terminal()));
                 },
-                child: DesktopIcon(
-                  icon: IconsValues.soul,
-                  text: (chapterId <= 1) ? "97 110 100 114 101 119" : "andrew",
+                child: const DesktopIcon(
+                  icon: IconsValues.console,
+                  text: "Terminal",
                 ),
               ),
               Container(),
               Container(),
               Container(),
-              Container(),
+              (isActivatedShortcut)
+                  ? GestureDetector(
+                      onTap: () {
+                        context.read<SoundPlayer>().playSFX(Sounds.idClick);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AndrewChaptersScreen(),
+                          ),
+                        );
+                      },
+                      child: DesktopIcon(
+                        icon: IconsValues.soul,
+                        text: (chapterId <= 1)
+                            ? "97 110 100 114 101 119"
+                            : "andrew",
+                      ),
+                    )
+                  : Container(),
               // GestureDetector(
               //   onTap: () {
               //     context.read<SoundPlayer>().playSFX(Sounds.idClick);
@@ -171,25 +188,6 @@ class _DesktopScreenState extends State<DesktopScreen> {
               Container(),
               Container(),
             ]),
-            TableRow(children: [
-              GestureDetector(
-                onTap: () {
-                  context.read<SoundPlayer>().playSFX(Sounds.idClick);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Terminal()));
-                },
-                child: DesktopIcon(
-                  icon: IconsValues.console,
-                  text: "Terminal",
-                ),
-              ),
-              Container(),
-              Container(),
-              Container(),
-              Container(),
-            ]),
           ],
         ),
       ),
@@ -199,6 +197,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
   Future _readPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final coins = prefs.getInt(PreferencesKey.userCoins);
+    final shortcut = prefs.getBool(PreferencesKey.isEnableShortcutAndrew);
 
     if (coins != null) {
       setState(() {
@@ -209,6 +208,14 @@ class _DesktopScreenState extends State<DesktopScreen> {
         dataPoints = 0;
       });
       prefs.setInt(PreferencesKey.userCoins, 0);
+    }
+
+    if (shortcut != null) {
+      setState(() {
+        isActivatedShortcut = shortcut;
+      });
+    } else {
+      prefs.setBool(PreferencesKey.isEnableShortcutAndrew, false);
     }
   }
 

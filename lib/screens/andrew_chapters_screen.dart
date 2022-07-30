@@ -23,7 +23,7 @@ class AndrewChaptersScreen extends StatefulWidget {
   const AndrewChaptersScreen({Key? key}) : super(key: key);
 
   @override
-  _AndrewChaptersScreenState createState() => _AndrewChaptersScreenState();
+  State<AndrewChaptersScreen> createState() => _AndrewChaptersScreenState();
 }
 
 class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
@@ -62,9 +62,12 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
     return Scaffold(
       appBar: getAppBar(
-          context: context,
-          icon: IconsValues.soul,
-          title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew"),
+        context: context,
+        icon: IconsValues.soul,
+        title: (idChapter <= 1) ? "97 110 100 114 101 119" : "andrew",
+        isButtonShortcut: true,
+        howShortcut: "andrew",
+      ),
       body: (listChapters.isEmpty)
           ? Container(
               color: Colors.black,
@@ -511,8 +514,8 @@ class _AndrewChaptersScreenState extends State<AndrewChaptersScreen> {
 
       //Show success dialog
       if (listChapters[i].id! % 5 == 1) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ChapterSplash()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ChapterSplash()));
       } else {
         showNextLevelDialog(context, listChapters[i].id);
       }

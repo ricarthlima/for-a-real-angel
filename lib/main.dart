@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black,
         fontFamily: "JosefinSans",
       ),
-      home: Scaffold(
+      home: const Scaffold(
         body: Starter(),
       ),
     );

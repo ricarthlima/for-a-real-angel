@@ -5,8 +5,6 @@ import 'package:for_a_real_angel/model/mfile.dart';
 import 'package:for_a_real_angel/values/preferences_keys.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'laucher_url.dart';
 
 class SoundPlayer extends ChangeNotifier {
